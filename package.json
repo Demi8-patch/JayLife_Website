@@ -1,0 +1,50 @@
+{
+  "name": "jaylife-storefront",
+  "private": true,
+  "sideEffects": false,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "shopify hydrogen dev --codegen",
+    "build": "shopify hydrogen build --codegen",
+    "preview": "npm run build && shopify hydrogen preview",
+    "typecheck": "tsc",
+    "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.tsx .",
+    "codegen": "shopify hydrogen codegen"
+  },
+  "dependencies": {
+    "@remix-run/react": "^2.15.0",
+    "@remix-run/server-runtime": "^2.15.0",
+    "@shopify/hydrogen": "^2024.10.0",
+    "@shopify/remix-oxygen": "^2.0.9",
+    "framer-motion": "^11.15.0",
+    "graphql": "^16.9.0",
+    "graphql-tag": "^2.12.6",
+    "isbot": "^5.1.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.3",
+    "@remix-run/dev": "^2.15.0",
+    "@shopify/cli": "^3.73.0",
+    "@shopify/hydrogen-codegen": "^0.3.2",
+    "@shopify/mini-oxygen": "^3.1.0",
+    "@shopify/oxygen-workers-types": "^4.1.8",
+    "@tailwindcss/forms": "^0.5.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-plugin-hydrogen": "^0.12.3",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^6.2.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
