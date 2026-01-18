@@ -5,7 +5,8 @@ import { RitualGrid } from '~/components/product/RitualGrid';
 import { RITUALS } from '~/lib/mock-data';
 import { TrustBadge } from '~/components/ui/TrustBadge';
 import { StarRating } from '~/components/ui/StarRating';
-import { CheckIcon } from '~/components/ui/Icons';
+import { EmailCapture } from '~/components/ui/EmailCapture';
+import { BeakerIcon, FlagIcon, ShieldCheckIcon, TruckIcon } from '~/components/ui/Icons';
 
 export const meta: MetaFunction = () => {
   return [
@@ -126,10 +127,10 @@ export default function Homepage() {
       {/* Trust Bar */}
       <section className="border-y border-brand-navy/5 bg-white py-8 overflow-hidden">
         <div className="marquee-container flex gap-12 md:gap-24 justify-center items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-          <TrustBadge label="Lab Verified" icon={<CheckIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
-          <TrustBadge label="Made in USA" icon={<CheckIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
-          <TrustBadge label="30-Day Guarantee" icon={<CheckIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
-          <TrustBadge label="Free Shipping $50+" icon={<CheckIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
+          <TrustBadge label="Lab Verified" icon={<BeakerIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
+          <TrustBadge label="Made in USA" icon={<FlagIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
+          <TrustBadge label="30-Day Guarantee" icon={<ShieldCheckIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
+          <TrustBadge label="Free Shipping $50+" icon={<TruckIcon className="w-5 h-5" />} className="border-0 p-0 bg-transparent flex-row gap-3" />
         </div>
       </section>
 
@@ -186,6 +187,9 @@ export default function Homepage() {
           </div>
         </div>
       </section>
+
+      {/* Email Capture */}
+      <EmailCapture />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { AnnouncementBar } from './AnnouncementBar';
 import { Header } from './Header';
 import { BottomNav } from './BottomNav';
 import { Footer } from './Footer';
@@ -18,6 +19,7 @@ export function Layout({ children }: LayoutProps) {
         Skip to main content
       </a>
 
+      <AnnouncementBar />
       <Header />
 
       <main id="main-content" className="pb-safe md:pb-0">{children}</main>

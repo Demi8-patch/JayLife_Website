@@ -78,7 +78,7 @@ export function RitualCard({ ritual, onAddToCart, featured = false }: RitualCard
         className="btn-primary btn-full gap-2 group-hover:shadow-aura-sm"
       >
         <PlusIcon className="w-5 h-5" />
-        <span>Add to ritual</span>
+        <span>Add to Cart</span>
       </button>
 
       {/* Quick link to learn more */}
