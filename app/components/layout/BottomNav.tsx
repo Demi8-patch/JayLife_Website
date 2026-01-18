@@ -1,39 +1,36 @@
-import { NavLink } from '@remix-run/react';
+import { Link, useLocation } from '@remix-run/react';
 import { HomeIcon, RitualsIcon, LearnIcon, AccountIcon, CartIcon } from '../ui/Icons';
 
-interface BottomNavProps {
-  className?: string;
-}
+export function BottomNav() {
+  const location = useLocation();
 
-const navItems = [
-  { to: '/', label: 'Home', icon: HomeIcon },
-  { to: '/rituals', label: 'Rituals', icon: RitualsIcon },
-  { to: '/learn', label: 'Learn', icon: LearnIcon },
-  { to: '/account', label: 'Account', icon: AccountIcon },
-  { to: '/cart', label: 'Cart', icon: CartIcon },
-];
+  const navItems = [
+    { label: 'Home', href: '/', icon: HomeIcon },
+    { label: 'Shop', href: '/rituals', icon: RitualsIcon },
+    { label: 'Learn', href: '/learn', icon: LearnIcon },
+    { label: 'Account', href: '/account', icon: AccountIcon },
+    { label: 'Cart', href: '/cart', icon: CartIcon },
+  ];
 
-export function BottomNav({ className = '' }: BottomNavProps) {
   return (
-    <nav
-      className={`fixed bottom-0 left-0 right-0 z-50 bg-cream border-t border-charcoal/10 ${className}`}
-      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
-    >
-      <div className="flex justify-between items-center h-16 px-4">
-        {navItems.map(({ to, label, icon: Icon }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={({ isActive }) =>
-              `flex flex-col items-center justify-center min-w-touch min-h-touch gap-1 transition-colors rounded-lg focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2 ${
-                isActive ? 'text-charcoal' : 'text-muted'
-              }`
-            }
-          >
-            <Icon className="w-6 h-6" />
-            <span className="text-caption">{label}</span>
-          </NavLink>
-        ))}
+    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/90 backdrop-blur-md border-t border-brand-navy/5 pb-safe">
+      <div className="flex items-center justify-around h-16">
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              to={item.href}
+              className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive ? 'text-brand-sage' : 'text-brand-navy/40 hover:text-brand-navy'
+                }`}
+            >
+              <item.icon className="w-6 h-6" />
+              <span className="text-[10px] font-bold uppercase tracking-tight">
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );

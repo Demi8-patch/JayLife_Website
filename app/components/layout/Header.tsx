@@ -1,48 +1,71 @@
-import { Link } from '@remix-run/react';
+import { Link, useLocation } from '@remix-run/react';
+import { useState, useEffect } from 'react';
+import { CartIcon } from '../ui/Icons';
 
-interface HeaderProps {
-  className?: string;
-}
+export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-export function Header({ className = '' }: HeaderProps) {
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { label: 'Shop', href: '/rituals' },
+    { label: 'Learn', href: '/learn' },
+    { label: 'Account', href: '/account' },
+  ];
+
   return (
-    <header
-      className={`sticky top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-charcoal/5 ${className}`}
-    >
-      <div className="max-w-6xl mx-auto px-5 md:px-20 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="font-bold text-xl tracking-tight">
-          JAY LIFE
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="flex items-center gap-8">
-          <Link
-            to="/rituals"
-            className="text-sm text-charcoal hover:text-charcoal/70 transition-colors rounded-button px-2 py-1 focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2"
-          >
-            Rituals
-          </Link>
-          <Link
-            to="/learn"
-            className="text-sm text-charcoal hover:text-charcoal/70 transition-colors rounded-button px-2 py-1 focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2"
-          >
-            Learn
-          </Link>
-          <Link
-            to="/account"
-            className="text-sm text-charcoal hover:text-charcoal/70 transition-colors rounded-button px-2 py-1 focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2"
-          >
-            Account
-          </Link>
-          <Link
-            to="/cart"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-charcoal text-cream text-sm font-medium focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2"
-          >
-            0
-          </Link>
-        </nav>
+    <>
+      {/* Announcement Bar */}
+      <div className="bg-brand-navy text-brand-cream py-2 px-5 text-center text-[10px] md:text-sm font-bold tracking-widest uppercase">
+        Free shipping on orders $50+ | 30-day money-back guarantee
       </div>
-    </header>
+
+      <header
+        className={`sticky top-0 z-40 w-full transition-all duration-300 ${isScrolled
+            ? 'bg-white/90 backdrop-blur-md border-b border-brand-navy/5 py-4 shadow-sm'
+            : 'bg-brand-cream py-6'
+          }`}
+      >
+        <nav className="max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between">
+          <Link to="/" className="font-display text-2xl font-bold tracking-tight text-brand-navy">
+            JAY LIFE
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={`text-sm font-bold transition-colors uppercase tracking-widest ${isActive ? 'text-brand-sage' : 'text-brand-navy/60 hover:text-brand-sage'
+                    }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Right side */}
+          <div className="flex items-center gap-6">
+            <Link to="/cart" className="relative group p-2">
+              <CartIcon className="w-6 h-6 text-brand-navy group-hover:scale-110 transition-transform" />
+              <span className="absolute top-1 right-1 bg-brand-sage text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                0
+              </span>
+            </Link>
+          </div>
+        </nav>
+      </header>
+    </>
   );
 }

@@ -1,65 +1,35 @@
 import type { Ritual } from '~/lib/mock-data';
-import { PlusIcon } from '../ui/Icons';
+import { ProductCard } from './ProductCard';
 
 interface RitualGridProps {
   rituals: Ritual[];
   onAddToCart?: (ritual: Ritual) => void;
 }
 
-/**
- * Vertical "protocol" style ritual grid
- * Clean, document-like layout with specs as hero
- */
-export function RitualGrid({ rituals, onAddToCart }: RitualGridProps) {
-  const handleAdd = (ritual: Ritual) => {
-    if (navigator.vibrate) {
-      navigator.vibrate(10);
-    }
-    onAddToCart?.(ritual);
-  };
-
+export function RitualGrid({ rituals }: RitualGridProps) {
   return (
-    <section className="px-5 md:px-20 py-12 md:py-20">
-      <h2 className="text-subhead font-medium text-muted mb-8">DAILY PROTOCOL</h2>
-
-      <div className="space-y-0">
-        {rituals.map((ritual, index) => (
-          <div key={ritual.handle}>
-            {/* Divider */}
-            {index > 0 && <hr className="border-charcoal/10 my-8" />}
-
-            {/* Ritual row */}
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-              {/* Left: Info */}
-              <div className="flex-1">
-                <h3 className="font-bold text-xl mb-2">{ritual.title}</h3>
-                <p className="font-mono text-specs text-muted">
-                  {ritual.ingredients.map((i) => `${i.name} ${i.dose}`).join(' · ')}
-                </p>
-                <p className="text-muted text-sm mt-2">{ritual.tagline}</p>
-              </div>
-
-              {/* Right: Price + Add */}
-              <div className="flex items-center gap-4 md:gap-6">
-                <span className="font-mono text-lg">${ritual.price}</span>
-                <button
-                  onClick={() => handleAdd(ritual)}
-                  className="min-h-touch min-w-touch flex items-center justify-center rounded-full bg-charcoal text-cream hover:bg-charcoal/90 transition-colors focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2"
-                  aria-label={`Add ${ritual.title} to cart`}
-                >
-                  <PlusIcon className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+    <section className="px-5 md:px-10 py-12 md:py-20 max-w-7xl mx-auto">
+      <div className="flex items-center justify-between mb-10">
+        <h2 className="font-display font-bold text-3xl text-brand-navy">Shop Our Collection</h2>
+        <a href="/rituals" className="text-sm font-medium text-brand-navy border-b border-brand-navy pb-0.5 hover:text-brand-sage hover:border-brand-sage transition-colors">
+          View all
+        </a>
       </div>
 
-      {/* Lab reports link */}
-      <div className="mt-12 text-right">
-        <a href="#" className="text-sm text-muted hover:text-charcoal transition-colors">
-          View lab reports →
-        </a>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {rituals.map((ritual) => (
+          <ProductCard
+            key={ritual.handle}
+            id={ritual.handle}
+            title={ritual.title}
+            tagline={ritual.tagline}
+            price={`$${ritual.price}`}
+            image={ritual.image || ''} // Handle missing image gracefully
+            rating={4.8} // Mock rating for now
+            reviewCount={120 + Math.floor(Math.random() * 500)} // Mock count
+            handle={ritual.handle}
+          />
+        ))}
       </div>
     </section>
   );

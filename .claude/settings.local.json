@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(superpowers:brainstorming)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run lint)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout /t 8 /nobreak)",
+      "Bash(ping:*)",
+      "Bash(npm run build:*)",
+      "mcp__MCP_DOCKER__browser_navigate",
+      "mcp__MCP_DOCKER__browser_take_screenshot",
+      "mcp__MCP_DOCKER__browser_press_key",
+      "Bash(timeout:*)",
+      "Bash(npx shopify hydrogen:*)",
+      "Bash(echo:*)",
+      "Bash(node:*)",
+      "Bash(npx --version)",
+      "Bash(npx shopify:*)",
+      "Bash(./node_modules/.bin/shopify hydrogen dev:*)",
+      "Bash(npx vite:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

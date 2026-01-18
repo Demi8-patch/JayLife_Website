@@ -1,5 +1,9 @@
 Jay Life Brand Guidelines
-Version 1.1 | January 2026
+Version 2.0 | January 2026
+
+**Mobile-First Overhaul** - Optimized for Gen-Z thumb-zone interactions
+
+---
 
 1. Brand Overview
 Who We Are
@@ -52,30 +56,101 @@ What We Are NOT
 
 4. Visual Identity
 Aesthetic: "App, Not Pharmacy"
-Our visuals should feel like a tech product, not a prescription.
+Our visuals should feel like a premium tech product, not a prescription.
 
-Color Palette
-Color	Hex	Usage
-Acid Green	#BFFF00	Primary accent, energy
-Lavender	#E6E6FA	Calm, secondary
-Coral	#FF6F61	Warmth, highlights
-Off-White	#FAF9F5	Backgrounds
-Soft Black	#1A1A1A	Text, anchoring
-Typography
-Headlines: Bold, clean sans-serif (Inter, Outfit)
+### Color Palette (2026 Refresh)
 
-Body: Readable, modern (Inter, Lora)
+| Color | Hex | CSS Variable | Usage |
+|-------|-----|--------------|-------|
+| **Acid Green** | `#BFFF00` | `--color-acid` | Primary actions, energy, CTAs |
+| **Acid Glow** | `rgba(191, 255, 0, 0.2)` | `--color-acid-glow` | Hover states, badges |
+| **Cream** | `#FAF9F5` | `--color-cream` | Primary background |
+| **Warm White** | `#FFFFFF` | `--color-white` | Cards, surfaces |
+| **Charcoal** | `#1A1A1A` | `--color-charcoal` | Primary text, dark elements |
+| **Muted** | `#68809A` | `--color-muted` | Secondary text, captions |
+| **Coral** | `#FF6F61` | `--color-coral` | Errors, warnings, urgency |
+| **Lavender** | `#E6E6FA` | `--color-lavender` | Calm accent, info badges |
 
-Specs/Labels: Monospace for ingredient lists
+### Typography System
 
-Design Principles
-Hard color blocking over gradients
+| Role | Font | Size (Mobile) | Size (Desktop) | Weight |
+|------|------|---------------|----------------|--------|
+| **Hero** | Outfit | 32px | 56px | 700 |
+| **Headline** | Outfit | 24px | 36px | 600 |
+| **Subhead** | Inter | 18px | 22px | 500 |
+| **Body** | Inter | 16px | 16px | 400 |
+| **Specs** | JetBrains Mono | 14px | 14px | 400 |
+| **Caption** | Inter | 12px | 12px | 500 |
 
-Generous whitespace (digital-first)
+**Font Loading Priority:**
+1. Outfit (headlines) - Display swap
+2. Inter (body) - System fallback first
+3. JetBrains Mono (specs) - Load async
 
-Ingredient labels as hero (specs, not prose)
+### Mobile-First Design Principles
 
-QR codes to lab reports visible on pack
+**The Thumb Zone Rule**
+Design for single-hand operation. Primary actions in bottom 60% of screen.
+
+```
+┌─────────────────────┐
+│   HARD REACH        │  <- Secondary content
+│                     │
+├─────────────────────┤
+│   NATURAL REACH     │  <- Primary content
+│                     │
+├─────────────────────┤
+│   THUMB ZONE        │  <- Primary actions, nav
+│   [CTA] [CTA]       │
+└─────────────────────┘
+```
+
+**Touch Targets**
+- Minimum: 48px × 48px
+- Recommended: 56px × 56px for primary CTAs
+- Spacing between targets: 8px minimum
+
+**Spacing Scale (8px base)**
+| Token | Value | Usage |
+|-------|-------|-------|
+| `xs` | 8px | Inline spacing |
+| `sm` | 16px | Component padding |
+| `md` | 24px | Section gaps |
+| `lg` | 48px | Section padding (mobile) |
+| `xl` | 80px | Section padding (desktop) |
+
+### Component Library
+
+**Cards**
+- Border radius: 16px
+- Shadow: `0 2px 8px rgba(0, 0, 0, 0.04)`
+- Padding: 24px (mobile), 32px (desktop)
+
+**Buttons**
+- Primary: Acid green background, charcoal text
+- Secondary: Charcoal background, cream text
+- Ghost: Transparent, charcoal border
+- Height: 48px minimum, 56px recommended
+- Border radius: 12px
+- Font: Bold, no uppercase
+
+**Badges**
+- Success: Acid green tint
+- Warning: Coral tint
+- Info: Lavender
+- Neutral: Charcoal tint
+
+### Animation Guidelines
+
+**Micro-interactions**
+- Duration: 150-200ms
+- Easing: `cubic-bezier(0.4, 0, 0.2, 1)`
+- Haptic: 10ms vibration on add-to-cart
+
+**Reduced Motion**
+Always respect `prefers-reduced-motion: reduce`:
+- Replace animations with instant state changes
+- Keep essential feedback (color changes, scale)
 
 5. Voice & Tone
 Voice Characteristics

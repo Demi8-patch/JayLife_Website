@@ -1,40 +1,265 @@
-/* Jay Life Design Tokens */
+/* Jay Life Design Tokens - Version 3.0 (Sajid Design Integration) */
+/*
+ * CORE PRINCIPLES (from @whosajid):
+ * 1. Don't make users think - instant understanding
+ * 2. Function over beauty - design solves problems
+ * 3. Good design is minimal - less colors, less words, less clutter
+ * 4. Inner spacing < Outer spacing - ALWAYS
+ * 5. Group gap < Section gap - ALWAYS
+ * 6. Elevation = Importance - lighter/higher = more important
+ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Colors */
-    --color-acid: #BFFF00;
-    --color-cream: #FAF9F5;
-    --color-charcoal: #1A1A1A;
-    --color-muted: #68809A;
-    --color-coral: #FF6F61;
-    --color-lavender: #E6E6FA;
+    /* ═══════════════════════════════════════════════════════════════════
+       COLORS - Elevated Wellness Theme
+       ═══════════════════════════════════════════════════════════════════ */
 
-    /* Semantic */
-    --bg-surface: var(--color-cream);
-    --bg-card: #FFFFFF;
-    --text-primary: var(--color-charcoal);
-    --text-muted: var(--color-muted);
-    --action-primary: var(--color-acid);
-    --action-danger: var(--color-coral);
+    /* Brand Colors (HSL values for the new palette) */
+    --brand-cream: hsl(38, 30%, 96%);
+    /* #F8F5F0 alternate */
+    --brand-sage: hsl(83, 15%, 54%);
+    /* #8B9B7A */
+    --brand-navy: hsl(204, 38%, 17%);
+    /* #1A2E3B */
 
-    /* Spacing */
-    --space-xs: 8px;
-    --space-sm: 16px;
-    --space-md: 24px;
-    --space-lg: 48px;
-    --space-xl: 80px;
+    /* Semantic Primary - mapping to Sage for immediate tone shift */
+    --color-acid: var(--brand-sage);
+    --color-acid-glow: hsla(83, 15%, 54%, 0.2);
+    --color-acid-subtle: hsla(83, 15%, 54%, 0.1);
 
-    /* Touch */
+    /* Neutrals - Light Mode */
+    --color-cream: var(--brand-cream);
+    --color-cream-surface: hsl(38, 30%, 99%);
+    /* Slightly lighter for elevation */
+    --color-cream-hover: hsl(38, 30%, 93%);
+    /* Slightly darker for hover */
+
+    /* Neutrals - Dark */
+    --color-charcoal: var(--brand-navy);
+    --color-charcoal-surface: hsl(204, 38%, 10%);
+    --color-charcoal-elevated: hsl(204, 38%, 22%);
+
+    /* Text Hierarchy */
+    --text-primary: var(--brand-navy);
+    --text-secondary: hsl(204, 15%, 42%);
+    --text-muted: hsl(204, 10%, 60%);
+
+    /* Semantic Colors */
+    --color-coral: hsl(15, 50%, 58%);
+    /* Terracotta accent */
+    --color-lavender: hsl(45, 45%, 90%);
+    /* Sand accent */
+    --color-success: hsl(120, 21%, 45%);
+    --color-error: hsl(0, 51%, 57%);
+    --color-warning: hsl(38, 71%, 66%);
+    --color-info: hsl(204, 15%, 42%);
+
+    /* Semantic Aliases */
+    --bg-base: var(--brand-cream);
+    --bg-surface: var(--color-cream-surface);
+    --bg-elevated: var(--color-cream-surface);
+    --bg-hover: var(--color-cream-hover);
+    --bg-card: var(--color-cream-surface);
+    --action-primary: var(--brand-navy);
+    --action-danger: var(--color-error);
+
+    /* Borders */
+    --border-subtle: hsla(204, 38%, 17%, 0.05);
+    --border-default: hsla(204, 38%, 17%, 0.1);
+    --border-strong: hsla(204, 38%, 17%, 0.2);
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SPACING - Rem-based scale
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* Granular spacing scale */
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+    --space-20: 5rem;
+    /* 80px */
+
+    /* Legacy aliases */
+    --space-xs: var(--space-2);
+    --space-sm: var(--space-4);
+    --space-md: var(--space-6);
+    --space-lg: var(--space-12);
+    --space-xl: var(--space-20);
+
+    /* Touch targets */
     --touch-min: 48px;
+    --touch-lg: 56px;
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
 
-    /* Transitions */
-    --transition-fast: 150ms ease;
-    --transition-base: 200ms ease;
+    /* ═══════════════════════════════════════════════════════════════════
+       TYPOGRAPHY
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* Font families */
+    --font-display: 'Fraunces', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Font sizes */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+    --text-6xl: 3.5rem;
+    /* 56px */
+
+    /* Font weights */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* Line heights */
+    --leading-none: 1;
+    --leading-tight: 1.2;
+    --leading-snug: 1.35;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.6;
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SHADOWS - Sajid's Dual Shadow Technique
+       Light inset on TOP + Dark shadow on BOTTOM = realistic depth
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* Small elevation (subtle) - buttons, inputs */
+    --shadow-sm:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 1px 2px rgba(0, 0, 0, 0.05);
+
+    /* Medium elevation (cards, dropdowns) */
+    --shadow-md:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 4px 8px rgba(0, 0, 0, 0.06);
+
+    /* Large elevation (modals, popovers) */
+    --shadow-lg:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 8px 16px rgba(0, 0, 0, 0.1);
+
+    /* XL elevation (focused modals) */
+    --shadow-xl:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 16px 32px rgba(0, 0, 0, 0.12);
+
+    /* Legacy shadows (mapped to dual shadows) */
+    --shadow-card: var(--shadow-md);
+    --shadow-card-hover: var(--shadow-lg);
+
+    /* Brand aura glow */
+    --shadow-aura: 0 0 40px hsla(75, 100%, 50%, 0.3);
+    --shadow-aura-sm: 0 0 20px hsla(75, 100%, 50%, 0.2);
+
+    /* ═══════════════════════════════════════════════════════════════════
+       TRANSITIONS - Sajid's Purpose-Driven Animation
+       ease-out for ENTER, ease-in for EXIT, ease-in-out for CONTINUOUS
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* Duration scale */
+    --duration-micro: 100ms;
+    /* Hovers, toggles */
+    --duration-fast: 150ms;
+    /* Small transitions */
+    --duration-base: 200ms;
+    /* Default */
+    --duration-slow: 300ms;
+    /* Dropdowns, tooltips */
+    --duration-slower: 400ms;
+    /* Modals, page sections */
+    --duration-slowest: 500ms;
+    /* Complex sequences */
+
+    /* Timing functions (Sajid principles) */
+    --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* ENTER elements */
+    --ease-in: cubic-bezier(0.42, 0, 1, 1);
+    /* EXIT elements */
+    --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+    /* CONTINUOUS motion */
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Snappy entrance */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    /* General purpose */
+
+    /* Composed transitions */
+    --transition-fast: var(--duration-fast) var(--ease-smooth);
+    --transition-base: var(--duration-base) var(--ease-smooth);
+    --transition-slow: var(--duration-slow) var(--ease-smooth);
+    --transition-enter: var(--duration-slow) var(--ease-out);
+    --transition-exit: var(--duration-base) var(--ease-in);
+    --transition-smooth: var(--duration-slower) var(--ease-smooth);
+    --transition-crossfade: var(--duration-slower) ease;
+
+    /* ═══════════════════════════════════════════════════════════════════
+       RADII & SHAPES (dyou.co + Sajid)
+       ═══════════════════════════════════════════════════════════════════ */
+
+    --radius-sm: 0.375rem;
+    /* 6px - Small elements */
+    --radius-md: 0.5rem;
+    /* 8px - Inputs */
+    --radius-lg: 0.75rem;
+    /* 12px - Buttons */
+    --radius-xl: 1rem;
+    /* 16px - Cards */
+    --radius-2xl: 1.5rem;
+    /* 24px - Soft cards */
+    --radius-pill: 9999px;
+    /* Pill shapes */
+    --radius-soft: 1.5rem;
+    /* Alias for 2xl */
+
+    /* Highlight colors */
+    --highlight-acid: hsla(75, 100%, 50%, 0.35);
+    --highlight-coral: hsla(5, 100%, 69%, 0.2);
+    --highlight-lavender: hsla(240, 67%, 94%, 0.6);
+
+    /* Dot indicator sizes */
+    --dot-size: 11px;
+    --dot-active-width: 44px;
   }
 
   html {
@@ -43,11 +268,23 @@
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent iOS text size adjustment */
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     min-height: 100vh;
     min-height: 100dvh;
+    /* Smooth scrolling for in-page navigation */
+    scroll-behavior: smooth;
+  }
+
+  /* Headlines use Outfit */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: 'Outfit', system-ui, sans-serif;
   }
 
   /* Touch target enforcement */
@@ -95,9 +332,14 @@
 }
 
 @layer components {
-  /* Ritual Card */
+
+  /* Ritual Card - Enhanced for mobile */
   .ritual-card {
-    @apply bg-white rounded-card p-6 shadow-card;
+    @apply bg-white rounded-card p-6 shadow-card transition-shadow duration-200;
+  }
+
+  .ritual-card:hover {
+    @apply shadow-card-hover;
   }
 
   /* Specs (monospace ingredient list) */
@@ -105,26 +347,475 @@
     @apply font-mono text-specs text-muted;
   }
 
-  /* Primary button */
+  /* Button System */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 min-h-touch px-6 rounded-button font-semibold transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
   .btn-primary {
-    @apply w-full min-h-touch bg-acid text-charcoal font-bold rounded-button
-           flex items-center justify-center
-           transition-all active:scale-[0.98]
-           focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    @apply btn bg-acid text-charcoal hover:shadow-aura-sm focus-visible:ring-charcoal;
+  }
+
+  .btn-primary-lg {
+    @apply btn-primary min-h-touch-lg text-base;
+  }
+
+  .btn-secondary {
+    @apply btn bg-charcoal text-cream hover:bg-charcoal/90 focus-visible:ring-acid;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-charcoal border-2 border-charcoal/20 hover:border-charcoal/40 hover:bg-charcoal/5 focus-visible:ring-charcoal;
+  }
+
+  /* Full-width button variant */
+  .btn-full {
+    @apply w-full;
   }
 
   /* Bottom nav safe area padding */
   .pb-safe {
     padding-bottom: calc(64px + var(--safe-area-bottom));
   }
+
+  /* Card hover effect */
+  .card-interactive {
+    @apply transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 text-caption font-medium rounded-badge;
+  }
+
+  .badge-success {
+    @apply badge bg-acid-glow text-charcoal;
+  }
+
+  .badge-warning {
+    @apply badge bg-coral/20 text-coral;
+  }
+
+  .badge-info {
+    @apply badge bg-lavender text-charcoal;
+  }
+
+  .badge-neutral {
+    @apply badge bg-charcoal/10 text-charcoal;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply px-5 md:px-20 py-12 md:py-20;
+  }
+
+  .section-sm {
+    @apply px-5 md:px-20 py-8 md:py-12;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     dyou.co-inspired Components (adapted to JayLife brand)
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /* Pill Button Variant - Premium rounded CTAs */
+  .btn-pill {
+    @apply btn bg-acid text-charcoal;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-smooth);
+  }
+
+  .btn-pill:hover {
+    @apply shadow-aura;
+    transform: translateY(-2px);
+  }
+
+  .btn-pill-secondary {
+    @apply btn bg-charcoal text-cream;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-smooth);
+  }
+
+  .btn-pill-secondary:hover {
+    @apply bg-charcoal/90;
+    transform: translateY(-2px);
+  }
+
+  .btn-pill-ghost {
+    @apply btn bg-transparent text-charcoal border-2 border-charcoal/20;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-smooth);
+  }
+
+  .btn-pill-ghost:hover {
+    @apply border-charcoal/40 bg-charcoal/5;
+  }
+
+  /* Soft Card - Larger radius for premium feel */
+  .card-soft {
+    @apply bg-white p-6 md:p-8;
+    border-radius: var(--radius-soft);
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-smooth);
+  }
+
+  .card-soft:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+
+  /* Keyword Highlights - Inline emphasis */
+  .highlight {
+    @apply px-1.5 py-0.5 rounded-md;
+    background: var(--highlight-acid);
+  }
+
+  .highlight-coral {
+    @apply px-1.5 py-0.5 rounded-md;
+    background: var(--highlight-coral);
+  }
+
+  .highlight-lavender {
+    @apply px-1.5 py-0.5 rounded-md;
+    background: var(--highlight-lavender);
+  }
+
+  /* Stretching Dot Indicators - Carousel navigation */
+  .dot-indicator {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 9999px;
+    background: var(--color-charcoal);
+    opacity: 0.3;
+    transition: all var(--transition-smooth);
+  }
+
+  .dot-indicator.active,
+  .dot-indicator[data-active="true"] {
+    width: var(--dot-active-width);
+    opacity: 1;
+    background: var(--color-acid);
+  }
+
+  .dot-indicator:hover {
+    opacity: 0.6;
+  }
+
+  .dot-indicator.active:hover,
+  .dot-indicator[data-active="true"]:hover {
+    opacity: 1;
+  }
+
+  /* Dot container */
+  .dot-indicators {
+    @apply flex items-center justify-center gap-2;
+  }
+
+  /* Pill Input - Search fields */
+  .input-pill {
+    @apply w-full px-5 py-3 text-body bg-white text-charcoal placeholder:text-muted;
+    border-radius: var(--radius-pill);
+    border: 2px solid transparent;
+    transition: all var(--transition-smooth);
+  }
+
+  .input-pill:focus {
+    @apply outline-none;
+    border-color: var(--color-acid);
+    box-shadow: 0 0 0 4px var(--color-acid-glow);
+  }
+
+  /* Tab System - Premium feel */
+  .tab-list {
+    @apply flex gap-1 p-1 bg-charcoal/5 rounded-full;
+  }
+
+  .tab-item {
+    @apply px-5 py-2.5 text-caption uppercase tracking-wide text-muted font-semibold rounded-full;
+    transition: all var(--transition-smooth);
+  }
+
+  .tab-item:hover {
+    @apply text-charcoal;
+  }
+
+  .tab-item.active,
+  .tab-item[data-active="true"] {
+    @apply bg-white text-charcoal shadow-card;
+  }
+
+  /* Crossfade Container - Content transitions */
+  .crossfade-container {
+    position: relative;
+  }
+
+  .crossfade-item {
+    opacity: 0;
+    transition: opacity var(--transition-crossfade);
+    position: absolute;
+    inset: 0;
+  }
+
+  .crossfade-item.active,
+  .crossfade-item[data-active="true"] {
+    opacity: 1;
+    position: relative;
+  }
+
+  /* Video Container - Premium media display */
+  .video-container {
+    @apply relative overflow-hidden bg-charcoal/5;
+    border-radius: var(--radius-soft);
+  }
+
+  .video-container video,
+  .video-container iframe {
+    @apply w-full h-full object-cover;
+  }
+
+  /* Floating Action Button - dyou-style */
+  .fab {
+    @apply fixed bottom-24 right-5 md:bottom-8 md:right-8 flex items-center justify-center w-14 h-14 bg-acid text-charcoal shadow-aura z-50;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-smooth);
+  }
+
+  .fab:hover {
+    transform: scale(1.1);
+  }
+
+  .fab:active {
+    transform: scale(0.95);
+  }
+
+  /* Premium Hover Lift - Subtle elevation */
+  .hover-lift {
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SAJID DESIGN COMPONENTS
+     Core principles applied to reusable patterns
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /*
+   * ELEVATION HIERARCHY (Sajid: Elevation = Importance)
+   * Background < Surface < Elevated < Interactive < Modal
+   */
+  .elevation-base {
+    background: var(--bg-base);
+  }
+
+  .elevation-surface {
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .elevation-card {
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-md);
+  }
+
+  .elevation-dropdown {
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .elevation-modal {
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /*
+   * SPACING UTILITIES (Sajid: Inner < Outer)
+   * Use these to ensure proper spacing hierarchy
+   */
+
+  /* Card with proper inner < outer spacing */
+  .card-sajid {
+    @apply bg-white;
+    padding: var(--space-6);
+    /* Outer: 24px */
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-sajid>*+* {
+    margin-top: var(--space-4);
+    /* Inner gap: 16px < 24px outer */
+  }
+
+  /* Section with proper group < section gap */
+  .section-sajid {
+    padding: var(--space-16) var(--space-5);
+    /* 64px vertical, 20px horizontal */
+  }
+
+  @media (min-width: 768px) {
+    .section-sajid {
+      padding: var(--space-20) var(--space-20);
+      /* 80px vertical, 80px horizontal */
+    }
+  }
+
+  .section-sajid>*+* {
+    margin-top: var(--space-8);
+    /* 32px section internal gap */
+  }
+
+  /*
+   * BUTTON SPACING (Sajid: Vertical < Horizontal, 1:2 ratio)
+   */
+  .btn-sajid {
+    @apply inline-flex items-center justify-center font-semibold;
+    gap: var(--space-2);
+    /* 8px icon-text gap */
+    padding: var(--space-3) var(--space-6);
+    /* 12px vertical, 24px horizontal */
+    border-radius: var(--radius-lg);
+    min-height: var(--touch-min);
+    transition: all var(--transition-enter);
+  }
+
+  .btn-sajid:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .btn-sajid:active {
+    transform: scale(0.98);
+    transition: all var(--transition-exit);
+  }
+
+  .btn-sajid-primary {
+    @apply btn-sajid bg-acid text-charcoal;
+  }
+
+  .btn-sajid-primary:hover {
+    box-shadow: var(--shadow-aura-sm);
+  }
+
+  .btn-sajid-secondary {
+    @apply btn-sajid bg-charcoal text-cream;
+  }
+
+  /*
+   * INPUT SPACING (Sajid: 0.75rem vertical, 1rem horizontal)
+   */
+  .input-sajid {
+    @apply w-full text-charcoal placeholder:text-muted;
+    padding: var(--space-3) var(--space-4);
+    /* 12px vertical, 16px horizontal */
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    min-height: var(--touch-min);
+  }
+
+  .input-sajid:focus {
+    @apply outline-none;
+    border-color: var(--color-acid);
+    box-shadow: 0 0 0 3px var(--color-acid-glow);
+  }
+
+  /*
+   * LIST SPACING (Sajid: List items closer than section gaps)
+   */
+  .list-sajid>*+* {
+    margin-top: var(--space-3);
+    /* 12px between items */
+  }
+
+  .list-sajid-tight>*+* {
+    margin-top: var(--space-2);
+    /* 8px between items */
+  }
+
+  /*
+   * TYPOGRAPHY HIERARCHY (Sajid: Size > Weight > Color)
+   */
+  .text-hierarchy-primary {
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .text-hierarchy-secondary {
+    color: var(--text-secondary);
+    font-weight: var(--font-normal);
+  }
+
+  .text-hierarchy-muted {
+    color: var(--text-muted);
+    font-weight: var(--font-normal);
+    font-size: var(--text-sm);
+  }
+
+  /*
+   * ANIMATION PATTERNS (Sajid: ease-out enter, ease-in exit)
+   */
+  .animate-enter {
+    animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
+  }
+
+  .animate-exit {
+    animation: fadeOut var(--duration-base) var(--ease-in) forwards;
+  }
+
+  .animate-scale-enter {
+    animation: scaleIn var(--duration-slow) var(--ease-out) forwards;
+  }
+
+  .animate-scale-exit {
+    animation: scaleOut var(--duration-base) var(--ease-in) forwards;
+  }
+
+  /* Modal overlay with proper animation */
+  .modal-overlay {
+    @apply fixed inset-0 bg-brand-navy/50 z-40;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation: fadeIn var(--duration-base) var(--ease-out) forwards;
+  }
+
+  .modal-content {
+    @apply fixed z-50 bg-white;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    animation: scaleIn var(--duration-slow) var(--ease-bounce) forwards;
+  }
+
+  /*
+   * BORDER PATTERNS (Sajid hierarchy)
+   */
+  .border-sajid-subtle {
+    border: 1px solid var(--border-subtle);
+  }
+
+  .border-sajid-default {
+    border: 1px solid var(--border-default);
+  }
+
+  .border-sajid-strong {
+    border: 1px solid var(--border-strong);
+  }
+
+  .border-sajid-focus {
+    border: 2px solid var(--color-acid);
+  }
 }
 
 @layer utilities {
+
   /* Hide scrollbar but allow scrolling */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -137,10 +828,190 @@
   .snap-center {
     scroll-snap-align: center;
   }
+
+  /* dyou.co-inspired utilities */
+
+  /* Transition utilities */
+  .transition-smooth {
+    transition: all var(--transition-smooth);
+  }
+
+  .transition-crossfade {
+    transition: opacity var(--transition-crossfade);
+  }
+
+  /* Letter spacing - tighter headlines */
+  .tracking-tight-xl {
+    letter-spacing: -0.03em;
+  }
+
+  .tracking-tight-2xl {
+    letter-spacing: -0.04em;
+  }
+
+  /* Gradient text - premium effect */
+  .text-gradient-acid {
+    background: linear-gradient(135deg, var(--color-acid) 0%, #9AE600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass effect - modern cards */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-dark {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* dyou.co-inspired Keyframe Animations */
+@keyframes crossfadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes crossfadeOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes dotStretch {
+  0% {
+    width: var(--dot-size);
+  }
+
+  100% {
+    width: var(--dot-active-width);
+  }
+}
+
+@keyframes floatUp {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Sajid enter/exit animations */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToBottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Animation utility classes */
+.animate-crossfade-in {
+  animation: crossfadeIn var(--transition-crossfade) forwards;
+}
+
+.animate-crossfade-out {
+  animation: crossfadeOut var(--transition-crossfade) forwards;
+}
+
+.animate-float {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      var(--color-cream) 0%,
+      rgba(191, 255, 0, 0.1) 50%,
+      var(--color-cream) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
