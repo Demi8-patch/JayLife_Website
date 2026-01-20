@@ -28,11 +28,11 @@ Product Architecture
 Modular systems—no one-size-fits-all multivitamins:
 
 Product	Purpose	Key Copy
-FOCUS	Caffeine + L-Theanine + Tyrosine	"Brain online."
-CALM	Ashwagandha + Magnesium	"System offline."
-GUT	Probiotics + Digestive Enzymes	"Clean processing."
-GLOW	Collagen + Biotin	"Upgrade visible."
-MOVE	Recovery compounds	"Rebuild faster."
+FOCUS	Caffeine + L-Theanine + Tyrosine	"Stay sharp. No jitters."
+CALM	Ashwagandha + Magnesium	"Find your calm. Quiet your mind."
+GUT	Probiotics + Digestive Enzymes	"Healthy digestion from within."
+GLOW	Collagen + Biotin	"Radiant skin. From the inside out."
+MOVE	Recovery compounds	"Perform better. Recover faster."
 3. Brand Personality
 Archetype
 The Smart Friend / The Sage-Next-Door
@@ -170,17 +170,34 @@ Spec-sheet formatting: Bullets over paragraphs.
 
 Power Lexicon (Words We Use)
 Word	Why
-Upgrade	Version control for your body
-Deploy	Active, intentional
+Routine	Familiar, approachable daily practice
+Ritual	Elevated daily habit
+Results	Clear, tangible outcomes
+Feel	Sensory, personal experience
+Daily	Consistent, simple commitment
+Formula	Scientific precision
+Blend	Natural combination
 Clean	No crash, precision
-Lock in	Focus state trigger
 Anti-Lexicon (Words We Avoid)
+
+**Tech/Gaming Jargon (Critical - Alienates Mainstream Consumers)**
+Avoid	Use Instead
+Stack	Routine / Bundle / Collection
+Deploy	Take / Use / Start
+Protocol	Routine / Ritual / Daily practice
+Upgrade (product context)	Results / Benefits / Transformation
+Compound (as verb)	Build / Grow / Develop
+Lock in	Focus / Concentrate
+
+**Passive Wellness Language**
 Avoid	Use Instead
 Nourish	Fuel
-Journey	Protocol
-Holistic	Systematic
-Self-care	Maintenance
+Journey	Routine
+Holistic	Science-backed
+Self-care	Daily wellness
 Balance	Optimization
+
+**Why This Matters:** "Stack" is gaming/supplement niche jargon that alienates 80%+ of mainstream consumers. B2C supplement brands (AG1, Ritual, Seed) use warm, accessible, human language.
 6. Messaging Hierarchy
 Tier 1: Brand Promise
 "Small upgrades compound."
@@ -191,13 +208,13 @@ Tier 2: Category Message
 Tier 3: Product Messages
 FOCUS: "Stay sharp. No jitters."
 
-CALM: "Kill cortisol. Force-quit your brain."
+CALM: "Find your calm. Quiet your mind."
 
-GUT: "Clean processing for what you consume."
+GUT: "Healthy digestion from within."
 
-GLOW: "Visible upgrade. Inside out."
+GLOW: "Radiant skin. From the inside out."
 
-MOVE: "Rebuild faster than you break down."
+MOVE: "Perform better. Recover faster."
 
 Tier 4: Proof Points
 Pharma-grade manufacturing
@@ -261,8 +278,8 @@ Product Description Template
 
 Example:
 
-FOCUS ON
-Caffeine - L-Theanine - Tyrosine
+FOCUS
+Caffeine · L-Theanine · Tyrosine
 Stay sharp. No jitters.
 
 Social Caption Template
@@ -270,7 +287,15 @@ Social Caption Template
 
 Example:
 
-"Brain fog at 2pm? Deploy Focus. Most people notice sharper clarity within 7 days. Lab report in bio."
+"Brain fog at 2pm? Try Focus. Most people notice sharper clarity within 7 days. Lab report in bio."
+
+**CTA Button Text Guidelines**
+| Instead of | Use |
+|------------|-----|
+| "Deploy your stack" | "Shop Our Collection" / "Build Your Routine" |
+| "Add to ritual" | "Add to Cart" |
+| "Start your ritual" | "Shop Now" / "Get Started" |
+| "Deploy daily" | "Take daily" / "Use daily" |
 
 Email Subject Lines
 "Your order shipped. Lock in tomorrow."
@@ -279,14 +304,92 @@ Email Subject Lines
 
 "What 3,000mg of Magnesium actually does"
 
-10. Brand Summary Card
+10. B2C Conversion Guidelines
+
+### Website Section Structure (Recommended Order)
+1. **Announcement Bar** — Promo/shipping info ("Free shipping on orders $50+ | 30-day guarantee")
+2. **Navigation** — Logo, nav links, cart icon (not just "0")
+3. **Hero** — Value prop + CTA + lifestyle imagery
+4. **Trust Bar** — Lab verified, shipping, guarantee (with icons)
+5. **Featured Products** — With images, ratings, prices
+6. **How It Works** — 3-step visual process
+7. **Social Proof** — Customer reviews carousel
+8. **Results Timeline** — Expectation setting (3-5 weeks)
+9. **Ingredient Transparency** — Research-backed doses
+10. **Email Capture** — "Get 10% off your first order"
+11. **Footer** — Links, policies, social, FDA disclaimer
+
+### Product Card Requirements
+- High-quality product photography (essential for e-commerce)
+- Benefit-focused taglines (not tech jargon)
+- Star ratings and review counts (e.g., "4.7 ★ | 500 reviews")
+- Clear pricing with currency
+- Standard "Add to Cart" button
+- Trust badge (Lab Verified)
+- Quick-view hover states
+
+### Trust Elements (Must Include)
+| Element | Placement |
+|---------|-----------|
+| Lab testing badges | Product cards, near CTAs |
+| Money-back guarantee | Hero area, checkout |
+| Secure checkout indicators | Cart, checkout |
+| Customer reviews with photos | Homepage, product pages |
+| Press mentions/logos | Homepage ("Featured in: Forbes, Vogue, etc.") |
+| Verified buyer badges | All testimonials |
+
+### Social Proof Requirements
+- Star rating summary (e.g., "★★★★★ 4.8/5 from 4,500+ reviews")
+- Multiple testimonials with customer photos
+- Specific product mentions and duration of use
+- "Verified Buyer" badges
+- User-generated content carousel
+
+### Conversion Checklist
+**Above the Fold (Hero)**
+- [ ] Clear value proposition
+- [ ] Product/lifestyle imagery
+- [ ] Social proof (star rating, customer count)
+- [ ] Primary CTA visible
+- [ ] Trust indicators
+
+**Product Display**
+- [ ] High-quality product photography
+- [ ] Clear pricing
+- [ ] Benefit-focused descriptions
+- [ ] Add to Cart functionality
+- [ ] Star ratings visible
+
+**Footer (Required)**
+- [ ] Company information
+- [ ] Contact details
+- [ ] Social media links
+- [ ] Privacy policy / Terms of service
+- [ ] FDA disclaimer
+
+---
+
+11. Brand Summary Card
 Element	Definition
 Name	Jay Life
 Tagline	Small upgrades compound.
 Archetype	The Smart Friend
 Voice	Calm, confident, clear, friendly
-Aesthetic	App, not pharmacy. Soft neons + pastels.
+Aesthetic	Elevated wellness. Premium but approachable.
 Products	Modular systems: FOCUS, CALM, GUT, GLOW, MOVE
 Proof	Pharma backend, QR lab reports, clear timelines
-Never	Miracle claims, medical cosplay, beige wellness
-Guidelines created January 2026. Iterate as brand evolves.
+Language	Consumer-friendly, no tech jargon
+Never	Miracle claims, medical cosplay, beige wellness, "stack/deploy/protocol" terminology
+
+---
+
+12. Reference Brands for Inspiration
+1. **AG1 (Athletic Greens)** — Clean, premium, science-forward
+2. **Ritual** — Transparency, modern design, subscription-focused
+3. **Seed** — Scientific credibility, sophisticated design
+4. **Moon Juice** — Lifestyle-forward, aspirational
+5. **Thesis** — Personalization, clean UI
+
+---
+
+Guidelines created January 2026. Updated with B2C conversion optimizations.

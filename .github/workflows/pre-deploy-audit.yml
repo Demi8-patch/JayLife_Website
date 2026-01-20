@@ -1,0 +1,98 @@
+name: Pre-Deployment Security Audit
+
+# Run before any deployment to Shopify Oxygen
+on:
+  workflow_dispatch:  # Manual trigger for deployments
+  pull_request:
+    branches:
+      - main
+      - production
+
+jobs:
+  pre-deploy-audit:
+    name: Pre-Deployment Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Verify no .env in repo
+        run: |
+          if git ls-files --cached --others --exclude-standard | grep -E '\.env(\..*)?$'; then
+            echo "❌ DEPLOYMENT BLOCKED: .env file detected in repository"
+            exit 1
+          fi
+          echo "✅ No .env files in repository"
+
+      - name: Check for hardcoded secrets (comprehensive)
+        run: |
+          echo "Scanning for common secret patterns..."
+          PATTERNS=(
+            "shpss_"              # Shopify private app token
+            "sk_live_"            # Stripe secret key
+            "-----BEGIN"           # Private key
+            "password.*="          # Password assignment
+            "api_key.*="           # API key assignment
+          )
+          
+          found=0
+          for pattern in "${PATTERNS[@]}"; do
+            if grep -r "$pattern" . \
+              --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+              --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist \
+              --exclude-dir=.next --exclude-dir=build 2>/dev/null; then
+              echo "⚠️  Pattern found: $pattern"
+              found=$((found + 1))
+            fi
+          done
+          
+          if [ $found -gt 0 ]; then
+            echo "❌ Potential secrets detected in source code"
+            exit 1
+          else
+            echo "✅ No hardcoded secrets detected"
+          fi
+
+      - name: Verify environment variable config
+        run: |
+          echo "Checking environment variable setup..."
+          
+          # Check .env.example has all required vars
+          required_vars=("PUBLIC_STOREFRONT_API_TOKEN" "PUBLIC_STORE_DOMAIN" "SESSION_SECRET")
+          
+          for var in "${required_vars[@]}"; do
+            if ! grep -q "$var" .env.example; then
+              echo "❌ Missing required variable in .env.example: $var"
+              exit 1
+            fi
+          done
+          
+          echo "✅ All required environment variables documented"
+
+      - name: Validate server.ts fallback mocks
+        run: |
+          if grep -q "mock-store.myshopify.com\|mock_token" server.ts; then
+            echo "✅ server.ts has secure fallback mocks"
+          else
+            echo "⚠️  WARNING: No fallback mocks in server.ts (may cause issues)"
+          fi
+
+      - name: Final deployment approval
+        run: |
+          echo ""
+          echo "═══════════════════════════════════════════════════════════════"
+          echo "✅ PRE-DEPLOYMENT SECURITY AUDIT PASSED"
+          echo "═══════════════════════════════════════════════════════════════"
+          echo ""
+          echo "Next steps:"
+          echo "1. Verify Oxygen secrets are set: npx shopify hydrogen env:pull"
+          echo "2. Check SESSION_SECRET is unique and ≥32 characters"
+          echo "3. Confirm STOREFRONT_TOKEN has not expired"
+          echo "4. Run: npm run build && npx shopify hydrogen preview"
+          echo "5. Deploy: npx shopify hydrogen deploy"
+          echo ""
+          echo "Reference: docs/SECRETS_SECURITY.md"

@@ -19,62 +19,80 @@
 @layer base {
   :root {
     /* ═══════════════════════════════════════════════════════════════════
-       COLORS - Elevated Wellness Theme
+       COLORS - Warm-Sunrise Neo-Brutalist System (LOCKED)
        ═══════════════════════════════════════════════════════════════════ */
 
-    /* Brand Colors (HSL values for the new palette) */
-    --brand-cream: hsl(38, 30%, 96%);
-    /* #F8F5F0 alternate */
-    --brand-sage: hsl(83, 15%, 54%);
-    /* #8B9B7A */
-    --brand-navy: hsl(204, 38%, 17%);
-    /* #1A2E3B */
+    /* Warm-Sunrise Brand Palette (MASTER SOURCE) */
+    --warm-sunrise-offwhite: #F8F8F5;
+    --warm-sunrise-charcoal: #2D2926;
+    --warm-sunrise-lime: #BFFF00;
+    --warm-sunrise-lime-hover: #D4FF4D;
+    --warm-sunrise-lime-glow: rgba(191, 255, 0, 0.3);
+    --warm-sunrise-orange: #FF6B35;
+    --warm-sunrise-orange-hover: #FF8C55;
+    --warm-sunrise-blush: #FFD1BA;
 
-    /* Semantic Primary - mapping to Sage for immediate tone shift */
-    --color-acid: var(--brand-sage);
-    --color-acid-glow: hsla(83, 15%, 54%, 0.2);
-    --color-acid-subtle: hsla(83, 15%, 54%, 0.1);
+    /* Legacy Brand Aliases (→ Warm-Sunrise) */
+    --brand-cream: var(--warm-sunrise-offwhite);
+    --brand-navy: var(--warm-sunrise-charcoal);
+    --brand-sage: #8B9B7A; /* Deprecated, use --warm-sunrise-* */
 
-    /* Neutrals - Light Mode */
-    --color-cream: var(--brand-cream);
-    --color-cream-surface: hsl(38, 30%, 99%);
-    /* Slightly lighter for elevation */
-    --color-cream-hover: hsl(38, 30%, 93%);
-    /* Slightly darker for hover */
+    /* E-Commerce CTA Color (Warm-Sunrise Lime) */
+    --color-electric-lime: var(--warm-sunrise-lime);
+    --color-electric-lime-hover: var(--warm-sunrise-lime-hover);
+    --color-electric-lime-glow: var(--warm-sunrise-lime-glow);
 
-    /* Neutrals - Dark */
-    --color-charcoal: var(--brand-navy);
-    --color-charcoal-surface: hsl(204, 38%, 10%);
-    --color-charcoal-elevated: hsl(204, 38%, 22%);
+    /* Sale/Discount Color (→ Warm-Sunrise Orange) */
+    --color-sale-red: var(--warm-sunrise-orange);
+    --color-sale-red-light: rgba(255, 107, 53, 0.1);
+
+    /* Dark Section Background */
+    --section-dark-bg: #1A1A1A;
+    --section-dark-surface: #252525;
+    --section-dark-text: #FFFFFF;
+    --section-dark-muted: rgba(255, 255, 255, 0.7);
+
+    /* Semantic Primary - Warm-Sunrise Lime for e-commerce CTAs */
+    --color-acid: var(--warm-sunrise-lime);
+    --color-acid-glow: var(--warm-sunrise-lime-glow);
+    --color-acid-subtle: rgba(191, 255, 0, 0.1);
+
+    /* Neutrals - Light Mode (Warm-Sunrise) */
+    --color-cream: var(--warm-sunrise-offwhite);
+    --color-cream-surface: #FFFFFF;
+    --color-cream-hover: #F5F5F2;
+
+    /* Neutrals - Dark (Warm-Sunrise) */
+    --color-charcoal: var(--warm-sunrise-charcoal);
+    --color-charcoal-surface: #1A1815;
+    --color-charcoal-elevated: #3D3935;
 
     /* Text Hierarchy */
-    --text-primary: var(--brand-navy);
-    --text-secondary: hsl(204, 15%, 42%);
-    --text-muted: hsl(204, 10%, 60%);
+    --text-primary: var(--warm-sunrise-charcoal);
+    --text-secondary: #5C5651;
+    --text-muted: #8B8680;
 
     /* Semantic Colors */
-    --color-coral: hsl(15, 50%, 58%);
-    /* Terracotta accent */
-    --color-lavender: hsl(45, 45%, 90%);
-    /* Sand accent */
-    --color-success: hsl(120, 21%, 45%);
-    --color-error: hsl(0, 51%, 57%);
-    --color-warning: hsl(38, 71%, 66%);
-    --color-info: hsl(204, 15%, 42%);
+    --color-coral: var(--warm-sunrise-orange);
+    --color-blush: var(--warm-sunrise-blush);
+    --color-success: #4CAF50;
+    --color-error: #F44336;
+    --color-warning: var(--warm-sunrise-orange);
+    --color-info: #2196F3;
 
     /* Semantic Aliases */
-    --bg-base: var(--brand-cream);
-    --bg-surface: var(--color-cream-surface);
-    --bg-elevated: var(--color-cream-surface);
-    --bg-hover: var(--color-cream-hover);
-    --bg-card: var(--color-cream-surface);
-    --action-primary: var(--brand-navy);
+    --bg-base: var(--warm-sunrise-offwhite);
+    --bg-surface: #FFFFFF;
+    --bg-elevated: #F5F5F2;
+    --bg-hover: #EEEEEB;
+    --bg-card: #FFFFFF;
+    --action-primary: var(--warm-sunrise-charcoal);
     --action-danger: var(--color-error);
 
     /* Borders */
-    --border-subtle: hsla(204, 38%, 17%, 0.05);
-    --border-default: hsla(204, 38%, 17%, 0.1);
-    --border-strong: hsla(204, 38%, 17%, 0.2);
+    --border-subtle: rgba(45, 41, 38, 0.05);
+    --border-default: rgba(45, 41, 38, 0.1);
+    --border-strong: rgba(45, 41, 38, 0.2);
 
     /* ═══════════════════════════════════════════════════════════════════
        SPACING - Rem-based scale
@@ -373,6 +391,207 @@
     @apply w-full;
   }
 
+  /* ═══════════════════════════════════════════════════════════════════
+     E-COMMERCE COMPONENTS (Beast Life inspired)
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /* Add to Cart Button - Electric Lime, Full Width */
+  .btn-add-to-cart {
+    @apply w-full flex items-center justify-center gap-2 font-bold text-base py-3.5 px-6 rounded-xl transition-all duration-200;
+    background-color: var(--color-electric-lime);
+    color: var(--section-dark-bg);
+    min-height: var(--touch-min);
+  }
+
+  .btn-add-to-cart:hover {
+    background-color: var(--color-electric-lime-hover);
+    box-shadow: 0 4px 12px var(--color-electric-lime-glow);
+    transform: translateY(-1px);
+  }
+
+  .btn-add-to-cart:active {
+    transform: scale(0.98);
+  }
+
+  /* Sale Badge - Corner Ribbon */
+  .sale-badge {
+    @apply absolute top-0 right-0 px-2.5 py-1 text-xs font-bold text-white z-10;
+    background-color: var(--color-sale-red);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+    border-radius: 0 0.75rem 0 0;
+  }
+
+  /* Product Badge - Bestseller, New, etc */
+  .product-badge {
+    @apply inline-flex items-center px-2.5 py-1 text-xs font-bold uppercase tracking-wide rounded-md;
+    background-color: var(--section-dark-bg);
+    color: var(--section-dark-text);
+  }
+
+  .product-badge-bestseller {
+    background-color: var(--color-electric-lime);
+    color: var(--section-dark-bg);
+  }
+
+  /* Price Display */
+  .price-current {
+    @apply font-bold text-xl;
+    color: var(--text-primary);
+  }
+
+  .price-original {
+    @apply text-base line-through;
+    color: var(--text-muted);
+  }
+
+  .price-savings {
+    @apply text-sm font-semibold px-2 py-0.5 rounded;
+    background-color: var(--color-sale-red-light);
+    color: var(--color-sale-red);
+  }
+
+  /* Dark Section */
+  .section-dark {
+    background-color: var(--section-dark-bg);
+    color: var(--section-dark-text);
+  }
+
+  .section-dark .text-muted {
+    color: var(--section-dark-muted);
+  }
+
+  /* Trust Badge Row */
+  .trust-badge-row {
+    @apply flex items-center justify-center gap-6 py-4 border-y;
+    border-color: var(--border-subtle);
+  }
+
+  .trust-badge-item {
+    @apply flex flex-col items-center gap-1 text-center;
+  }
+
+  .trust-badge-item svg {
+    @apply w-8 h-8 opacity-70;
+  }
+
+  .trust-badge-item span {
+    @apply text-xs font-medium text-muted uppercase tracking-wide;
+  }
+
+  /* Wishlist Button */
+  .wishlist-btn {
+    @apply absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm shadow-md z-10 transition-all duration-200;
+  }
+
+  .wishlist-btn:hover {
+    @apply bg-white scale-110;
+  }
+
+  .wishlist-btn svg {
+    @apply w-5 h-5;
+    color: var(--text-muted);
+  }
+
+  .wishlist-btn[data-active="true"] svg,
+  .wishlist-btn.active svg {
+    color: var(--color-sale-red);
+    fill: var(--color-sale-red);
+  }
+
+  /* Variant Selector Buttons */
+  .variant-btn {
+    @apply px-4 py-2 text-sm font-medium rounded-lg border-2 transition-all duration-200;
+    border-color: var(--border-default);
+    color: var(--text-primary);
+  }
+
+  .variant-btn:hover {
+    border-color: var(--border-strong);
+  }
+
+  .variant-btn[data-selected="true"],
+  .variant-btn.selected {
+    border-color: var(--color-electric-lime);
+    background-color: var(--color-acid-subtle);
+  }
+
+  .variant-btn:disabled {
+    @apply opacity-50 cursor-not-allowed line-through;
+  }
+
+  /* Variant Image Selector */
+  .variant-image-btn {
+    @apply relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-200;
+    border-color: transparent;
+  }
+
+  .variant-image-btn:hover {
+    border-color: var(--border-strong);
+  }
+
+  .variant-image-btn[data-selected="true"],
+  .variant-image-btn.selected {
+    border-color: var(--color-electric-lime);
+    box-shadow: 0 0 0 2px var(--color-acid-subtle);
+  }
+
+  .variant-image-btn img {
+    @apply w-full h-full object-cover;
+  }
+
+  /* Quantity Selector */
+  .qty-selector {
+    @apply inline-flex items-center border rounded-lg overflow-hidden;
+    border-color: var(--border-default);
+  }
+
+  .qty-selector button {
+    @apply w-10 h-10 flex items-center justify-center text-lg font-medium transition-colors;
+    color: var(--text-primary);
+  }
+
+  .qty-selector button:hover {
+    background-color: var(--bg-hover);
+  }
+
+  .qty-selector input {
+    @apply w-12 h-10 text-center font-medium border-x;
+    border-color: var(--border-default);
+  }
+
+  /* Product Card - E-commerce Enhanced */
+  .product-card-ecom {
+    @apply relative bg-white rounded-2xl overflow-hidden transition-all duration-300;
+    box-shadow: var(--shadow-md);
+  }
+
+  .product-card-ecom:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .product-card-ecom .product-image {
+    @apply relative aspect-square overflow-hidden bg-gray-100;
+  }
+
+  .product-card-ecom .product-image img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+
+  .product-card-ecom:hover .product-image img {
+    transform: scale(1.05);
+  }
+
+  .product-card-ecom .product-info {
+    @apply p-4;
+  }
+
+  /* Star Rating Gold */
+  .star-rating-gold svg {
+    color: #FFB800;
+    fill: #FFB800;
+  }
+
   /* Bottom nav safe area padding */
   .pb-safe {
     padding-bottom: calc(64px + var(--safe-area-bottom));
@@ -397,7 +616,8 @@
   }
 
   .badge-info {
-    @apply badge bg-lavender text-charcoal;
+    @apply badge text-charcoal;
+    background-color: #E6E6FA;
   }
 
   .badge-neutral {

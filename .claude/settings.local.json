@@ -24,7 +24,22 @@
       "Bash(./node_modules/.bin/shopify hydrogen dev:*)",
       "Bash(npx vite:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npx tsc:*)",
+      "Bash(curl:*)",
+      "Bash(powershell:*)",
+      "Bash(npx eslint:*)",
+      "Bash(git -C \"c:\\\\Users\\\\dtrip\\\\OneDrive\\\\Desktop\\\\jaysite\\\\JayLife_Website\" ls-files --cached)",
+      "Bash(findstr:*)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_press_key",
+      "Bash(taskkill:*)",
+      "Bash(shopify:*)",
+      "Read(//c/Users/dtrip/Downloads/forAntiGravity/awesome-claude-code-subagents-main/awesome-claude-code-subagents-main/categories/**)",
+      "Read(//c/Users/dtrip/Downloads/forAntiGravity/claude-code-workflows-main/**)"
     ]
   }
 }

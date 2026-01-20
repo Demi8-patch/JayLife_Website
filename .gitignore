@@ -2,9 +2,37 @@ node_modules
 .cache
 build
 public/build
+
+# Environment variables (NEVER commit secrets)
 .env
 .env.local
+.env.*.local
+.env.production.local
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/Editor
 .DS_Store
+Thumbs.db
+.vscode/settings.json
+.idea/
+
+# Build artifacts
 .hydrogen
 dist
+.next
+out
+
+# Test coverage
+coverage
+.nyc_output
+
+# Secrets (fail-safe)
+.secrets
+*.pem
+*.key
+*.crt
