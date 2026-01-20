@@ -1,0 +1,79 @@
+{
+  "site": {
+    "hero": {
+      "desktop": "hero-desktop.avif",
+      "mobile": "hero-mobile.avif",
+      "alt": "Jay Life supplement bottles arranged on warm sunrise background",
+      "caption": "Upgrade your daily ritual",
+      "sale_end_iso": "2026-02-28T23:59:00Z"
+    },
+    "og": {
+      "home": "og-home.png"
+    }
+  },
+  "products": {
+    "focus": {
+      "title": "FOCUS",
+      "images": ["product_focus-400.avif", "product_focus-800.avif", "product_focus-1600.avif"],
+      "alt": "FOCUS - Stay sharp. No jitters.",
+      "lab_report": "lab_focus.pdf",
+      "price": 27,
+      "compareAtPrice": 34
+    },
+    "calm": {
+      "title": "CALM",
+      "images": ["product_calm-400.avif", "product_calm-800.avif", "product_calm-1600.avif"],
+      "alt": "CALM - Find your calm.",
+      "lab_report": "lab_calm.pdf",
+      "price": 24,
+      "compareAtPrice": 29
+    },
+    "gut": {
+      "title": "GUT",
+      "images": ["product_gut-400.avif", "product_gut-800.avif", "product_gut-1600.avif"],
+      "alt": "GUT - Healthy digestion from within.",
+      "lab_report": "lab_gut.pdf",
+      "price": 32,
+      "compareAtPrice": null
+    },
+    "glow": {
+      "title": "GLOW",
+      "images": ["product_glow-400.avif", "product_glow-800.avif", "product_glow-1600.avif"],
+      "alt": "GLOW - Radiance from within.",
+      "lab_report": "lab_glow.pdf",
+      "price": 29,
+      "compareAtPrice": 36
+    },
+    "move": {
+      "title": "MOVE",
+      "images": ["product_move-400.avif", "product_move-800.avif", "product_move-1600.avif"],
+      "alt": "MOVE - Perform better. Recover faster.",
+      "lab_report": "lab_move.pdf",
+      "price": 32,
+      "compareAtPrice": 38
+    }
+  },
+  "testimonials": [
+    {
+      "slug": "alex-m",
+      "quote": "Finally a focus supplement that actually works without making me feel wired.",
+      "author": "Alex M.",
+      "role": "Software Engineer",
+      "avatar": "testimonial_alex-48.avif",
+      "release_confirmed": false
+    },
+    {
+      "slug": "sarah-k",
+      "quote": "I've tried dozens of nootropics. This is the first that delivers without the crash.",
+      "author": "Sarah K.",
+      "role": "Marketing Manager",
+      "avatar": "testimonial_sarah-48.avif",
+      "release_confirmed": false
+    }
+  ],
+  "logos": {
+    "logo": "logo.svg",
+    "trust_lab": "trust-lab.svg",
+    "badge_30day": "badge-30day.svg"
+  }
+}
