@@ -8,11 +8,11 @@ Jay Life storefront uses Shopify Oxygen for hosting with GraphQL Storefront API 
 
 ## Required Environment Variables
 
-| Variable | Purpose | Type | Storage |
-|----------|---------|------|---------|
-| `PUBLIC_STOREFRONT_API_TOKEN` | Shopify GraphQL API read access | Public (client-safe) | Oxygen Secrets |
-| `PUBLIC_STORE_DOMAIN` | Shopify store domain (e.g., `jaylife-2.myshopify.com`) | Public | Oxygen Secrets |
-| `SESSION_SECRET` | Remix session signing key (random string, ≥32 chars) | Private | Oxygen Secrets |
+| Variable                      | Purpose                                                | Type                 | Storage        |
+| ----------------------------- | ------------------------------------------------------ | -------------------- | -------------- |
+| `PUBLIC_STOREFRONT_API_TOKEN` | Shopify GraphQL API read access                        | Public (client-safe) | Oxygen Secrets |
+| `PUBLIC_STORE_DOMAIN`         | Shopify store domain (e.g., `jaylife-2.myshopify.com`) | Public               | Oxygen Secrets |
+| `SESSION_SECRET`              | Remix session signing key (random string, ≥32 chars)   | Private              | Oxygen Secrets |
 
 ---
 
@@ -50,6 +50,7 @@ npm run dev
 ### Setting Secrets in Oxygen
 
 1. **Via Shopify CLI:**
+
    ```bash
    npx shopify hydrogen env:pull  # Fetch from Oxygen
    # Edit secrets
@@ -78,10 +79,10 @@ npm run dev
 
 ## Secret Rotation Schedule
 
-| Secret | Rotation | How |
-|--------|----------|-----|
-| `PUBLIC_STOREFRONT_API_TOKEN` | Quarterly (90 days) | Shopify Admin > Develop apps > Regenerate token |
-| `SESSION_SECRET` | Semi-annually (180 days) | Generate new random string, update Oxygen secrets |
+| Secret                        | Rotation                 | How                                               |
+| ----------------------------- | ------------------------ | ------------------------------------------------- |
+| `PUBLIC_STOREFRONT_API_TOKEN` | Quarterly (90 days)      | Shopify Admin > Develop apps > Regenerate token   |
+| `SESSION_SECRET`              | Semi-annually (180 days) | Generate new random string, update Oxygen secrets |
 
 **After rotation:** Retest authentication flows and cart functionality.
 
@@ -106,6 +107,7 @@ npm run dev
 **Cause:** Missing environment variables during Oxygen build
 
 **Fix:**
+
 ```bash
 # Local: Ensure .env exists
 npm run dev
@@ -119,6 +121,7 @@ npx shopify hydrogen env:pull
 **Cause:** Expired or rotated token
 
 **Action:**
+
 1. Verify token hasn't been regenerated in Shopify Admin
 2. If rotated, update Oxygen secrets immediately
 3. Monitor auth errors in Oxygen logs
@@ -128,6 +131,7 @@ npx shopify hydrogen env:pull
 **Cause:** `SESSION_SECRET` mismatch between local and production
 
 **Fix:**
+
 1. Generate new `SESSION_SECRET` locally
 2. Update in Oxygen Secrets
 3. Clear browser cookies (sessions will be invalidated)

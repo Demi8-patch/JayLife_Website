@@ -19,11 +19,5 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-undef': 'off',
   },
-  ignorePatterns: [
-    'node_modules/',
-    'dist/',
-    '.cache/',
-    'build/',
-    '*.d.ts',
-  ],
+  ignorePatterns: ['node_modules/', 'dist/', '.cache/', 'build/', '*.d.ts'],
 };

@@ -21,8 +21,7 @@ export function useHaptics() {
     }
   }, []);
 
-  const isSupported =
-    typeof navigator !== 'undefined' && 'vibrate' in navigator;
+  const isSupported = typeof navigator !== 'undefined' && 'vibrate' in navigator;
 
   return { vibrate, isSupported };
 }

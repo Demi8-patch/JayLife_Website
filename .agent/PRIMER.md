@@ -1,4 +1,5 @@
 # Session Primer
+
 **Read this first for instant context**
 
 ---
@@ -43,27 +44,45 @@ Two mock data files with different interfaces:
 
 ## Key Files
 
-| Purpose | File |
-|---------|------|
-| Full state | `.agent/STATE.md` |
-| Agent mapping | `.agent/AGENTS.md` |
-| Design checklist | `.agent/DESIGN_PRINCIPLES.md` |
-| Security review | `.agent/SECURITY_REVIEW.md` |
-| Gap analysis | `docs/GAP_REPORT.md` |
-| Design system | `docs/WARM_SUNRISE_DESIGN_SYSTEM.md` |
-| Brand guide | `brand_guidelines.md` |
-| Project config | `CLAUDE.md` |
+| Purpose          | File                                 |
+| ---------------- | ------------------------------------ |
+| Full state       | `.agent/STATE.md`                    |
+| Agent mapping    | `.agent/AGENTS.md`                   |
+| Design checklist | `.agent/DESIGN_PRINCIPLES.md`        |
+| Security review  | `.agent/SECURITY_REVIEW.md`          |
+| Gap analysis     | `docs/GAP_REPORT.md`                 |
+| Design system    | `docs/WARM_SUNRISE_DESIGN_SYSTEM.md` |
+| Brand guide      | `brand_guidelines.md`                |
+| Project config   | `CLAUDE.md`                          |
 
 ## External Resources
 
 **forAntiGravity:** `C:\Users\dtrip\Downloads\forAntiGravity\`
 
-| Resource | Use For |
-|----------|---------|
+| Resource                                         | Use For            |
+| ------------------------------------------------ | ------------------ |
 | `awesome-claude-code-subagents-main\categories\` | Specialized agents |
-| `claude-code-workflows-main\design-review\` | Visual QA workflow |
-| `claude-code-workflows-main\code-review\` | PR review workflow |
-| `claude-code-workflows-main\security-review\` | Security audit |
+| `claude-code-workflows-main\design-review\`      | Visual QA workflow |
+| `claude-code-workflows-main\code-review\`        | PR review workflow |
+| `claude-code-workflows-main\security-review\`    | Security audit     |
+
+## Cross-IDE Compatibility
+
+**This configuration works seamlessly in VS Code, Claude Code, and AntiGravity.**
+
+| IDE            | Setup Steps                                   |
+| -------------- | --------------------------------------------- |
+| AntiGravity    | ✅ Ready (you're using it now!)               |
+| VS Code        | Install extensions, reload window             |
+| Claude Code    | Verify `.claude/settings.local.json`, restart |
+
+**Installation:** Run `.agent\scripts\install.ps1` (Windows) for one-command setup.
+
+**Docs:**
+
+- 📖 [INSTALLATION.md](.agent/INSTALLATION.md) - Setup guide
+- 🔒 [PERMISSIONS.md](.agent/PERMISSIONS.md) - Auto-approved commands
+- 🎯 [IDE_COMPATIBILITY.md](.agent/IDE_COMPATIBILITY.md) - Feature matrix
 
 ## Commands
 
@@ -81,4 +100,4 @@ npm run lint    # check code
 
 ---
 
-*For full context, read `.agent/STATE.md`*
+_For full context, read `.agent/STATE.md`_

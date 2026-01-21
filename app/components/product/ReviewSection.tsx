@@ -41,11 +41,7 @@ const MOCK_REVIEWS: Review[] = [
   },
 ];
 
-export function ReviewSection({
-  averageRating,
-  totalReviews,
-  className = '',
-}: ReviewSectionProps) {
+export function ReviewSection({ averageRating, totalReviews, className = '' }: ReviewSectionProps) {
   const [showAll, setShowAll] = useState(false);
   const [sortBy, setSortBy] = useState<'recent' | 'highest' | 'lowest'>('recent');
 
@@ -67,35 +63,31 @@ export function ReviewSection({
       <div className="flex flex-col md:flex-row md:items-start gap-8 mb-8">
         {/* Overall Rating */}
         <div className="text-center md:text-left">
-          <div className="text-5xl font-bold text-brand-navy mb-2">
-            {averageRating.toFixed(1)}
-          </div>
+          <div className="text-5xl font-bold text-charcoal mb-2">{averageRating.toFixed(1)}</div>
           <StarRating rating={averageRating} size="md" showCount={false} />
-          <p className="text-sm text-brand-navy/60 mt-2">
-            Based on {totalReviews} reviews
-          </p>
+          <p className="text-sm text-charcoal/60 mt-2">Based on {totalReviews} reviews</p>
         </div>
 
         {/* Rating Distribution */}
         <div className="flex-1 max-w-md">
           {ratingDistribution.map(({ stars, count, percentage }) => (
             <div key={stars} className="flex items-center gap-3 mb-2">
-              <span className="text-sm text-brand-navy/60 w-12">{stars} star</span>
-              <div className="flex-1 h-2 bg-brand-navy/10 rounded-full overflow-hidden">
+              <span className="text-sm text-charcoal/60 w-12">{stars} star</span>
+              <div className="flex-1 h-2 bg-charcoal/10 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-electric-lime rounded-full transition-all"
                   style={{ width: `${percentage}%` }}
                 />
               </div>
-              <span className="text-sm text-brand-navy/60 w-12 text-right">{count}</span>
+              <span className="text-sm text-charcoal/60 w-12 text-right">{count}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Sort & Filter */}
-      <div className="flex items-center justify-between mb-6 pb-6 border-b border-brand-navy/10">
-        <h3 className="font-display font-bold text-lg text-brand-navy">
+      <div className="flex items-center justify-between mb-6 pb-6 border-b border-charcoal/10">
+        <h3 className="font-display font-bold text-lg text-charcoal">
           Customer Reviews ({totalReviews})
         </h3>
 
@@ -103,27 +95,24 @@ export function ReviewSection({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="appearance-none bg-white border border-brand-navy/10 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-brand-navy cursor-pointer hover:border-brand-navy/30 focus:outline-none focus:border-electric-lime"
+            className="appearance-none bg-white border border-charcoal/10 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-charcoal cursor-pointer hover:border-charcoal/30 focus:outline-none focus:border-electric-lime"
           >
             <option value="recent">Most Recent</option>
             <option value="highest">Highest Rated</option>
             <option value="lowest">Lowest Rated</option>
           </select>
-          <ChevronDownIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-navy/60 pointer-events-none" />
+          <ChevronDownIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal/60 pointer-events-none" />
         </div>
       </div>
 
       {/* Reviews List */}
       <div className="space-y-6">
         {displayReviews.slice(0, showAll ? undefined : 3).map((review) => (
-          <div
-            key={review.id}
-            className="bg-white rounded-xl p-6 border border-brand-navy/5"
-          >
+          <div key={review.id} className="bg-white rounded-xl p-6 border border-charcoal/5">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="font-bold text-brand-navy">{review.author}</span>
+                  <span className="font-bold text-charcoal">{review.author}</span>
                   {review.verified && (
                     <span className="inline-flex items-center gap-1 text-xs text-electric-lime font-medium">
                       <VerifiedIcon className="w-3.5 h-3.5" />
@@ -133,7 +122,7 @@ export function ReviewSection({
                 </div>
                 <StarRating rating={review.rating} size="sm" showCount={false} />
               </div>
-              <span className="text-sm text-brand-navy/50">
+              <span className="text-sm text-charcoal/50">
                 {new Date(review.date).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
@@ -142,10 +131,8 @@ export function ReviewSection({
               </span>
             </div>
 
-            {review.title && (
-              <h4 className="font-bold text-brand-navy mb-2">{review.title}</h4>
-            )}
-            <p className="text-brand-navy/70 leading-relaxed">{review.body}</p>
+            {review.title && <h4 className="font-bold text-charcoal mb-2">{review.title}</h4>}
+            <p className="text-charcoal/70 leading-relaxed">{review.body}</p>
           </div>
         ))}
       </div>
@@ -155,7 +142,7 @@ export function ReviewSection({
         <button
           type="button"
           onClick={() => setShowAll(true)}
-          className="w-full mt-6 py-3 text-center text-brand-navy font-bold hover:text-electric-lime transition-colors"
+          className="w-full mt-6 py-3 text-center text-charcoal font-bold hover:text-electric-lime transition-colors"
         >
           Show all {totalReviews} reviews
         </button>

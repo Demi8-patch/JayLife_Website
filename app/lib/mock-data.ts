@@ -61,7 +61,8 @@ export const RITUALS: Ritual[] = [
     handle: 'focus',
     title: 'FOCUS',
     tagline: 'Stay sharp. No jitters.',
-    description: 'Upgrade your cognitive performance with our precision-dosed nootropic stack. FOCUS delivers sustained mental clarity without the crash.',
+    description:
+      'Upgrade your cognitive performance with our precision-dosed nootropic stack. FOCUS delivers sustained mental clarity without the crash.',
     price: 27,
     compareAtPrice: 34,
     discountPercent: 21,
@@ -96,21 +97,59 @@ export const RITUALS: Ritual[] = [
       'Third-party lab tested',
     ],
     faqs: [
-      { question: 'When should I take FOCUS?', answer: 'Take 1 capsule in the morning or early afternoon. Avoid taking within 6 hours of bedtime due to caffeine content.' },
-      { question: 'Can I stack FOCUS with other rituals?', answer: 'Yes! FOCUS pairs perfectly with CALM for balanced energy, or GUT for optimal nutrient absorption.' },
-      { question: 'Is it safe for daily use?', answer: 'Absolutely. All ingredients are clinically studied and safe for daily consumption. Consult your doctor if you have any concerns.' },
+      {
+        question: 'When should I take FOCUS?',
+        answer:
+          'Take 1 capsule in the morning or early afternoon. Avoid taking within 6 hours of bedtime due to caffeine content.',
+      },
+      {
+        question: 'Can I stack FOCUS with other rituals?',
+        answer:
+          'Yes! FOCUS pairs perfectly with CALM for balanced energy, or GUT for optimal nutrient absorption.',
+      },
+      {
+        question: 'Is it safe for daily use?',
+        answer:
+          'Absolutely. All ingredients are clinically studied and safe for daily consumption. Consult your doctor if you have any concerns.',
+      },
     ],
     reviews: [
-      { id: '1', author: 'Alex M.', rating: 5, date: '2026-01-10', title: 'Game changer for work', content: 'Finally a focus supplement that actually works without making me feel wired. Smooth energy all day.', verified: true },
-      { id: '2', author: 'Sarah K.', rating: 5, date: '2026-01-08', content: 'I\'ve tried dozens of nootropics. This is the first that delivers without the crash.', verified: true },
-      { id: '3', author: 'James R.', rating: 4, date: '2026-01-05', title: 'Great product', content: 'Works well for my morning routine. Would love a larger size option.', verified: true },
+      {
+        id: '1',
+        author: 'Alex M.',
+        rating: 5,
+        date: '2026-01-10',
+        title: 'Game changer for work',
+        content:
+          'Finally a focus supplement that actually works without making me feel wired. Smooth energy all day.',
+        verified: true,
+      },
+      {
+        id: '2',
+        author: 'Sarah K.',
+        rating: 5,
+        date: '2026-01-08',
+        content:
+          "I've tried dozens of nootropics. This is the first that delivers without the crash.",
+        verified: true,
+      },
+      {
+        id: '3',
+        author: 'James R.',
+        rating: 4,
+        date: '2026-01-05',
+        title: 'Great product',
+        content: 'Works well for my morning routine. Would love a larger size option.',
+        verified: true,
+      },
     ],
   },
   {
     handle: 'calm',
     title: 'CALM',
     tagline: 'Find your calm. Quiet your mind.',
-    description: 'De-stress and unwind with our adaptogenic blend. CALM helps regulate cortisol levels for natural relaxation without drowsiness.',
+    description:
+      'De-stress and unwind with our adaptogenic blend. CALM helps regulate cortisol levels for natural relaxation without drowsiness.',
     price: 24,
     compareAtPrice: 29,
     discountPercent: 17,
@@ -141,15 +180,23 @@ export const RITUALS: Ritual[] = [
       'Adaptogenic support',
     ],
     faqs: [
-      { question: 'Will CALM make me sleepy?', answer: 'No. CALM promotes relaxation without sedation. It\'s designed for anytime use.' },
-      { question: 'How long until I feel effects?', answer: 'Most people notice effects within 30-45 minutes. Full adaptogenic benefits build over 2-4 weeks of consistent use.' },
+      {
+        question: 'Will CALM make me sleepy?',
+        answer: "No. CALM promotes relaxation without sedation. It's designed for anytime use.",
+      },
+      {
+        question: 'How long until I feel effects?',
+        answer:
+          'Most people notice effects within 30-45 minutes. Full adaptogenic benefits build over 2-4 weeks of consistent use.',
+      },
     ],
   },
   {
     handle: 'gut',
     title: 'GUT',
     tagline: 'Healthy digestion from within.',
-    description: 'Support your microbiome with our synbiotic formula. GUT combines premium probiotics with digestive enzymes for complete gut health.',
+    description:
+      'Support your microbiome with our synbiotic formula. GUT combines premium probiotics with digestive enzymes for complete gut health.',
     price: 32,
     image: '/images/product_gut.png',
     ingredients: [
@@ -173,14 +220,18 @@ export const RITUALS: Ritual[] = [
       'Shelf-stable formula',
     ],
     faqs: [
-      { question: 'Do I need to refrigerate GUT?', answer: 'No. Our probiotics are shelf-stable and don\'t require refrigeration.' },
+      {
+        question: 'Do I need to refrigerate GUT?',
+        answer: "No. Our probiotics are shelf-stable and don't require refrigeration.",
+      },
     ],
   },
   {
     handle: 'glow',
     title: 'GLOW',
     tagline: 'Radiance from within.',
-    description: 'Nourish your skin, hair, and nails with our beauty-from-within formula. GLOW delivers clinically effective doses of collagen and biotin.',
+    description:
+      'Nourish your skin, hair, and nails with our beauty-from-within formula. GLOW delivers clinically effective doses of collagen and biotin.',
     price: 29,
     compareAtPrice: 36,
     discountPercent: 19,
@@ -213,7 +264,8 @@ export const RITUALS: Ritual[] = [
     handle: 'move',
     title: 'MOVE',
     tagline: 'Perform better. Recover faster.',
-    description: 'Optimize your training with our performance stack. MOVE supports muscle growth, endurance, and recovery.',
+    description:
+      'Optimize your training with our performance stack. MOVE supports muscle growth, endurance, and recovery.',
     price: 32,
     compareAtPrice: 38,
     discountPercent: 16,

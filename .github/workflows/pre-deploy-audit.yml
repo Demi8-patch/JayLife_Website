@@ -2,7 +2,7 @@ name: Pre-Deployment Security Audit
 
 # Run before any deployment to Shopify Oxygen
 on:
-  workflow_dispatch:  # Manual trigger for deployments
+  workflow_dispatch: # Manual trigger for deployments
   pull_request:
     branches:
       - main
@@ -38,7 +38,7 @@ jobs:
             "password.*="          # Password assignment
             "api_key.*="           # API key assignment
           )
-          
+
           found=0
           for pattern in "${PATTERNS[@]}"; do
             if grep -r "$pattern" . \
@@ -49,7 +49,7 @@ jobs:
               found=$((found + 1))
             fi
           done
-          
+
           if [ $found -gt 0 ]; then
             echo "❌ Potential secrets detected in source code"
             exit 1
@@ -60,17 +60,17 @@ jobs:
       - name: Verify environment variable config
         run: |
           echo "Checking environment variable setup..."
-          
+
           # Check .env.example has all required vars
           required_vars=("PUBLIC_STOREFRONT_API_TOKEN" "PUBLIC_STORE_DOMAIN" "SESSION_SECRET")
-          
+
           for var in "${required_vars[@]}"; do
             if ! grep -q "$var" .env.example; then
               echo "❌ Missing required variable in .env.example: $var"
               exit 1
             fi
           done
-          
+
           echo "✅ All required environment variables documented"
 
       - name: Validate server.ts fallback mocks

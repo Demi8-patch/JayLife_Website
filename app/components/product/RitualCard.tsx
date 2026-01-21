@@ -30,7 +30,11 @@ export function RitualCard({ ritual, onAddToCart, featured = false }: RitualCard
         {featured && <span className="badge-info">Popular</span>}
         <span className="badge-success">
           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
           </svg>
           Lab verified
         </span>
@@ -73,10 +77,7 @@ export function RitualCard({ ritual, onAddToCart, featured = false }: RitualCard
       </details>
 
       {/* Add button - full width, prominent */}
-      <button
-        onClick={handleAdd}
-        className="btn-primary btn-full gap-2 group-hover:shadow-aura-sm"
-      >
+      <button onClick={handleAdd} className="btn-primary btn-full gap-2 group-hover:shadow-aura-sm">
         <PlusIcon className="w-5 h-5" />
         <span>Add to Cart</span>
       </button>

@@ -50,26 +50,26 @@ export function QuantitySelector({
   const classes = sizeClasses[size];
 
   return (
-    <div className={`inline-flex items-center bg-white border border-brand-navy/10 rounded-xl overflow-hidden ${className}`}>
+    <div
+      className={`inline-flex items-center bg-white border border-charcoal/10 rounded-xl overflow-hidden ${className}`}
+    >
       <button
         type="button"
         onClick={handleDecrement}
         disabled={quantity <= min}
-        className={`${classes.button} flex items-center justify-center text-brand-navy hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed`}
+        className={`${classes.button} flex items-center justify-center text-charcoal hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed`}
         aria-label="Decrease quantity"
       >
         <MinusIcon className={classes.icon} />
       </button>
 
-      <span className={`${classes.display} text-center font-bold text-brand-navy`}>
-        {quantity}
-      </span>
+      <span className={`${classes.display} text-center font-bold text-charcoal`}>{quantity}</span>
 
       <button
         type="button"
         onClick={handleIncrement}
         disabled={quantity >= max}
-        className={`${classes.button} flex items-center justify-center text-brand-navy hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed`}
+        className={`${classes.button} flex items-center justify-center text-charcoal hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed`}
         aria-label="Increase quantity"
       >
         <PlusIcon className={classes.icon} />

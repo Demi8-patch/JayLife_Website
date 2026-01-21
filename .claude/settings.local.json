@@ -38,8 +38,16 @@
       "mcp__plugin_playwright_playwright__browser_press_key",
       "Bash(taskkill:*)",
       "Bash(shopify:*)",
-      "Read(//c/Users/dtrip/Downloads/forAntiGravity/awesome-claude-code-subagents-main/awesome-claude-code-subagents-main/categories/**)",
-      "Read(//c/Users/dtrip/Downloads/forAntiGravity/claude-code-workflows-main/**)"
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(git ls-files:*)",
+      "Bash(npx playwright:*)",
+      "Read(C:\\Users\\dtrip\\Downloads\\forAntiGravity\\awesome-claude-code-subagents-main\\categories\\**)",
+      "Read(C:\\Users\\dtrip\\Downloads\\forAntiGravity\\claude-code-workflows-main\\**)",
+      "Read(C:\\Users\\dtrip\\OneDrive\\Desktop\\jaysite\\JayLife_Website\\.agent\\**)",
+      "Read(//c/Users/dtrip/.claude/plugins/cache/superpowers-marketplace/superpowers/4.0.3/skills/subagent-driven-development/**)"
     ]
-  }
+  },
+  "skillsPath": "../.agent/skills",
+  "workflowsPath": "../.agent/workflows"
 }

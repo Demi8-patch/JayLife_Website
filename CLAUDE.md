@@ -7,6 +7,7 @@ This file provides guidance to Claude Code when working with the Jay Life storef
 **Jay Life** is a mobile-first headless ecommerce storefront for a Gen-Z wellness brand offering stackable, science-backed daily optimization tools (rituals).
 
 **Stack:**
+
 - **Frontend:** Shopify Hydrogen (Remix-based React)
 - **Backend:** Shopify Storefront API (GraphQL)
 - **Hosting:** Shopify Oxygen (edge)
@@ -44,35 +45,38 @@ jaylife-storefront/
 ## Design System
 
 ### Colors
+
 ```css
---color-acid: #BFFF00;      /* Primary actions */
---color-cream: #FAF9F5;     /* Background */
---color-charcoal: #1A1A1A;  /* Text */
---color-muted: #68809A;     /* Secondary text */
---color-coral: #FF6F61;     /* Errors */
---color-lavender: #E6E6FA;  /* Calm accent */
+--color-acid: #bfff00; /* Primary actions */
+--color-cream: #faf9f5; /* Background */
+--color-charcoal: #1a1a1a; /* Text */
+--color-muted: #68809a; /* Secondary text */
+--color-coral: #ff6f61; /* Errors */
+--color-lavender: #e6e6fa; /* Calm accent */
 ```
 
 ### Typography
+
 - **Headlines:** Inter Bold, 28px mobile / 48px desktop, -0.5px tracking
 - **Body:** Inter Regular, 16px
 - **Specs:** JetBrains Mono, 14px (ingredient lists)
 
 ### Spacing
+
 - **Base unit:** 8px
 - **Touch targets:** 48px minimum
 - **Container padding:** 20px mobile / 80px desktop
 
 ## Routes
 
-| Route | Purpose |
-|-------|---------|
-| `/` | Homepage with hero + ritual grid |
-| `/rituals` | All products grid |
+| Route             | Purpose                            |
+| ----------------- | ---------------------------------- |
+| `/`               | Homepage with hero + ritual grid   |
+| `/rituals`        | All products grid                  |
 | `/ritual/:handle` | Product detail (FOCUS, CALM, etc.) |
-| `/cart` | Cart page/drawer |
-| `/account` | Customer dashboard |
-| `/learn` | Educational content |
+| `/cart`           | Cart page/drawer                   |
+| `/account`        | Customer dashboard                 |
+| `/learn`          | Educational content                |
 
 ## Common Commands
 
@@ -93,7 +97,9 @@ npm run lint             # ESLint
 ## Key Patterns
 
 ### Mobile-First Components
+
 All components start mobile and scale up:
+
 ```tsx
 // Good: Mobile-first
 <div className="px-5 md:px-20 py-12 md:py-20">
@@ -103,20 +109,26 @@ All components start mobile and scale up:
 ```
 
 ### Thumb-Zone Navigation
+
 Bottom tab bar on mobile, top header on desktop:
+
 ```tsx
 <BottomNav className="fixed bottom-0 md:hidden" />
 <Header className="hidden md:flex" />
 ```
 
 ### Touch Targets
+
 All interactive elements minimum 48px:
+
 ```tsx
 <button className="min-h-12 min-w-12 ...">
 ```
 
 ### Haptic Feedback
+
 Use on add-to-cart and key interactions:
+
 ```tsx
 const handleAdd = () => {
   if (navigator.vibrate) navigator.vibrate(10);
@@ -127,6 +139,7 @@ const handleAdd = () => {
 ## Product Data (Shopify Metafields)
 
 Products use these metafields:
+
 - `ingredients` (JSON): `[{name, dose}]`
 - `tagline` (string): "Stay sharp. No jitters."
 - `lab_report_url` (string): Link to lab report

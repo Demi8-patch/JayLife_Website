@@ -4,11 +4,7 @@ interface SaleBadgeProps {
   className?: string;
 }
 
-export function SaleBadge({
-  percent,
-  position = 'top-right',
-  className = '',
-}: SaleBadgeProps) {
+export function SaleBadge({ percent, position = 'top-right', className = '' }: SaleBadgeProps) {
   const positionClasses = {
     'top-left': 'left-0 rounded-tr-xl rounded-bl-none',
     'top-right': 'right-0 rounded-tl-xl rounded-br-none',
@@ -38,7 +34,7 @@ interface ProductBadgeProps {
 export function ProductBadge({ type, className = '' }: ProductBadgeProps) {
   const badgeStyles = {
     Bestseller: 'bg-electric-lime text-dark',
-    New: 'bg-brand-navy text-white',
+    New: 'bg-charcoal text-white',
     Limited: 'bg-amber-500 text-white',
     Sale: 'bg-sale-red text-white',
   };

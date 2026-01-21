@@ -1,9 +1,9 @@
 import { Link } from '@remix-run/react';
-import { StarRating } from '~/components/ui/StarRating';
-import { PriceDisplay } from '~/components/ui/PriceDisplay';
-import { SaleBadge, ProductBadge } from '~/components/ui/SaleBadge';
-import { WishlistButton } from '~/components/ui/WishlistButton';
 import { CartIcon } from '~/components/ui/Icons';
+import { PriceDisplay } from '~/components/ui/PriceDisplay';
+import { ProductBadge, SaleBadge } from '~/components/ui/SaleBadge';
+import { StarRating } from '~/components/ui/StarRating';
+import { WishlistButton } from '~/components/ui/WishlistButton';
 import type { Ritual } from '~/lib/mock-data';
 
 interface ProductCardProps {
@@ -64,10 +64,13 @@ export function ProductCard({ ritual, className = '' }: ProductCardProps) {
             src={image}
             alt={title}
             className="w-full h-full object-cover"
+            width={800}
+            height={800}
             loading="lazy"
+            decoding="async"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-brand-cream text-brand-navy/20 font-display font-bold text-2xl">
+          <div className="w-full h-full flex items-center justify-center bg-brand-cream text-charcoal/20 font-display font-bold text-2xl">
             {title}
           </div>
         )}
@@ -94,18 +97,16 @@ export function ProductCard({ ritual, className = '' }: ProductCardProps) {
         {/* Rating */}
         <div className="flex items-center gap-2 mb-2">
           <StarRating rating={rating} size="sm" showCount={false} />
-          <span className="text-sm text-brand-navy font-medium">
-            {rating.toFixed(1)}
-          </span>
+          <span className="text-sm text-charcoal font-medium">{rating.toFixed(1)}</span>
           <span className="text-sm text-muted">({reviewCount})</span>
         </div>
 
         {/* Title & Tagline */}
         <Link to={`/ritual/${handle}`} className="block mb-3">
-          <h3 className="font-display font-bold text-lg text-brand-navy mb-1 group-hover:text-electric-lime transition-colors">
+          <h3 className="font-display font-bold text-lg text-charcoal mb-1 group-hover:text-electric-lime transition-colors">
             {title}
           </h3>
-          <p className="text-sm text-brand-navy/70 line-clamp-2">{tagline}</p>
+          <p className="text-sm text-charcoal/70 line-clamp-2">{tagline}</p>
         </Link>
 
         {/* Price */}

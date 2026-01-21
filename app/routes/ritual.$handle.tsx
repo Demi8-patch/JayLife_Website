@@ -75,11 +75,15 @@ export default function RitualPage() {
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-5 md:px-10 pt-6">
         <nav className="text-sm text-muted">
-          <Link to="/" className="hover:text-warm-sunrise-charcoal">Home</Link>
+          <Link to="/" className="hover:text-warm-sunrise-charcoal">
+            Home
+          </Link>
           <span className="mx-2">/</span>
-          <Link to="/rituals" className="hover:text-warm-sunrise-charcoal">Rituals</Link>
+          <Link to="/rituals" className="hover:text-warm-sunrise-charcoal">
+            Rituals
+          </Link>
           <span className="mx-2">/</span>
-          <span className="text-brand-navy font-medium">{ritual.title}</span>
+          <span className="text-charcoal font-medium">{ritual.title}</span>
         </nav>
       </div>
 
@@ -140,11 +144,15 @@ export default function RitualPage() {
                     className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
                       idx === selectedImageIndex
                         ? 'border-electric-lime'
-                        : 'border-transparent hover:border-brand-navy/20'
+                        : 'border-transparent hover:border-charcoal/20'
                     }`}
                     aria-label={`View image ${idx + 1}`}
                   >
-                    <img src={img} alt={`${ritual.title} ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img
+                      src={img}
+                      alt={`${ritual.title} ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -164,17 +172,20 @@ export default function RitualPage() {
 
             {/* Title */}
             <div>
-              <h1 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-2">
+              <h1 className="font-display font-bold text-3xl md:text-4xl text-charcoal mb-2">
                 {ritual.title}
               </h1>
-              <p className="text-lg text-brand-navy/70">{ritual.tagline}</p>
+              <p className="text-lg text-charcoal/70">{ritual.tagline}</p>
             </div>
 
             {/* Rating */}
             <div className="flex items-center gap-3">
               <StarRating rating={ritual.rating} size="md" showCount={false} />
-              <span className="font-bold text-brand-navy">{ritual.rating}</span>
-              <button type="button" className="text-sm text-electric-lime hover:underline font-medium">
+              <span className="font-bold text-charcoal">{ritual.rating}</span>
+              <button
+                type="button"
+                className="text-sm text-electric-lime hover:underline font-medium"
+              >
                 ({ritual.reviewCount} reviews)
               </button>
             </div>
@@ -201,7 +212,7 @@ export default function RitualPage() {
 
             {/* Quantity */}
             <div>
-              <label className="block text-sm font-bold text-brand-navy mb-2">Quantity</label>
+              <label className="block text-sm font-bold text-charcoal mb-2">Quantity</label>
               <QuantitySelector
                 quantity={quantity}
                 onChange={setQuantity}
@@ -222,22 +233,22 @@ export default function RitualPage() {
             </button>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-brand-navy/10">
+            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-charcoal/10">
               <div className="flex items-center gap-2">
                 <BeakerIcon className="w-5 h-5 text-electric-lime" />
-                <span className="text-sm font-medium text-brand-navy">Lab Verified</span>
+                <span className="text-sm font-medium text-charcoal">Lab Verified</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheckIcon className="w-5 h-5 text-electric-lime" />
-                <span className="text-sm font-medium text-brand-navy">Quality Assured</span>
+                <span className="text-sm font-medium text-charcoal">Quality Assured</span>
               </div>
               <div className="flex items-center gap-2">
                 <TruckIcon className="w-5 h-5 text-electric-lime" />
-                <span className="text-sm font-medium text-brand-navy">Free Shipping</span>
+                <span className="text-sm font-medium text-charcoal">Free Shipping</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckIcon className="w-5 h-5 text-electric-lime" />
-                <span className="text-sm font-medium text-brand-navy">Easy Returns</span>
+                <span className="text-sm font-medium text-charcoal">Easy Returns</span>
               </div>
             </div>
 
@@ -248,18 +259,16 @@ export default function RitualPage() {
       </div>
 
       {/* Tabbed Content Section */}
-      <div className="bg-white py-12 md:py-16 border-t border-brand-navy/5">
+      <div className="bg-white py-12 md:py-16 border-t border-charcoal/5">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
           {/* Tabs */}
-          <div className="flex gap-2 mb-8 border-b border-brand-navy/10">
+          <div className="flex gap-2 mb-8 border-b border-charcoal/10">
             {(['benefits', 'ingredients', 'how-to'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-3 font-bold text-sm uppercase tracking-wide transition-colors relative ${
-                  activeTab === tab
-                    ? 'text-brand-navy'
-                    : 'text-muted hover:text-brand-navy'
+                  activeTab === tab ? 'text-charcoal' : 'text-muted hover:text-charcoal'
                 }`}
               >
                 {tab === 'benefits' && 'Benefits'}
@@ -283,14 +292,14 @@ export default function RitualPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                <h3 className="font-display font-bold text-2xl text-brand-navy mb-4">
+                <h3 className="font-display font-bold text-2xl text-charcoal mb-4">
                   What Makes It Work
                 </h3>
                 <ul className="space-y-3">
                   {ritual.benefits?.map((benefit, idx) => (
                     <li key={idx} className="flex gap-3">
                       <CheckIcon className="w-5 h-5 text-electric-lime flex-shrink-0 mt-0.5" />
-                      <span className="text-brand-navy">{benefit}</span>
+                      <span className="text-charcoal">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -303,15 +312,20 @@ export default function RitualPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-6"
               >
-                <h3 className="font-display font-bold text-2xl text-brand-navy mb-4">
+                <h3 className="font-display font-bold text-2xl text-charcoal mb-4">
                   Full Transparency
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {ritual.ingredients.map((ing, idx) => (
-                    <div key={idx} className="bg-brand-cream rounded-xl p-4 border border-brand-navy/5">
+                    <div
+                      key={idx}
+                      className="bg-cream rounded-xl p-4 border border-charcoal/5"
+                    >
                       <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-bold text-brand-navy">{ing.name}</h4>
-                        <span className="text-sm font-mono font-bold text-electric-lime">{ing.dose}</span>
+                        <h4 className="font-bold text-charcoal">{ing.name}</h4>
+                        <span className="text-sm font-mono font-bold text-electric-lime">
+                          {ing.dose}
+                        </span>
                       </div>
                       <p className="text-sm text-muted">
                         Clinically studied dose for optimal effectiveness.
@@ -337,17 +351,17 @@ export default function RitualPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                <h3 className="font-display font-bold text-2xl text-brand-navy mb-4">
+                <h3 className="font-display font-bold text-2xl text-charcoal mb-4">
                   Usage Instructions
                 </h3>
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-brand-navy">
-                    Take 1 capsule daily with water. For best results, take at the same time each day.
-                    Consistency is key to experiencing the full benefits.
+                  <p className="text-charcoal">
+                    Take 1 capsule daily with water. For best results, take at the same time each
+                    day. Consistency is key to experiencing the full benefits.
                   </p>
                   <p className="text-muted text-sm mt-4">
-                    * These statements have not been evaluated by the FDA. This product is not intended
-                    to diagnose, treat, cure, or prevent any disease.
+                    * These statements have not been evaluated by the FDA. This product is not
+                    intended to diagnose, treat, cure, or prevent any disease.
                   </p>
                 </div>
               </motion.div>
@@ -360,17 +374,14 @@ export default function RitualPage() {
       {ritual.faqs && ritual.faqs.length > 0 && (
         <div className="py-12 md:py-16 bg-brand-cream">
           <div className="max-w-4xl mx-auto px-5 md:px-10">
-            <FAQAccordion
-              faqs={ritual.faqs}
-              title="Frequently Asked Questions"
-            />
+            <FAQAccordion faqs={ritual.faqs} title="Frequently Asked Questions" />
           </div>
         </div>
       )}
 
       {/* Reviews */}
       {ritual.reviews && ritual.reviews.length > 0 && (
-        <div className="py-12 md:py-16 bg-white border-t border-brand-navy/5">
+        <div className="py-12 md:py-16 bg-white border-t border-charcoal/5">
           <div className="max-w-7xl mx-auto px-5 md:px-10">
             <ReviewSection
               reviews={ritual.reviews}

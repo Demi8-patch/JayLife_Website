@@ -8,16 +8,18 @@ interface FAQAccordionProps {
   className?: string;
 }
 
-export function FAQAccordion({ faqs, title = 'Frequently Asked Questions', className = '' }: FAQAccordionProps) {
+export function FAQAccordion({
+  faqs,
+  title = 'Frequently Asked Questions',
+  className = '',
+}: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   if (!faqs || faqs.length === 0) return null;
 
   return (
     <div className={className}>
-      {title && (
-        <h3 className="font-display font-bold text-xl text-brand-navy mb-6">{title}</h3>
-      )}
+      {title && <h3 className="font-display font-bold text-xl text-charcoal mb-6">{title}</h3>}
 
       <div className="space-y-3">
         {faqs.map((faq, index) => {
@@ -26,16 +28,16 @@ export function FAQAccordion({ faqs, title = 'Frequently Asked Questions', class
           return (
             <div
               key={index}
-              className="bg-white rounded-xl border border-brand-navy/5 overflow-hidden"
+              className="bg-white rounded-xl border border-charcoal/5 overflow-hidden"
             >
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 className="w-full flex items-center justify-between p-4 text-left hover:bg-brand-cream/30 transition-colors"
               >
-                <span className="font-bold text-brand-navy pr-4">{faq.question}</span>
+                <span className="font-bold text-charcoal pr-4">{faq.question}</span>
                 <ChevronDownIcon
-                  className={`w-5 h-5 text-brand-navy/60 flex-shrink-0 transition-transform duration-200 ${
+                  className={`w-5 h-5 text-charcoal/60 flex-shrink-0 transition-transform duration-200 ${
                     isOpen ? 'rotate-180' : ''
                   }`}
                 />
@@ -46,9 +48,7 @@ export function FAQAccordion({ faqs, title = 'Frequently Asked Questions', class
                   isOpen ? 'max-h-96' : 'max-h-0'
                 }`}
               >
-                <div className="px-4 pb-4 text-brand-navy/70 leading-relaxed">
-                  {faq.answer}
-                </div>
+                <div className="px-4 pb-4 text-charcoal/70 leading-relaxed">{faq.answer}</div>
               </div>
             </div>
           );

@@ -10,17 +10,17 @@
 
 ### Psychological Assignment Matrix
 
-| Variable | Hex | Role | Psychological Impact | UI Application |
-|----------|-----|------|---------------------|----------------|
-| `--electric-lime` | `#BFFF00` | **CONVERSION** | Stop-scroll energy, urgency | CTAs, Add to Cart, Sale badges |
-| `--electric-lime-hover` | `#D4FF4D` | **ACTIVATION** | Reward feedback | Button hover states |
-| `--electric-lime-glow` | `rgba(191,255,0,0.3)` | **ATTRACTION** | Ambient energy | Box shadows, focus rings |
-| `--charcoal` | `#1A2E3B` | **TRUST** | Authority, stability | Primary text, headers |
-| `--dark` | `#1A1A1A` | **PREMIUM** | Contrast anchor, depth | Dark sections, footers |
-| `--cream` | `#F8F5F0` | **REST** | Visual breathing room | Backgrounds, cards |
-| `--sale-red` | `#FF4444` | **URGENCY** | Scarcity, FOMO | Discount badges, alerts |
-| `--brand-sage` | `#8B9B7A` | **CALM** | Wellness trust signal | Accents, secondary UI |
-| `--gold` | `#C9A962` | **PREMIUM** | Aspirational quality | Ratings, premium badges |
+| Variable                | Hex                   | Role           | Psychological Impact        | UI Application                 |
+| ----------------------- | --------------------- | -------------- | --------------------------- | ------------------------------ |
+| `--electric-lime`       | `#BFFF00`             | **CONVERSION** | Stop-scroll energy, urgency | CTAs, Add to Cart, Sale badges |
+| `--electric-lime-hover` | `#D4FF4D`             | **ACTIVATION** | Reward feedback             | Button hover states            |
+| `--electric-lime-glow`  | `rgba(191,255,0,0.3)` | **ATTRACTION** | Ambient energy              | Box shadows, focus rings       |
+| `--charcoal`            | `#1A2E3B`             | **TRUST**      | Authority, stability        | Primary text, headers          |
+| `--dark`                | `#1A1A1A`             | **PREMIUM**    | Contrast anchor, depth      | Dark sections, footers         |
+| `--cream`               | `#F8F5F0`             | **REST**       | Visual breathing room       | Backgrounds, cards             |
+| `--sale-red`            | `#FF4444`             | **URGENCY**    | Scarcity, FOMO              | Discount badges, alerts        |
+| `--brand-sage`          | `#8B9B7A`             | **CALM**       | Wellness trust signal       | Accents, secondary UI          |
+| `--gold`                | `#C9A962`             | **PREMIUM**    | Aspirational quality        | Ratings, premium badges        |
 
 ### Color Vibration Hierarchy
 
@@ -76,13 +76,13 @@ SCROLL-STOPPER          CONVERSION            REST ZONES
 
 ### Interaction State Table
 
-| State | Transform | Shadow | Timing | Easing |
-|-------|-----------|--------|--------|--------|
-| **Default** | `translateY(0)` | `none` | - | - |
-| **Hover** | `translateY(-2px)` | `0 8px 24px lime-glow` | 200ms | bounce |
-| **Active** | `scale(0.98)` | `0 2px 8px lime-glow` | 100ms | ease-out |
-| **Focus** | `none` | `0 0 0 4px lime` | instant | - |
-| **Disabled** | `none` | `none` | - | - + opacity: 0.5 |
+| State        | Transform          | Shadow                 | Timing  | Easing           |
+| ------------ | ------------------ | ---------------------- | ------- | ---------------- |
+| **Default**  | `translateY(0)`    | `none`                 | -       | -                |
+| **Hover**    | `translateY(-2px)` | `0 8px 24px lime-glow` | 200ms   | bounce           |
+| **Active**   | `scale(0.98)`      | `0 2px 8px lime-glow`  | 100ms   | ease-out         |
+| **Focus**    | `none`             | `0 0 0 4px lime`       | instant | -                |
+| **Disabled** | `none`             | `none`                 | -       | - + opacity: 0.5 |
 
 ---
 
@@ -119,6 +119,7 @@ SCROLL-STOPPER          CONVERSION            REST ZONES
 ```
 
 **Color Mapping:**
+
 - Background: `#1A1A1A` (Dark - premium anchor)
 - Hero Card: `#FFFFFF` with thick border `4px solid #BFFF00`
 - Headline Highlight: `background: #BFFF00`
@@ -160,6 +161,7 @@ SCROLL-STOPPER          CONVERSION            REST ZONES
 ```
 
 **Bento-Grid Specs:**
+
 - Container: `max-width: 1280px` with `gap: 24px`
 - Cards: `border-radius: 24px` (Neo-Brutalist soft)
 - Border: `4px solid #1A2E3B` (thick, intentional)
@@ -200,6 +202,7 @@ SCROLL-STOPPER          CONVERSION            REST ZONES
 ```
 
 **Modal Specs:**
+
 - Background: `#FFFFFF`
 - Border: `4px solid #1A1A1A`
 - Border-radius: `32px`
@@ -211,20 +214,20 @@ SCROLL-STOPPER          CONVERSION            REST ZONES
 
 ## Part 4: Component Application Table
 
-| Component | Background | Text | Border | Shadow | Interaction |
-|-----------|-----------|------|--------|--------|-------------|
-| **Primary CTA** | `#BFFF00` | `#1A1A1A` | none | hover: lime-glow | lift + glow |
-| **Secondary CTA** | `#1A1A1A` | `#FFFFFF` | none | sm | lift |
-| **Ghost Button** | transparent | `#1A1A1A` | `2px #1A1A1A` | none | border thicken |
-| **Product Card** | `#FFFFFF` | `#1A2E3B` | `4px #1A2E3B` | md | lift + shadow |
-| **Sale Badge** | `#FF4444` | `#FFFFFF` | none | none | static |
-| **Product Badge** | `#BFFF00` | `#1A1A1A` | none | none | static |
-| **Input Field** | `#FFFFFF` | `#1A2E3B` | `2px #1A2E3B/20` | none | border → lime |
-| **Modal** | `#FFFFFF` | `#1A2E3B` | `4px #1A1A1A` | xl | fade + scale |
-| **Trust Badge** | transparent | `#BFFF00` | none | none | static |
-| **Dark Section** | `#1A1A1A` | `#FFFFFF` | none | none | - |
-| **Nav Link** | transparent | `#1A2E3B` | none | none | underline |
-| **Cart Badge** | `#BFFF00` | `#1A1A1A` | none | none | bounce on update |
+| Component         | Background  | Text      | Border           | Shadow           | Interaction      |
+| ----------------- | ----------- | --------- | ---------------- | ---------------- | ---------------- |
+| **Primary CTA**   | `#BFFF00`   | `#1A1A1A` | none             | hover: lime-glow | lift + glow      |
+| **Secondary CTA** | `#1A1A1A`   | `#FFFFFF` | none             | sm               | lift             |
+| **Ghost Button**  | transparent | `#1A1A1A` | `2px #1A1A1A`    | none             | border thicken   |
+| **Product Card**  | `#FFFFFF`   | `#1A2E3B` | `4px #1A2E3B`    | md               | lift + shadow    |
+| **Sale Badge**    | `#FF4444`   | `#FFFFFF` | none             | none             | static           |
+| **Product Badge** | `#BFFF00`   | `#1A1A1A` | none             | none             | static           |
+| **Input Field**   | `#FFFFFF`   | `#1A2E3B` | `2px #1A2E3B/20` | none             | border → lime    |
+| **Modal**         | `#FFFFFF`   | `#1A2E3B` | `4px #1A1A1A`    | xl               | fade + scale     |
+| **Trust Badge**   | transparent | `#BFFF00` | none             | none             | static           |
+| **Dark Section**  | `#1A1A1A`   | `#FFFFFF` | none             | none             | -                |
+| **Nav Link**      | transparent | `#1A2E3B` | none             | none             | underline        |
+| **Cart Badge**    | `#BFFF00`   | `#1A1A1A` | none             | none             | bounce on update |
 
 ---
 
@@ -233,6 +236,7 @@ SCROLL-STOPPER          CONVERSION            REST ZONES
 ### Critical Contrast Analysis
 
 #### Test 1: Electric Lime (#BFFF00) vs Dark (#1A1A1A)
+
 ```
 Foreground: #1A1A1A (Dark text on Lime background)
 Background: #BFFF00
@@ -243,6 +247,7 @@ Contrast Ratio: 12.58:1 ✅ PASSES AAA (7:1)
 ```
 
 #### Test 2: Electric Lime (#BFFF00) vs White (#FFFFFF)
+
 ```
 Foreground: #BFFF00 (Lime text on White)
 Background: #FFFFFF
@@ -253,6 +258,7 @@ Contrast Ratio: 1.57:1 ❌ FAILS ALL
 **CRITICAL:** Never use lime text on white. Use lime as background only.
 
 #### Test 3: White (#FFFFFF) vs Dark (#1A1A1A)
+
 ```
 Foreground: #FFFFFF
 Background: #1A1A1A
@@ -261,6 +267,7 @@ Contrast Ratio: 16.58:1 ✅ PASSES AAA
 ```
 
 #### Test 4: Sale Red (#FF4444) vs White (#FFFFFF)
+
 ```
 Foreground: #FF4444
 Background: #FFFFFF
@@ -272,14 +279,14 @@ Contrast Ratio: 4.23:1 ⚠️ PASSES AA Large only
 
 ### Accessibility Checklist
 
-| Check | Status | Notes |
-|-------|--------|-------|
-| Primary CTA contrast (Lime/Dark) | ✅ PASS | 12.58:1 |
-| Lime text on white | ❌ FAIL | Never use - 1.57:1 |
-| Focus indicators visible | ✅ PASS | Use 4px lime ring |
-| Touch targets 48px minimum | ✅ PASS | Enforced in CSS |
-| Motion: reduced-motion support | ✅ PASS | Implemented |
-| Color not sole indicator | ✅ PASS | Icons + text labels |
+| Check                            | Status  | Notes               |
+| -------------------------------- | ------- | ------------------- |
+| Primary CTA contrast (Lime/Dark) | ✅ PASS | 12.58:1             |
+| Lime text on white               | ❌ FAIL | Never use - 1.57:1  |
+| Focus indicators visible         | ✅ PASS | Use 4px lime ring   |
+| Touch targets 48px minimum       | ✅ PASS | Enforced in CSS     |
+| Motion: reduced-motion support   | ✅ PASS | Implemented         |
+| Color not sole indicator         | ✅ PASS | Icons + text labels |
 
 ### Safe Usage Rules
 
@@ -390,6 +397,7 @@ Contrast Ratio: 4.23:1 ⚠️ PASSES AA Large only
 ### Dark + Lime = "Premium Energy"
 
 The combination of `#1A1A1A` (Dark) and `#BFFF00` (Lime) creates:
+
 - **High perceived value** (dark = luxury, sophistication)
 - **High energy** (lime = vitality, now)
 - **Clear hierarchy** (dark anchor, lime action)
@@ -402,12 +410,12 @@ The combination of `#1A1A1A` (Dark) and `#BFFF00` (Lime) creates:
 ```css
 :root {
   /* Warm Sunrise Core */
-  --sunrise-lime: #BFFF00;
-  --sunrise-lime-light: #D4FF4D;
+  --sunrise-lime: #bfff00;
+  --sunrise-lime-light: #d4ff4d;
   --sunrise-lime-glow: rgba(191, 255, 0, 0.3);
-  --sunrise-charcoal: #1A1A1A;
-  --sunrise-cream: #F8F5F0;
-  --sunrise-blush: #FF4444;
+  --sunrise-charcoal: #1a1a1a;
+  --sunrise-cream: #f8f5f0;
+  --sunrise-blush: #ff4444;
 
   /* Application */
   --cta-bg: var(--sunrise-lime);

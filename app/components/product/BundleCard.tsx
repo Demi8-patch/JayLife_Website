@@ -42,7 +42,7 @@ export function BundleCard({
   };
 
   return (
-    <div className="bundle-card bg-white rounded-2xl overflow-hidden shadow-lg border border-brand-navy/5 flex flex-col h-full">
+    <div className="bundle-card bg-white rounded-2xl overflow-hidden shadow-lg border border-charcoal/5 flex flex-col h-full">
       {/* Images Row */}
       <div className="relative p-6 pb-4">
         <SaleBadge percent={discountPercent} position="top-right" />
@@ -60,14 +60,14 @@ export function BundleCard({
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-brand-navy/20 font-bold text-xs">
+                <div className="w-full h-full flex items-center justify-center text-charcoal/20 font-bold text-xs">
                   {product.title}
                 </div>
               )}
             </div>
           ))}
           {products.length > 3 && (
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-brand-navy/5 flex items-center justify-center text-brand-navy/60 font-bold">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-charcoal/5 flex items-center justify-center text-charcoal/60 font-bold">
               +{products.length - 3}
             </div>
           )}
@@ -77,17 +77,15 @@ export function BundleCard({
       {/* Content */}
       <div className="px-6 pb-6 flex flex-col flex-grow">
         <Link to={`/bundle/${handle}`} className="block mb-3">
-          <h3 className="font-display font-bold text-lg text-brand-navy mb-1">
-            {title}
-          </h3>
-          <p className="text-sm text-brand-navy/70">{tagline}</p>
+          <h3 className="font-display font-bold text-lg text-charcoal mb-1">{title}</h3>
+          <p className="text-sm text-charcoal/70">{tagline}</p>
         </Link>
 
         {/* Benefits */}
         {benefits.length > 0 && (
           <ul className="space-y-1.5 mb-4">
             {benefits.slice(0, 3).map((benefit, index) => (
-              <li key={index} className="flex items-center gap-2 text-sm text-brand-navy/80">
+              <li key={index} className="flex items-center gap-2 text-sm text-charcoal/80">
                 <CheckIcon className="w-4 h-4 text-electric-lime flex-shrink-0" />
                 {benefit}
               </li>
@@ -106,11 +104,7 @@ export function BundleCard({
         </div>
 
         {/* Add to Cart */}
-        <button
-          type="button"
-          onClick={handleAddToCart}
-          className="btn-add-to-cart w-full"
-        >
+        <button type="button" onClick={handleAddToCart} className="btn-add-to-cart w-full">
           <CartIcon className="w-5 h-5" />
           Add Bundle to Cart
         </button>

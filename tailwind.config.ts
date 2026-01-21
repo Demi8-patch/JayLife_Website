@@ -1,9 +1,9 @@
-import type { Config } from 'tailwindcss';
 import forms from '@tailwindcss/forms';
+import type { Config } from 'tailwindcss';
 
 /**
  * Jay Life Warm Sunrise Config
- * 
+ *
  * CORE PRINCIPLES:
  * 1. Warm, tactile base (Off-white/Charcoal)
  * 2. High energy accents (Lime/Orange)
@@ -22,10 +22,10 @@ export default {
 
         // The new standard
         'warm-sunrise': {
-          lime: '#BFFF00',     // Primary Action / High Energy
+          lime: '#BFFF00', // Primary Action / High Energy
           charcoal: '#2D2926', // Primary Text / UI Borders
-          orange: '#FF6B35',   // Secondary Accent / Hover
-          blush: '#FFD1BA',    // Soft Backgrounds
+          orange: '#FF6B35', // Secondary Accent / Hover
+          blush: '#FFD1BA', // Soft Backgrounds
           offwhite: '#F8F8F5', // Main Background
         },
 
@@ -42,6 +42,12 @@ export default {
         background: '#F8F8F5',
         surface: '#FFFFFF',
         text: '#2D2926',
+        charcoal: '#2D2926',
+        acid: '#BFFF00',
+        'acid-glow': '#C8FF00',
+        muted: '#9E9A95',
+        cream: '#F8F8F5',
+        coral: '#FF6B35',
 
         // Keep existing functional colors
         success: '#BFFF00',
@@ -53,7 +59,7 @@ export default {
       fontFamily: {
         // New Font Stack
         display: ['Outfit', 'sans-serif'], // Headings
-        body: ['Inter', 'sans-serif'],     // Copy
+        body: ['Inter', 'sans-serif'], // Copy
 
         // Legacy support
         sans: ['Inter', 'sans-serif'],
@@ -63,43 +69,62 @@ export default {
 
       fontSize: {
         // JayLife Warm Sunrise Scale
-        'hero': ['3.5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '900' }],      // Mobile Hero
-        'hero-lg': ['6rem', { lineHeight: '0.9', letterSpacing: '-0.03em', fontWeight: '900' }],   // Desktop Hero
-        'display': ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],       // Section Headers
+        hero: ['3.5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '900' }], // Mobile Hero
+        'hero-lg': ['6rem', { lineHeight: '0.9', letterSpacing: '-0.03em', fontWeight: '900' }], // Desktop Hero
+        display: ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }], // Section Headers
         'display-lg': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
-        'title': ['1.5rem', { lineHeight: '1.2', fontWeight: '700' }],
-        'body': ['1rem', { lineHeight: '1.5', fontWeight: '400' }],
+        title: ['1.5rem', { lineHeight: '1.2', fontWeight: '700' }],
+        body: ['1rem', { lineHeight: '1.5', fontWeight: '400' }],
         'body-lg': ['1.125rem', { lineHeight: '1.5', fontWeight: '500' }],
+        specs: ['0.75rem', { lineHeight: '1.4', fontWeight: '500' }], // Small monospace for ingredient/price specs
+        caption: ['0.75rem', { lineHeight: '1.3', fontWeight: '500' }], // Small labels, badges
       },
 
       spacing: {
         // Brutalist Spacing (4px grid)
-        'container': '24px', // Mobile padding
+        container: '24px', // Mobile padding
         'container-lg': '64px', // Desktop padding
-        'section': '80px',
+        section: '80px',
         'section-lg': '120px',
+        // Touch targets
+        touch: '48px',
+        'touch-lg': '56px',
       },
 
       borderRadius: {
-        'none': '0px',
-        'sm': '4px',
-        'DEFAULT': '8px',
-        'md': '12px',
-        'lg': '16px',
-        'pill': '9999px',
+        none: '0px',
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+        pill: '9999px',
         // Neo-brutalist buttons often have smaller radius + hard border
-        'neo': '0px',
+        neo: '0px',
+        button: '8px',
+        badge: '20px',
+        card: '12px',
+      },
+
+      minHeight: {
+        touch: '48px',
+        'touch-lg': '56px',
       },
 
       boxShadow: {
         // NEO-BRUTALIST SHADOWS
-        'neo': '4px 4px 0px 0px #2D2926',
+        neo: '4px 4px 0px 0px #2D2926',
         'neo-lg': '8px 8px 0px 0px #2D2926',
         'neo-sm': '2px 2px 0px 0px #2D2926',
         'neo-lime': '4px 4px 0px 0px #BFFF00',
-        'none': 'none',
+        none: 'none',
         // Legacy
-        'sm': '2px 2px 0px 0px rgba(0,0,0,0.05)',
+        sm: '2px 2px 0px 0px rgba(0,0,0,0.05)',
+        // Aura shadows
+        aura: '0 8px 24px rgba(45, 41, 38, 0.12)',
+        'aura-sm': '0 4px 12px rgba(45, 41, 38, 0.08)',
+        // Card shadow
+        card: '0 2px 8px rgba(45, 41, 38, 0.06)',
+        'card-hover': '0 8px 20px rgba(45, 41, 38, 0.12)',
       },
 
       backgroundImage: {
@@ -111,7 +136,7 @@ export default {
       },
 
       animation: {
-        'marquee': 'marquee 25s linear infinite',
+        marquee: 'marquee 25s linear infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'fade-in': 'fadeIn 0.3s ease-out forwards',
         'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',

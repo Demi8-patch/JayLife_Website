@@ -43,15 +43,19 @@ export function ProductCarousel({
         <div className="flex items-end justify-between px-5 md:px-10 mb-8">
           <div>
             {subtitle && (
-              <span className={`text-sm font-bold uppercase tracking-wider mb-2 block ${
-                darkMode ? 'text-electric-lime' : 'text-brand-sage'
-              }`}>
+              <span
+                className={`text-sm font-bold uppercase tracking-wider mb-2 block ${
+                  darkMode ? 'text-electric-lime' : 'text-acid'
+                }`}
+              >
                 {subtitle}
               </span>
             )}
-            <h2 className={`font-display font-bold text-2xl md:text-3xl ${
-              darkMode ? 'text-white' : 'text-brand-navy'
-            }`}>
+            <h2
+              className={`font-display font-bold text-2xl md:text-3xl ${
+                darkMode ? 'text-white' : 'text-charcoal'
+              }`}
+            >
               {title}
             </h2>
           </div>
@@ -64,13 +68,14 @@ export function ProductCarousel({
               disabled={!canScrollLeft}
               className={`
                 p-3 rounded-full transition-all
-                ${canScrollLeft
-                  ? darkMode
-                    ? 'bg-white/10 hover:bg-white/20 text-white'
-                    : 'bg-brand-navy/5 hover:bg-brand-navy/10 text-brand-navy'
-                  : 'opacity-30 cursor-not-allowed'
+                ${
+                  canScrollLeft
+                    ? darkMode
+                      ? 'bg-white/10 hover:bg-white/20 text-white'
+                      : 'bg-charcoal/5 hover:bg-charcoal/10 text-charcoal'
+                    : 'opacity-30 cursor-not-allowed'
                 }
-                ${darkMode ? 'text-white' : 'text-brand-navy'}
+                ${darkMode ? 'text-white' : 'text-charcoal'}
               `}
               aria-label="Scroll left"
             >
@@ -82,13 +87,14 @@ export function ProductCarousel({
               disabled={!canScrollRight}
               className={`
                 p-3 rounded-full transition-all
-                ${canScrollRight
-                  ? darkMode
-                    ? 'bg-white/10 hover:bg-white/20 text-white'
-                    : 'bg-brand-navy/5 hover:bg-brand-navy/10 text-brand-navy'
-                  : 'opacity-30 cursor-not-allowed'
+                ${
+                  canScrollRight
+                    ? darkMode
+                      ? 'bg-white/10 hover:bg-white/20 text-white'
+                      : 'bg-charcoal/5 hover:bg-charcoal/10 text-charcoal'
+                    : 'opacity-30 cursor-not-allowed'
                 }
-                ${darkMode ? 'text-white' : 'text-brand-navy'}
+                ${darkMode ? 'text-white' : 'text-charcoal'}
               `}
               aria-label="Scroll right"
             >
@@ -105,10 +111,7 @@ export function ProductCarousel({
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {rituals.map((ritual) => (
-            <div
-              key={ritual.handle}
-              className="flex-shrink-0 w-[280px] md:w-[300px] snap-start"
-            >
+            <div key={ritual.handle} className="flex-shrink-0 w-[280px] md:w-[300px] snap-start">
               <ProductCard ritual={ritual} />
             </div>
           ))}
@@ -120,7 +123,7 @@ export function ProductCarousel({
             <div
               key={index}
               className={`w-2 h-2 rounded-full transition-colors ${
-                darkMode ? 'bg-white/30' : 'bg-brand-navy/20'
+                darkMode ? 'bg-white/30' : 'bg-charcoal/20'
               }`}
             />
           ))}

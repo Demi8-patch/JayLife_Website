@@ -1,17 +1,10 @@
 // @ts-ignore - Virtual module provided by Hydrogen
 import * as remixBuild from 'virtual:remix/server-build';
-import {
-  createRequestHandler,
-  getStorefrontHeaders,
-} from '@shopify/remix-oxygen';
+import { createRequestHandler, getStorefrontHeaders } from '@shopify/remix-oxygen';
 import { createStorefrontClient } from '@shopify/hydrogen';
 
 export default {
-  async fetch(
-    request: Request,
-    env: Env,
-    executionContext: ExecutionContext,
-  ): Promise<Response> {
+  async fetch(request: Request, env: Env, executionContext: ExecutionContext): Promise<Response> {
     try {
       // Create Storefront client with mock config
       const { storefront } = createStorefrontClient({
@@ -37,7 +30,7 @@ export default {
       if (request.url.includes('/ritual/')) {
         response.headers.set(
           'Cache-Control',
-          'public, max-age=3600, s-maxage=3600, stale-while-revalidate=60',
+          'public, max-age=3600, s-maxage=3600, stale-while-revalidate=60'
         );
       }
 

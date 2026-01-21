@@ -23,19 +23,19 @@
        ═══════════════════════════════════════════════════════════════════ */
 
     /* Warm-Sunrise Brand Palette (MASTER SOURCE) */
-    --warm-sunrise-offwhite: #F8F8F5;
-    --warm-sunrise-charcoal: #2D2926;
-    --warm-sunrise-lime: #BFFF00;
-    --warm-sunrise-lime-hover: #D4FF4D;
+    --warm-sunrise-offwhite: #f8f8f5;
+    --warm-sunrise-charcoal: #2d2926;
+    --warm-sunrise-lime: #bfff00;
+    --warm-sunrise-lime-hover: #d4ff4d;
     --warm-sunrise-lime-glow: rgba(191, 255, 0, 0.3);
-    --warm-sunrise-orange: #FF6B35;
-    --warm-sunrise-orange-hover: #FF8C55;
-    --warm-sunrise-blush: #FFD1BA;
+    --warm-sunrise-orange: #ff6b35;
+    --warm-sunrise-orange-hover: #ff8c55;
+    --warm-sunrise-blush: #ffd1ba;
 
     /* Legacy Brand Aliases (→ Warm-Sunrise) */
     --brand-cream: var(--warm-sunrise-offwhite);
     --brand-navy: var(--warm-sunrise-charcoal);
-    --brand-sage: #8B9B7A; /* Deprecated, use --warm-sunrise-* */
+    /* --brand-sage: #8b9b7a; REMOVED - use --color-acid or --warm-sunrise-lime instead */
 
     /* E-Commerce CTA Color (Warm-Sunrise Lime) */
     --color-electric-lime: var(--warm-sunrise-lime);
@@ -47,9 +47,9 @@
     --color-sale-red-light: rgba(255, 107, 53, 0.1);
 
     /* Dark Section Background */
-    --section-dark-bg: #1A1A1A;
+    --section-dark-bg: #1a1a1a;
     --section-dark-surface: #252525;
-    --section-dark-text: #FFFFFF;
+    --section-dark-text: #ffffff;
     --section-dark-muted: rgba(255, 255, 255, 0.7);
 
     /* Semantic Primary - Warm-Sunrise Lime for e-commerce CTAs */
@@ -59,33 +59,33 @@
 
     /* Neutrals - Light Mode (Warm-Sunrise) */
     --color-cream: var(--warm-sunrise-offwhite);
-    --color-cream-surface: #FFFFFF;
-    --color-cream-hover: #F5F5F2;
+    --color-cream-surface: #ffffff;
+    --color-cream-hover: #f5f5f2;
 
     /* Neutrals - Dark (Warm-Sunrise) */
     --color-charcoal: var(--warm-sunrise-charcoal);
-    --color-charcoal-surface: #1A1815;
-    --color-charcoal-elevated: #3D3935;
+    --color-charcoal-surface: #1a1815;
+    --color-charcoal-elevated: #3d3935;
 
     /* Text Hierarchy */
     --text-primary: var(--warm-sunrise-charcoal);
-    --text-secondary: #5C5651;
-    --text-muted: #8B8680;
+    --text-secondary: #5c5651;
+    --text-muted: #8b8680;
 
     /* Semantic Colors */
     --color-coral: var(--warm-sunrise-orange);
     --color-blush: var(--warm-sunrise-blush);
-    --color-success: #4CAF50;
-    --color-error: #F44336;
+    --color-success: #4caf50;
+    --color-error: #f44336;
     --color-warning: var(--warm-sunrise-orange);
-    --color-info: #2196F3;
+    --color-info: #2196f3;
 
     /* Semantic Aliases */
     --bg-base: var(--warm-sunrise-offwhite);
-    --bg-surface: #FFFFFF;
-    --bg-elevated: #F5F5F2;
-    --bg-hover: #EEEEEB;
-    --bg-card: #FFFFFF;
+    --bg-surface: #ffffff;
+    --bg-elevated: #f5f5f2;
+    --bg-hover: #eeeeeb;
+    --bg-card: #ffffff;
     --action-primary: var(--warm-sunrise-charcoal);
     --action-danger: var(--color-error);
 
@@ -184,28 +184,33 @@
        ═══════════════════════════════════════════════════════════════════ */
 
     /* Small elevation (subtle) - buttons, inputs */
-    --shadow-sm:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
 
     /* Medium elevation (cards, dropdowns) */
-    --shadow-md:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 4px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 8px rgba(0, 0, 0, 0.06);
 
     /* Large elevation (modals, popovers) */
-    --shadow-lg:
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 8px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
 
     /* XL elevation (focused modals) */
-    --shadow-xl:
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 16px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 32px rgba(0, 0, 0, 0.12);
 
     /* Legacy shadows (mapped to dual shadows) */
     --shadow-card: var(--shadow-md);
     --shadow-card-hover: var(--shadow-lg);
+
+    /* Custom utility aliases used by components */
+    @layer utilities {
+      .rounded-card {
+        @apply rounded-2xl;
+      }
+      .shadow-card {
+        box-shadow: var(--shadow-card);
+      }
+      .shadow-card-hover {
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
 
     /* Brand aura glow */
     --shadow-aura: 0 0 40px hsla(75, 100%, 50%, 0.3);
@@ -308,7 +313,7 @@
   /* Touch target enforcement */
   button,
   a,
-  [role="button"] {
+  [role='button'] {
     min-height: var(--touch-min);
     min-width: var(--touch-min);
   }
@@ -350,7 +355,6 @@
 }
 
 @layer components {
-
   /* Ritual Card - Enhanced for mobile */
   .ritual-card {
     @apply bg-white rounded-card p-6 shadow-card transition-shadow duration-200;
@@ -492,7 +496,7 @@
     color: var(--text-muted);
   }
 
-  .wishlist-btn[data-active="true"] svg,
+  .wishlist-btn[data-active='true'] svg,
   .wishlist-btn.active svg {
     color: var(--color-sale-red);
     fill: var(--color-sale-red);
@@ -509,7 +513,7 @@
     border-color: var(--border-strong);
   }
 
-  .variant-btn[data-selected="true"],
+  .variant-btn[data-selected='true'],
   .variant-btn.selected {
     border-color: var(--color-electric-lime);
     background-color: var(--color-acid-subtle);
@@ -529,7 +533,7 @@
     border-color: var(--border-strong);
   }
 
-  .variant-image-btn[data-selected="true"],
+  .variant-image-btn[data-selected='true'],
   .variant-image-btn.selected {
     border-color: var(--color-electric-lime);
     box-shadow: 0 0 0 2px var(--color-acid-subtle);
@@ -588,8 +592,8 @@
 
   /* Star Rating Gold */
   .star-rating-gold svg {
-    color: #FFB800;
-    fill: #FFB800;
+    color: #ffb800;
+    fill: #ffb800;
   }
 
   /* Bottom nav safe area padding */
@@ -617,7 +621,7 @@
 
   .badge-info {
     @apply badge text-charcoal;
-    background-color: #E6E6FA;
+    background-color: #e6e6fa;
   }
 
   .badge-neutral {
@@ -710,7 +714,7 @@
   }
 
   .dot-indicator.active,
-  .dot-indicator[data-active="true"] {
+  .dot-indicator[data-active='true'] {
     width: var(--dot-active-width);
     opacity: 1;
     background: var(--color-acid);
@@ -721,7 +725,7 @@
   }
 
   .dot-indicator.active:hover,
-  .dot-indicator[data-active="true"]:hover {
+  .dot-indicator[data-active='true']:hover {
     opacity: 1;
   }
 
@@ -759,7 +763,7 @@
   }
 
   .tab-item.active,
-  .tab-item[data-active="true"] {
+  .tab-item[data-active='true'] {
     @apply bg-white text-charcoal shadow-card;
   }
 
@@ -776,7 +780,7 @@
   }
 
   .crossfade-item.active,
-  .crossfade-item[data-active="true"] {
+  .crossfade-item[data-active='true'] {
     opacity: 1;
     position: relative;
   }
@@ -809,7 +813,9 @@
 
   /* Premium Hover Lift - Subtle elevation */
   .hover-lift {
-    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    transition:
+      transform var(--transition-smooth),
+      box-shadow var(--transition-smooth);
   }
 
   .hover-lift:hover {
@@ -864,7 +870,7 @@
     box-shadow: var(--shadow-md);
   }
 
-  .card-sajid>*+* {
+  .card-sajid > * + * {
     margin-top: var(--space-4);
     /* Inner gap: 16px < 24px outer */
   }
@@ -882,7 +888,7 @@
     }
   }
 
-  .section-sajid>*+* {
+  .section-sajid > * + * {
     margin-top: var(--space-8);
     /* 32px section internal gap */
   }
@@ -945,12 +951,12 @@
   /*
    * LIST SPACING (Sajid: List items closer than section gaps)
    */
-  .list-sajid>*+* {
+  .list-sajid > * + * {
     margin-top: var(--space-3);
     /* 12px between items */
   }
 
-  .list-sajid-tight>*+* {
+  .list-sajid-tight > * + * {
     margin-top: var(--space-2);
     /* 8px between items */
   }
@@ -995,7 +1001,7 @@
 
   /* Modal overlay with proper animation */
   .modal-overlay {
-    @apply fixed inset-0 bg-brand-navy/50 z-40;
+    @apply fixed inset-0 bg-charcoal/50 z-40;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     animation: fadeIn var(--duration-base) var(--ease-out) forwards;
@@ -1029,7 +1035,6 @@
 }
 
 @layer utilities {
-
   /* Hide scrollbar but allow scrolling */
   .scrollbar-hide {
     -ms-overflow-style: none;
@@ -1071,7 +1076,7 @@
 
   /* Gradient text - premium effect */
   .text-gradient-acid {
-    background: linear-gradient(135deg, var(--color-acid) 0%, #9AE600 100%);
+    background: linear-gradient(135deg, var(--color-acid) 0%, #9ae600 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1127,7 +1132,6 @@
 }
 
 @keyframes floatUp {
-
   0%,
   100% {
     transform: translateY(0);
@@ -1221,17 +1225,18 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg,
-      var(--color-cream) 0%,
-      rgba(191, 255, 0, 0.1) 50%,
-      var(--color-cream) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-cream) 0%,
+    rgba(191, 255, 0, 0.1) 50%,
+    var(--color-cream) 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {

@@ -81,7 +81,9 @@ export function ErrorBoundary() {
       <body>
         <div className="min-h-screen flex items-center justify-center px-5 bg-warm-sunrise-charcoal text-warm-sunrise-offwhite">
           <div className="text-center border-4 border-warm-sunrise-lime p-10 shadow-neo-lime">
-            <h1 className="text-8xl font-black mb-4 font-display text-warm-sunrise-lime">{errorStatus}</h1>
+            <h1 className="text-8xl font-black mb-4 font-display text-warm-sunrise-lime">
+              {errorStatus}
+            </h1>
             <p className="text-xl font-bold uppercase">{errorMessage}</p>
           </div>
         </div>

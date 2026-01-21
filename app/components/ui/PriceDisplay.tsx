@@ -43,9 +43,7 @@ export function PriceDisplay({
   return (
     <div className={`flex items-center gap-2 flex-wrap ${className}`}>
       {/* Current Price */}
-      <span className={`${classes.current} text-brand-navy`}>
-        {formatPrice(price)}
-      </span>
+      <span className={`${classes.current} text-charcoal`}>{formatPrice(price)}</span>
 
       {/* Original Price (strikethrough) */}
       {isOnSale && (
@@ -56,14 +54,18 @@ export function PriceDisplay({
 
       {/* Discount Badge */}
       {isOnSale && discountPercent && (
-        <span className={`${classes.savings} font-semibold rounded bg-sale-red-light text-sale-red`}>
+        <span
+          className={`${classes.savings} font-semibold rounded bg-sale-red-light text-sale-red`}
+        >
           Save {discountPercent}%
         </span>
       )}
 
       {/* Savings Amount */}
       {isOnSale && showSavings && !discountPercent && (
-        <span className={`${classes.savings} font-semibold rounded bg-electric-lime-subtle text-brand-navy`}>
+        <span
+          className={`${classes.savings} font-semibold rounded bg-electric-lime-subtle text-charcoal`}
+        >
           Save {formatPrice(savings)}
         </span>
       )}

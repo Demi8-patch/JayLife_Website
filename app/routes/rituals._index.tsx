@@ -1,6 +1,6 @@
-import type { MetaFunction, LoaderFunctionArgs } from '@shopify/remix-oxygen';
-import { json } from '@shopify/remix-oxygen';
 import { useLoaderData } from '@remix-run/react';
+import type { LoaderFunctionArgs, MetaFunction } from '@shopify/remix-oxygen';
+import { json } from '@shopify/remix-oxygen';
 import { RitualGrid } from '~/components/product/RitualGrid';
 
 export const meta: MetaFunction = () => {
@@ -14,7 +14,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
   const { storefront } = context as { storefront: any };
 
   const PRODUCTS_QUERY = `#graphql
-    query GetProducts($first: Int!) {
+    query GetRitualsProducts($first: Int!) {
       products(first: $first) {
         nodes {
           id
@@ -104,13 +104,10 @@ export default function RitualsPage() {
 
   return (
     <div className="bg-warm-sunrise-offwhite min-h-screen">
-
       {/* Page Header */}
       <div className="bg-gradient-to-br from-warm-sunrise-charcoal to-warm-sunrise-charcoal/90 text-white pt-24 pb-12 px-5 md:px-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="font-display font-bold text-4xl md:text-6xl mb-4">
-            Shop All Rituals
-          </h1>
+          <h1 className="font-display font-bold text-4xl md:text-6xl mb-4">Shop All Rituals</h1>
           <p className="text-lg text-white/80 max-w-2xl">
             Science-backed supplements for focus, calm, and performance. <br />
             <span className="text-electric-lime font-bold">No gimmicks. Just results.</span>
@@ -121,7 +118,6 @@ export default function RitualsPage() {
       <div className="max-w-7xl mx-auto px-5 md:px-10 py-16">
         <RitualGrid rituals={products} />
       </div>
-
     </div>
   );
 }

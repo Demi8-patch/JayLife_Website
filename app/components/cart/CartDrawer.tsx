@@ -30,10 +30,7 @@ export function CartDrawer({
   }, []);
 
   // Calculate totals
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.ritual.price * item.quantity,
-    0
-  );
+  const subtotal = items.reduce((sum, item) => sum + item.ritual.price * item.quantity, 0);
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   // Lock body scroll when open
@@ -82,7 +79,12 @@ export function CartDrawer({
                 aria-label="Close cart"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -122,7 +124,8 @@ export function CartDrawer({
                 {/* Free shipping threshold */}
                 {subtotal < 50 && (
                   <div className="bg-acid/10 rounded-button p-3 text-center text-sm">
-                    Add <span className="font-semibold">${(50 - subtotal).toFixed(2)}</span> more for free shipping
+                    Add <span className="font-semibold">${(50 - subtotal).toFixed(2)}</span> more
+                    for free shipping
                   </div>
                 )}
 
@@ -180,9 +183,7 @@ function CartLineItem({
       {/* Product info */}
       <div className="flex-1">
         <Link to={`/ritual/${ritual.handle}`}>
-          <h3 className="font-semibold hover:text-charcoal/70 transition-colors">
-            {ritual.title}
-          </h3>
+          <h3 className="font-semibold hover:text-charcoal/70 transition-colors">{ritual.title}</h3>
         </Link>
         <p className="text-caption text-muted mt-1">{ritual.tagline}</p>
         <p className="font-mono text-specs mt-2">${ritual.price.toFixed(2)}</p>
@@ -208,7 +209,12 @@ function CartLineItem({
             aria-label="Increase quantity"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
             </svg>
           </button>
         </div>

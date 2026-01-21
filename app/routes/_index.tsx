@@ -1,32 +1,39 @@
-import type { MetaFunction } from '@shopify/remix-oxygen';
 import { Link } from '@remix-run/react';
+import type { MetaFunction } from '@shopify/remix-oxygen';
 import { motion } from 'framer-motion';
-import { RitualGrid } from '~/components/product/RitualGrid';
-import { ProductCarousel } from '~/components/product/ProductCarousel';
 import { BundleCard } from '~/components/product/BundleCard';
-import { RITUALS } from '~/lib/mock-data';
-import { TrustBadge } from '~/components/ui/TrustBadge';
+import { ProductCarousel } from '~/components/product/ProductCarousel';
+import { RitualGrid } from '~/components/product/RitualGrid';
 import { StarRating } from '~/components/ui/StarRating';
+import { TrustBadge } from '~/components/ui/TrustBadge';
+import { RITUALS } from '~/lib/mock-data';
 
-import { EmailCapture } from '~/components/ui/EmailCapture';
 import { CountdownTimer } from '~/components/ui/CountdownTimer';
+import { EmailCapture } from '~/components/ui/EmailCapture';
 import { ExitIntentPopup } from '~/components/ui/ExitIntentPopup';
 import {
   BeakerIcon,
+  CartIcon,
   CheckIcon,
+  ChevronRightIcon,
   FlagIcon,
   ShieldCheckIcon,
   TruckIcon,
-  CartIcon,
-  ChevronRightIcon,
 } from '~/components/ui/Icons';
 
 export const meta: MetaFunction = () => {
   return [
     { title: 'Jay Life | Wellness made simple.' },
-    { name: 'description', content: 'Science-backed supplements for focus, calm, and performance. No gimmicks. Just results.' },
+    {
+      name: 'description',
+      content:
+        'Science-backed supplements for focus, calm, and performance. No gimmicks. Just results.',
+    },
     { property: 'og:title', content: 'Jay Life | Wellness made simple.' },
-    { property: 'og:description', content: 'Science-backed supplements for focus, calm, and performance.' },
+    {
+      property: 'og:description',
+      content: 'Science-backed supplements for focus, calm, and performance.',
+    },
   ];
 };
 
@@ -57,7 +64,11 @@ const BUNDLES = [
       { title: 'FOCUS', image: RITUALS[0]?.image },
       { title: 'CALM', image: RITUALS[1]?.image },
     ],
-    benefits: ['Save 25% vs buying separately', 'Free shipping included', '30-day money back guarantee'],
+    benefits: [
+      'Save 25% vs buying separately',
+      'Free shipping included',
+      '30-day money back guarantee',
+    ],
   },
   {
     title: 'The Complete Stack',
@@ -72,7 +83,11 @@ const BUNDLES = [
       { title: 'GUT', image: RITUALS[2]?.image },
       { title: 'IMMUNE', image: RITUALS[3]?.image },
     ],
-    benefits: ['Save 29% vs buying separately', 'Free express shipping', 'Priority customer support'],
+    benefits: [
+      'Save 29% vs buying separately',
+      'Free express shipping',
+      'Priority customer support',
+    ],
   },
 ];
 
@@ -87,34 +102,37 @@ const CATEGORIES = [
 // Testimonials
 const TESTIMONIALS = [
   {
-    quote: "I've tried dozens of supplements. Jay Life FOCUS is the first that actually works without the crash.",
+    quote:
+      "I've tried dozens of supplements. Jay Life FOCUS is the first that actually works without the crash.",
     author: 'Sarah M.',
     role: 'Marketing Manager',
     product: 'Focus Ritual',
     rating: 5,
-    avatar: 'https://i.pravatar.cc/100?img=32',
+    avatar: '/images/avatars/sarah.svg',
   },
   {
-    quote: 'CALM has completely transformed my evenings. I fall asleep faster and wake up refreshed.',
+    quote:
+      'CALM has completely transformed my evenings. I fall asleep faster and wake up refreshed.',
     author: 'Michael R.',
     role: 'Software Engineer',
     product: 'Calm Ritual',
     rating: 5,
-    avatar: 'https://i.pravatar.cc/100?img=33',
+    avatar: '/images/avatars/michael.svg',
   },
   {
-    quote: 'Finally, a gut supplement that actually works. No bloating, better digestion, more energy.',
+    quote:
+      'Finally, a gut supplement that actually works. No bloating, better digestion, more energy.',
     author: 'Jessica T.',
     role: 'Fitness Coach',
     product: 'Gut Ritual',
     rating: 5,
-    avatar: 'https://i.pravatar.cc/100?img=44',
+    avatar: '/images/avatars/jessica.svg',
   },
 ];
 
 export default function Homepage() {
   // Get bestsellers (products with Bestseller badge or top rated)
-  const bestsellers = RITUALS.filter(r => r.badges?.includes('Bestseller') || r.rating >= 4.8);
+  const bestsellers = RITUALS.filter((r) => r.badges?.includes('Bestseller') || r.rating >= 4.8);
 
   return (
     <>
@@ -136,7 +154,10 @@ export default function Homepage() {
                 variants={fadeUp}
                 className="inline-flex items-center gap-2 bg-warm-sunrise-orange text-white rounded-full px-4 py-1.5 mb-6"
               >
-                <span className="font-bold text-sm">NEW YEAR SALE - Ends in <CountdownTimer targetDate={new Date(Date.now() + 24 * 60 * 60 * 1000)} /></span>
+                <span className="font-bold text-sm">
+                  NEW YEAR SALE - Ends in{' '}
+                  <CountdownTimer targetDate={new Date(Date.now() + 24 * 60 * 60 * 1000)} />
+                </span>
                 <span className="text-xs opacity-80">Up to 30% off</span>
               </motion.div>
 
@@ -155,12 +176,15 @@ export default function Homepage() {
                 variants={fadeUp}
                 className="text-warm-sunrise-charcoal/70 text-lg max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed"
               >
-                Clinical-dose formulas for focus, calm, and gut health.
-                No proprietary blends. No miracle claims. Just results.
+                Clinical-dose formulas for focus, calm, and gut health. No proprietary blends. No
+                miracle claims. Just results.
               </motion.p>
 
               {/* CTA Buttons */}
-              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+              <motion.div
+                variants={fadeUp}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
+              >
                 <Link
                   to="/rituals"
                   className="btn-primary inline-flex items-center justify-center gap-2 text-lg px-8 py-4"
@@ -170,7 +194,7 @@ export default function Homepage() {
                 </Link>
                 <Link
                   to="/learn"
-                  className="bg-white text-brand-navy border-2 border-brand-navy/10 px-8 py-4 rounded-xl font-bold text-lg hover:border-brand-navy/30 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-white text-charcoal border-2 border-charcoal/10 px-8 py-4 rounded-xl font-bold text-lg hover:border-charcoal/30 transition-colors inline-flex items-center justify-center gap-2"
                 >
                   See the Science
                   <ChevronRightIcon className="w-5 h-5" />
@@ -178,20 +202,33 @@ export default function Homepage() {
               </motion.div>
 
               {/* Social Proof Row */}
-              <motion.div variants={fadeUp} className="flex items-center justify-center lg:justify-start gap-6">
+              <motion.div
+                variants={fadeUp}
+                className="flex items-center justify-center lg:justify-start gap-6"
+              >
                 <div className="flex -space-x-3">
-                  {[1, 2, 3, 4, 5].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-brand-cream bg-gray-200 overflow-hidden">
-                      <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="" />
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div
+                      key={i}
+                      className="w-10 h-10 rounded-full border-2 border-brand-cream bg-gray-200 overflow-hidden"
+                    >
+                      <img
+                        src={`/images/avatars/proof-${i}.svg`}
+                        alt=""
+                        width={40}
+                        height={40}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                   ))}
                 </div>
                 <div className="text-left">
                   <div className="flex items-center gap-2">
                     <StarRating rating={5} size="sm" showCount={false} />
-                    <span className="font-bold text-brand-navy">4.9</span>
+                    <span className="font-bold text-charcoal">4.9</span>
                   </div>
-                  <p className="text-sm text-brand-navy/60">12,000+ Happy Customers</p>
+                  <p className="text-sm text-charcoal/60">12,000+ Happy Customers</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -210,6 +247,11 @@ export default function Homepage() {
                     src="https://images.unsplash.com/photo-1544367563-12123d8965cd?q=80&w=800&auto=format&fit=crop"
                     alt="Jay Life Supplements"
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                   />
 
                   {/* Sale Badge Overlay */}
@@ -219,23 +261,25 @@ export default function Homepage() {
                 </div>
 
                 {/* Floating Trust Badge */}
-                <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-2xl shadow-xl border border-brand-navy/5">
+                <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-2xl shadow-xl border border-charcoal/5">
                   <div className="flex items-center gap-3">
                     <div className="bg-electric-lime/20 p-2 rounded-full">
                       <ShieldCheckIcon className="w-6 h-6 text-electric-lime" />
                     </div>
                     <div>
-                      <p className="font-bold text-brand-navy text-sm">Lab Verified</p>
-                      <p className="text-xs text-brand-navy/60">3rd party tested</p>
+                      <p className="font-bold text-charcoal text-sm">Lab Verified</p>
+                      <p className="text-xs text-charcoal/60">3rd party tested</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Floating Review */}
-                <div className="absolute -top-4 -right-4 bg-white p-4 rounded-2xl shadow-xl border border-brand-navy/5 max-w-[200px]">
+                <div className="absolute -top-4 -right-4 bg-white p-4 rounded-2xl shadow-xl border border-charcoal/5 max-w-[200px]">
                   <StarRating rating={5} size="sm" showCount={false} />
-                  <p className="text-xs text-brand-navy/70 mt-2">"Finally found something that works!"</p>
-                  <p className="text-xs font-bold text-brand-navy mt-1">— Alex K.</p>
+                  <p className="text-xs text-charcoal/70 mt-2">
+                    "Finally found something that works!"
+                  </p>
+                  <p className="text-xs font-bold text-charcoal mt-1">— Alex K.</p>
                 </div>
               </div>
             </motion.div>
@@ -244,7 +288,7 @@ export default function Homepage() {
       </section>
 
       {/* Trust Bar */}
-      <section className="border-y border-brand-navy/5 bg-white py-6">
+      <section className="border-y border-charcoal/5 bg-white py-6">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
           <div className="flex flex-wrap justify-center md:justify-between items-center gap-6 md:gap-8">
             <TrustBadge
@@ -274,7 +318,7 @@ export default function Homepage() {
       {/* Shop by Category */}
       <section className="py-12 md:py-16 bg-brand-cream">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
-          <h2 className="font-display font-bold text-2xl md:text-3xl text-brand-navy text-center mb-8">
+          <h2 className="font-display font-bold text-2xl md:text-3xl text-charcoal text-center mb-8">
             Shop by Category
           </h2>
 
@@ -283,13 +327,13 @@ export default function Homepage() {
               <Link
                 key={category.handle}
                 to={`/category/${category.handle}`}
-                className="group bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all border border-brand-navy/5 hover:border-electric-lime"
+                className="group bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all border border-charcoal/5 hover:border-electric-lime"
               >
                 <div className="text-4xl mb-3">{category.icon}</div>
-                <h3 className="font-bold text-brand-navy group-hover:text-electric-lime transition-colors">
+                <h3 className="font-bold text-charcoal group-hover:text-electric-lime transition-colors">
                   {category.name}
                 </h3>
-                <p className="text-sm text-brand-navy/60 mt-1">{category.count} products</p>
+                <p className="text-sm text-charcoal/60 mt-1">{category.count} products</p>
               </Link>
             ))}
           </div>
@@ -297,11 +341,7 @@ export default function Homepage() {
       </section>
 
       {/* Bestsellers Carousel */}
-      <ProductCarousel
-        rituals={bestsellers}
-        title="Bestsellers"
-        subtitle="Most Popular"
-      />
+      <ProductCarousel rituals={bestsellers} title="Bestsellers" subtitle="Most Popular" />
 
       {/* All Products Grid */}
       <section className="py-12 md:py-16 bg-warm-sunrise-offwhite">
@@ -381,10 +421,10 @@ export default function Homepage() {
             <span className="text-sale-red font-bold tracking-wider uppercase text-sm mb-3 block">
               Save More
             </span>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-4">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-charcoal mb-4">
               Bundle & Save Up to 30%
             </h2>
-            <p className="text-brand-navy/60 max-w-xl mx-auto">
+            <p className="text-charcoal/60 max-w-xl mx-auto">
               Stack your supplements for maximum results and savings. Free shipping on all bundles.
             </p>
           </div>
@@ -401,10 +441,10 @@ export default function Homepage() {
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
           <div className="text-center mb-12">
-            <span className="text-brand-sage font-bold tracking-wider uppercase text-sm mb-3 block">
+            <span className="text-acid font-bold tracking-wider uppercase text-sm mb-3 block">
               Reviews
             </span>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-4">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-charcoal mb-4">
               Loved by 12,000+ Customers
             </h2>
           </div>
@@ -413,17 +453,29 @@ export default function Homepage() {
             {TESTIMONIALS.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-brand-cream rounded-2xl p-6 border border-brand-navy/5"
+                className="bg-brand-cream rounded-2xl p-6 border border-charcoal/5"
               >
-                <StarRating rating={testimonial.rating} size="sm" showCount={false} className="mb-4" />
-                <p className="text-brand-navy mb-6 leading-relaxed">"{testimonial.quote}"</p>
+                <StarRating
+                  rating={testimonial.rating}
+                  size="sm"
+                  showCount={false}
+                  className="mb-4"
+                />
+                <p className="text-charcoal mb-6 leading-relaxed">"{testimonial.quote}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img src={testimonial.avatar} alt={testimonial.author} />
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.author}
+                      width={48}
+                      height={48}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <div>
-                    <p className="font-bold text-brand-navy">{testimonial.author}</p>
-                    <p className="text-xs text-brand-navy/60">
+                    <p className="font-bold text-charcoal">{testimonial.author}</p>
+                    <p className="text-xs text-charcoal/60">
                       {testimonial.role} • {testimonial.product}
                     </p>
                   </div>
@@ -435,7 +487,7 @@ export default function Homepage() {
           <div className="text-center mt-10">
             <Link
               to="/reviews"
-              className="inline-flex items-center gap-2 text-brand-navy font-bold hover:text-electric-lime transition-colors"
+              className="inline-flex items-center gap-2 text-charcoal font-bold hover:text-electric-lime transition-colors"
             >
               Read all reviews
               <ChevronRightIcon className="w-5 h-5" />
@@ -445,7 +497,7 @@ export default function Homepage() {
       </section>
 
       {/* How It Works - Simplified */}
-      <section className="py-16 md:py-20 bg-brand-navy text-white relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-charcoal text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-10 text-center relative z-10">
           <span className="text-electric-lime font-bold tracking-wider uppercase text-sm mb-3 block">
             Simple & Effective
@@ -460,7 +512,9 @@ export default function Homepage() {
                 1
               </div>
               <h3 className="font-display font-bold text-xl mb-3">Choose Your Stack</h3>
-              <p className="text-white/60">Pick the formulas that match your goals. Focus, Calm, Gut, or all three.</p>
+              <p className="text-white/60">
+                Pick the formulas that match your goals. Focus, Calm, Gut, or all three.
+              </p>
             </div>
 
             <div className="relative">
@@ -468,7 +522,9 @@ export default function Homepage() {
                 2
               </div>
               <h3 className="font-display font-bold text-xl mb-3">Build the Habit</h3>
-              <p className="text-white/60">Same time, every day. Morning or evening. Consistency is key.</p>
+              <p className="text-white/60">
+                Same time, every day. Morning or evening. Consistency is key.
+              </p>
             </div>
 
             <div className="relative">
@@ -476,7 +532,9 @@ export default function Homepage() {
                 3
               </div>
               <h3 className="font-display font-bold text-xl mb-3">Feel the Difference</h3>
-              <p className="text-white/60">Most people notice results in 2-4 weeks. Real change takes time.</p>
+              <p className="text-white/60">
+                Most people notice results in 2-4 weeks. Real change takes time.
+              </p>
             </div>
           </div>
 

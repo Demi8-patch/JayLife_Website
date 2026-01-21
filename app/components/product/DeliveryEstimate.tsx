@@ -37,8 +37,8 @@ export function DeliveryEstimate({ deliveryDays = 3, className = '' }: DeliveryE
   return (
     <div className={`bg-brand-cream/50 rounded-xl p-4 ${className}`}>
       <div className="flex items-center gap-3 mb-3">
-        <DeliveryIcon className="w-5 h-5 text-brand-navy" />
-        <span className="font-bold text-brand-navy text-sm">Delivery Estimate</span>
+        <DeliveryIcon className="w-5 h-5 text-charcoal" />
+        <span className="font-bold text-charcoal text-sm">Delivery Estimate</span>
       </div>
 
       {!isChecked ? (
@@ -49,13 +49,13 @@ export function DeliveryEstimate({ deliveryDays = 3, className = '' }: DeliveryE
             onChange={(e) => setZipCode(e.target.value.replace(/\D/g, '').slice(0, 5))}
             onKeyPress={handleKeyPress}
             placeholder="Enter ZIP code"
-            className="flex-1 px-4 py-2.5 rounded-lg border border-brand-navy/10 text-sm focus:outline-none focus:border-electric-lime"
+            className="flex-1 px-4 py-2.5 rounded-lg border border-charcoal/10 text-sm focus:outline-none focus:border-electric-lime"
           />
           <button
             type="button"
             onClick={handleCheck}
             disabled={zipCode.length < 5}
-            className="px-4 py-2.5 bg-brand-navy text-white rounded-lg text-sm font-bold hover:bg-brand-navy/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2.5 bg-charcoal text-white rounded-lg text-sm font-bold hover:bg-charcoal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Check
           </button>
@@ -66,10 +66,10 @@ export function DeliveryEstimate({ deliveryDays = 3, className = '' }: DeliveryE
             <CheckIcon className="w-4 h-4 text-electric-lime" />
           </div>
           <div>
-            <p className="text-sm text-brand-navy">
+            <p className="text-sm text-charcoal">
               Estimated delivery to <span className="font-bold">{zipCode}</span>
             </p>
-            <p className="text-lg font-bold text-brand-navy">{estimatedDate}</p>
+            <p className="text-lg font-bold text-charcoal">{estimatedDate}</p>
           </div>
           <button
             type="button"
@@ -78,14 +78,14 @@ export function DeliveryEstimate({ deliveryDays = 3, className = '' }: DeliveryE
               setZipCode('');
               setEstimatedDate(null);
             }}
-            className="ml-auto text-xs text-brand-navy/60 hover:text-brand-navy underline"
+            className="ml-auto text-xs text-charcoal/60 hover:text-charcoal underline"
           >
             Change
           </button>
         </div>
       )}
 
-      <p className="text-xs text-brand-navy/50 mt-3">
+      <p className="text-xs text-charcoal/50 mt-3">
         Free shipping on orders over $50 • Express shipping available
       </p>
     </div>
