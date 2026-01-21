@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { getRitualByHandle, getSynergyRituals } from '~/lib/mock-data';
 import { storefront } from '~/lib/shopify.server';
 import { PRODUCT_DETAIL_QUERY, transformShopifyProduct } from '~/lib/queries';
+import { useCart } from '~/lib/cart-context';
 import { StarRating } from '~/components/ui/StarRating';
 import { PriceDisplay } from '~/components/ui/PriceDisplay';
 import { SaleBadge, ProductBadge } from '~/components/ui/SaleBadge';
@@ -80,18 +81,35 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function RitualPage() {
   const { ritual, synergyRituals } = useLoaderData<typeof loader>();
+  const { addItem, loading, openCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(ritual.variants?.[0] || null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<'benefits' | 'ingredients' | 'how-to'>('benefits');
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
 
   const images = ritual.images || [ritual.image || ''];
 
   const handleAddToCart = () => {
-    if (navigator.vibrate) {
-      navigator.vibrate(10);
+    // Determine which variant ID to use
+    const merchandiseId = selectedVariant?.id || ritual.variantId || ritual.id;
+
+    if (!merchandiseId) {
+      console.error('No variant ID available for add to cart');
+      return;
     }
-    console.log('Add to cart:', { ritual: ritual.handle, quantity, variant: selectedVariant });
+
+    setIsAddingToCart(true);
+
+    // Add item to cart (for each quantity)
+    for (let i = 0; i < quantity; i++) {
+      addItem(merchandiseId);
+    }
+
+    // Cart drawer opens automatically via addItem, reset local state after a delay
+    setTimeout(() => {
+      setIsAddingToCart(false);
+    }, 500);
   };
 
   const nextImage = () => {
@@ -257,11 +275,20 @@ export default function RitualPage() {
             {/* Add to Cart */}
             <button
               onClick={handleAddToCart}
-              disabled={!ritual.inStock}
+              disabled={!ritual.inStock || isAddingToCart || loading}
               className="btn-add-to-cart"
             >
-              <CartIcon className="w-5 h-5" />
-              {ritual.inStock ? `Add ${quantity} to Cart` : 'Out of Stock'}
+              {isAddingToCart || loading ? (
+                <>
+                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Adding...
+                </>
+              ) : (
+                <>
+                  <CartIcon className="w-5 h-5" />
+                  {ritual.inStock ? `Add ${quantity} to Cart` : 'Out of Stock'}
+                </>
+              )}
             </button>
 
             {/* Trust Badges */}
