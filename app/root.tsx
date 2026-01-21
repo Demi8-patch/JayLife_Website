@@ -9,6 +9,7 @@ import {
 } from '@remix-run/react';
 import type { LinksFunction, MetaFunction } from '@shopify/remix-oxygen';
 import { NeoLayout } from '~/components/layout/NeoLayout';
+import { CartProvider } from '~/lib/cart-context';
 import tokensHref from '~/styles/tokens.css?url';
 
 export const links: LinksFunction = () => [
@@ -48,9 +49,11 @@ export default function App() {
         >
           Skip to content
         </a>
-        <NeoLayout>
-          <Outlet />
-        </NeoLayout>
+        <CartProvider>
+          <NeoLayout>
+            <Outlet />
+          </NeoLayout>
+        </CartProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
