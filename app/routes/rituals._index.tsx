@@ -1,7 +1,10 @@
 import { useLoaderData } from '@remix-run/react';
-import type { LoaderFunctionArgs, MetaFunction } from '@shopify/remix-oxygen';
+import type { MetaFunction } from '@shopify/remix-oxygen';
 import { json } from '@shopify/remix-oxygen';
 import { RitualGrid } from '~/components/product/RitualGrid';
+import { storefront } from '~/lib/shopify.server';
+import { PRODUCTS_QUERY, transformShopifyProduct } from '~/lib/queries';
+import { RITUALS } from '~/lib/mock-data';
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,92 +13,24 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ context }: LoaderFunctionArgs) {
-  const { storefront } = context as { storefront: any };
-
-  const PRODUCTS_QUERY = `#graphql
-    query GetRitualsProducts($first: Int!) {
-      products(first: $first) {
-        nodes {
-          id
-          handle
-          title
-          description
-          priceRange {
-            minVariantPrice {
-              amount
-              currencyCode
-            }
-          }
-          featuredImage {
-            url
-            altText
-          }
-          metafields(identifiers: [
-            {namespace: "custom", key: "brand_color"},
-            {namespace: "custom", key: "accent_color"},
-            {namespace: "custom", key: "benefits"},
-            {namespace: "custom", key: "ingredients"},
-            {namespace: "custom", key: "badges"}
-          ]) {
-            namespace
-            key
-            value
-            type
-          }
-        }
-      }
-    }
-  `;
-
+export async function loader() {
   try {
-    const { products } = await storefront.query(PRODUCTS_QUERY, {
-      variables: { first: 10 },
-    });
+    // Try fetching from Shopify Storefront API
+    const data = await storefront<{ products: { nodes: any[] } }>(
+      PRODUCTS_QUERY,
+      { first: 20 }
+    );
 
-    // Transform products
-    const transformedProducts = products.nodes.map((shopifyProduct: any) => {
-      const metafieldsMap = new Map();
-      if (shopifyProduct.metafields) {
-        shopifyProduct.metafields.forEach((metafield: any) => {
-          if (metafield) {
-            let value = metafield.value;
-            if (metafield.type === 'json' || metafield.type === 'list.single_line_text_field') {
-              try {
-                value = JSON.parse(metafield.value);
-              } catch {
-                // Keep original value
-              }
-            }
-            metafieldsMap.set(metafield.key, value);
-          }
-        });
-      }
+    // Transform Shopify products to our Ritual interface
+    const products = data.products.nodes.map(transformShopifyProduct);
 
-      const price = shopifyProduct.priceRange?.minVariantPrice
-        ? parseFloat(shopifyProduct.priceRange.minVariantPrice.amount)
-        : 0;
-
-      return {
-        handle: shopifyProduct.handle,
-        title: shopifyProduct.title,
-        tagline: shopifyProduct.description?.split('\n')[0] || '',
-        description: shopifyProduct.description || '',
-        price,
-        image: shopifyProduct.featuredImage?.url || '/images/placeholder.jpg',
-        ingredients: metafieldsMap.get('ingredients') || [],
-        rating: 4.5,
-        reviewCount: 0,
-        inStock: true,
-        benefits: metafieldsMap.get('benefits') || [],
-        badges: metafieldsMap.get('badges') || [],
-      };
-    });
-
-    return json({ products: transformedProducts });
+    return json({ products, source: 'shopify' as const });
   } catch (error) {
-    console.error('Error fetching products:', error);
-    return json({ products: [] });
+    // Log the error for debugging
+    console.error('Shopify API error, falling back to mock data:', error);
+
+    // Fall back to mock data
+    return json({ products: RITUALS, source: 'mock' as const });
   }
 }
 
