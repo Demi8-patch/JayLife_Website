@@ -4,6 +4,8 @@ import { useLoaderData, Link } from '@remix-run/react';
 import { json } from '@shopify/remix-oxygen';
 import { motion } from 'framer-motion';
 import { getRitualByHandle, getSynergyRituals } from '~/lib/mock-data';
+import { storefront } from '~/lib/shopify.server';
+import { PRODUCT_DETAIL_QUERY, transformShopifyProduct } from '~/lib/queries';
 import { StarRating } from '~/components/ui/StarRating';
 import { PriceDisplay } from '~/components/ui/PriceDisplay';
 import { SaleBadge, ProductBadge } from '~/components/ui/SaleBadge';
@@ -35,15 +37,45 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const ritual = getRitualByHandle(params.handle || '');
+  const handle = params.handle;
 
+  if (!handle) {
+    throw new Response('Ritual handle is required', { status: 400 });
+  }
+
+  let ritual;
+  let source: 'shopify' | 'mock' = 'mock';
+
+  try {
+    // Try fetching from Shopify Storefront API
+    const data = await storefront<{ product: any }>(
+      PRODUCT_DETAIL_QUERY,
+      { handle }
+    );
+
+    if (data.product) {
+      ritual = transformShopifyProduct(data.product);
+      source = 'shopify';
+    }
+  } catch (error) {
+    // Log the error for debugging
+    console.error('Shopify API error, falling back to mock data:', error);
+  }
+
+  // Fall back to mock data if Shopify didn't return a product
+  if (!ritual) {
+    ritual = getRitualByHandle(handle);
+  }
+
+  // Throw 404 if not found in either source
   if (!ritual) {
     throw new Response('Ritual not found', { status: 404 });
   }
 
+  // Get synergy rituals (always from mock data for now)
   const synergyRituals = getSynergyRituals(ritual.synergyRituals || []);
 
-  return json({ ritual, synergyRituals });
+  return json({ ritual, synergyRituals, source });
 }
 
 export default function RitualPage() {
