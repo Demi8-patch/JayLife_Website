@@ -95,6 +95,204 @@ function parseMetafieldValue(metafield: { type: string; value: string }): any {
 }
 
 /**
+ * GraphQL fragment for variant details
+ */
+export const VARIANT_FRAGMENT = `#graphql
+  fragment VariantFields on ProductVariant {
+    id
+    title
+    availableForSale
+    quantityAvailable
+    selectedOptions {
+      name
+      value
+    }
+    price {
+      amount
+      currencyCode
+    }
+    compareAtPrice {
+      amount
+      currencyCode
+    }
+    image {
+      url
+      altText
+      width
+      height
+    }
+  }
+`;
+
+/**
+ * Query to fetch a collection by handle with products
+ */
+export const COLLECTION_QUERY = `#graphql
+  ${PRODUCT_METAFIELDS_FRAGMENT}
+  ${VARIANT_FRAGMENT}
+  query GetCollection($handle: String!, $first: Int = 20) {
+    collection(handle: $handle) {
+      id
+      handle
+      title
+      description
+      image {
+        url
+        altText
+        width
+        height
+      }
+      products(first: $first) {
+        nodes {
+          id
+          handle
+          title
+          description
+          availableForSale
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+            maxVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          compareAtPriceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          featuredImage {
+            url
+            altText
+            width
+            height
+          }
+          images(first: 5) {
+            nodes {
+              url
+              altText
+              width
+              height
+            }
+          }
+          variants(first: 10) {
+            nodes {
+              ...VariantFields
+            }
+          }
+          ...ProductMetafields
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * Query to fetch a single product with full details including all variants
+ */
+export const PRODUCT_DETAIL_QUERY = `#graphql
+  ${PRODUCT_METAFIELDS_FRAGMENT}
+  ${VARIANT_FRAGMENT}
+  query GetProductDetail($handle: String!) {
+    product(handle: $handle) {
+      id
+      handle
+      title
+      description
+      descriptionHtml
+      vendor
+      productType
+      tags
+      availableForSale
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      compareAtPriceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      featuredImage {
+        url
+        altText
+        width
+        height
+      }
+      images(first: 10) {
+        nodes {
+          url
+          altText
+          width
+          height
+        }
+      }
+      options {
+        id
+        name
+        values
+      }
+      variants(first: 100) {
+        nodes {
+          ...VariantFields
+        }
+      }
+      seo {
+        title
+        description
+      }
+      ...ProductMetafields
+    }
+  }
+`;
+
+/**
+ * Query to fetch all collections
+ */
+export const COLLECTIONS_QUERY = `#graphql
+  query GetCollections($first: Int = 10) {
+    collections(first: $first) {
+      nodes {
+        id
+        handle
+        title
+        description
+        image {
+          url
+          altText
+          width
+          height
+        }
+        productsCount: products(first: 1) {
+          nodes {
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+/**
  * Transform Shopify product data to our Ritual interface
  */
 export function transformShopifyProduct(shopifyProduct: any): Ritual {
