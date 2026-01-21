@@ -8,7 +8,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from '@remix-run/react';
 import { useAuth } from '~/lib/auth-context';
-import { NeoLayout } from '~/components/layout/NeoLayout';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -50,8 +49,7 @@ export default function RegisterPage() {
   const displayError = localError || error;
 
   return (
-    <NeoLayout>
-      <div className="min-h-[70vh] flex items-center justify-center px-5 py-12">
+    <div className="min-h-[70vh] flex items-center justify-center px-5 py-12">
         <div className="w-full max-w-md">
           {/* Header */}
           <div className="text-center mb-8">
@@ -217,7 +215,6 @@ export default function RegisterPage() {
             </p>
           </div>
         </div>
-      </div>
-    </NeoLayout>
+    </div>
   );
 }

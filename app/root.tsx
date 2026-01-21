@@ -10,6 +10,7 @@ import {
 import type { LinksFunction, MetaFunction } from '@shopify/remix-oxygen';
 import { NeoLayout } from '~/components/layout/NeoLayout';
 import { CartProvider } from '~/lib/cart-context';
+import { AuthProvider } from '~/lib/auth-context';
 import tokensHref from '~/styles/tokens.css?url';
 
 export const links: LinksFunction = () => [
@@ -49,11 +50,13 @@ export default function App() {
         >
           Skip to content
         </a>
-        <CartProvider>
-          <NeoLayout>
-            <Outlet />
-          </NeoLayout>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <NeoLayout>
+              <Outlet />
+            </NeoLayout>
+          </CartProvider>
+        </AuthProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
