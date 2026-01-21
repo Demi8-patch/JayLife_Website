@@ -1,37 +1,19 @@
 import { Fragment, useState, useEffect } from 'react';
 import { Link } from '@remix-run/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Ritual } from '~/lib/mock-data';
+import { useCart, type CartLine } from '~/lib/cart-context';
 
-interface CartItem {
-  ritual: Ritual;
-  quantity: number;
-}
-
-interface CartDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-  items: CartItem[];
-  onUpdateQuantity: (handle: string, quantity: number) => void;
-  onRemove: (handle: string) => void;
-}
-
-export function CartDrawer({
-  isOpen,
-  onClose,
-  items,
-  onUpdateQuantity,
-  onRemove,
-}: CartDrawerProps) {
+export function CartDrawer() {
+  const { isOpen, closeCart, lines, updateItem, removeItem, subtotal, totalQuantity, checkoutUrl, loading } = useCart();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Calculate totals
-  const subtotal = items.reduce((sum, item) => sum + item.ritual.price * item.quantity, 0);
-  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  // Parse subtotal amount
+  const subtotalAmount = parseFloat(subtotal.amount);
+  const itemCount = totalQuantity;
 
   // Lock body scroll when open
   useEffect(() => {
@@ -58,7 +40,7 @@ export function CartDrawer({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 bg-charcoal/50 z-50"
-            onClick={onClose}
+            onClick={closeCart}
             aria-hidden="true"
           />
 
@@ -72,9 +54,14 @@ export function CartDrawer({
           >
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-charcoal/10">
-              <h2 className="font-display text-headline">Your ritual</h2>
+              <h2 className="font-display text-headline">
+                Your ritual
+                {loading && (
+                  <span className="ml-2 inline-block w-4 h-4 border-2 border-charcoal/20 border-t-charcoal rounded-full animate-spin" />
+                )}
+              </h2>
               <button
-                onClick={onClose}
+                onClick={closeCart}
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-charcoal/5 transition-colors"
                 aria-label="Close cart"
               >
@@ -91,21 +78,21 @@ export function CartDrawer({
 
             {/* Cart items */}
             <div className="flex-1 overflow-y-auto p-5">
-              {items.length === 0 ? (
+              {lines.length === 0 ? (
                 <div className="text-center py-12">
                   <p className="text-muted mb-4">Your cart is empty</p>
-                  <button onClick={onClose} className="btn-ghost">
+                  <button onClick={closeCart} className="btn-ghost">
                     Continue shopping
                   </button>
                 </div>
               ) : (
                 <ul className="space-y-4">
-                  {items.map((item) => (
+                  {lines.map((line) => (
                     <CartLineItem
-                      key={item.ritual.handle}
-                      item={item}
-                      onUpdateQuantity={onUpdateQuantity}
-                      onRemove={onRemove}
+                      key={line.id}
+                      line={line}
+                      onUpdateQuantity={updateItem}
+                      onRemove={removeItem}
                     />
                   ))}
                 </ul>
@@ -113,40 +100,50 @@ export function CartDrawer({
             </div>
 
             {/* Footer with totals */}
-            {items.length > 0 && (
+            {lines.length > 0 && (
               <div className="border-t border-charcoal/10 p-5 space-y-4 bg-white">
                 {/* Subtotal */}
                 <div className="flex justify-between text-body">
                   <span className="text-muted">Subtotal ({itemCount} items)</span>
-                  <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                  <span className="font-semibold">${subtotalAmount.toFixed(2)}</span>
                 </div>
 
                 {/* Free shipping threshold */}
-                {subtotal < 50 && (
+                {subtotalAmount < 50 && (
                   <div className="bg-acid/10 rounded-button p-3 text-center text-sm">
-                    Add <span className="font-semibold">${(50 - subtotal).toFixed(2)}</span> more
+                    Add <span className="font-semibold">${(50 - subtotalAmount).toFixed(2)}</span> more
                     for free shipping
                   </div>
                 )}
 
-                {subtotal >= 50 && (
+                {subtotalAmount >= 50 && (
                   <div className="bg-acid/20 rounded-button p-3 text-center text-sm font-medium">
                     <span className="text-charcoal">Free shipping unlocked</span>
                   </div>
                 )}
 
                 {/* Checkout button */}
-                <Link
-                  to="/checkout"
-                  className="btn-primary btn-full btn-primary-lg"
-                  onClick={onClose}
-                >
-                  Checkout · ${subtotal.toFixed(2)}
-                </Link>
+                {checkoutUrl ? (
+                  <a
+                    href={checkoutUrl}
+                    className="btn-primary btn-full btn-primary-lg block text-center"
+                    onClick={closeCart}
+                  >
+                    Checkout · ${subtotalAmount.toFixed(2)}
+                  </a>
+                ) : (
+                  <Link
+                    to="/checkout"
+                    className="btn-primary btn-full btn-primary-lg"
+                    onClick={closeCart}
+                  >
+                    Checkout · ${subtotalAmount.toFixed(2)}
+                  </Link>
+                )}
 
                 {/* Continue shopping */}
                 <button
-                  onClick={onClose}
+                  onClick={closeCart}
                   className="w-full text-center text-caption text-muted hover:text-charcoal transition-colors"
                 >
                   Continue shopping
@@ -162,15 +159,16 @@ export function CartDrawer({
 
 // Cart line item component
 function CartLineItem({
-  item,
+  line,
   onUpdateQuantity,
   onRemove,
 }: {
-  item: CartItem;
-  onUpdateQuantity: (handle: string, quantity: number) => void;
-  onRemove: (handle: string) => void;
+  line: CartLine;
+  onUpdateQuantity: (lineId: string, quantity: number) => void;
+  onRemove: (lineId: string) => void;
 }) {
-  const { ritual, quantity } = item;
+  const { id, title, variantTitle, handle, quantity, price, image } = line;
+  const priceAmount = parseFloat(price.amount);
 
   return (
     <motion.li
@@ -180,20 +178,33 @@ function CartLineItem({
       exit={{ opacity: 0, x: -20 }}
       className="flex gap-4 bg-white rounded-card p-4"
     >
+      {/* Product image */}
+      {image?.url && (
+        <Link to={`/ritual/${handle}`} className="flex-shrink-0">
+          <img
+            src={image.url}
+            alt={image.altText || title}
+            className="w-16 h-16 object-cover rounded-lg"
+          />
+        </Link>
+      )}
+
       {/* Product info */}
       <div className="flex-1">
-        <Link to={`/ritual/${ritual.handle}`}>
-          <h3 className="font-semibold hover:text-charcoal/70 transition-colors">{ritual.title}</h3>
+        <Link to={`/ritual/${handle}`}>
+          <h3 className="font-semibold hover:text-charcoal/70 transition-colors">{title}</h3>
         </Link>
-        <p className="text-caption text-muted mt-1">{ritual.tagline}</p>
-        <p className="font-mono text-specs mt-2">${ritual.price.toFixed(2)}</p>
+        {variantTitle && (
+          <p className="text-caption text-muted mt-1">{variantTitle}</p>
+        )}
+        <p className="font-mono text-specs mt-2">${priceAmount.toFixed(2)}</p>
       </div>
 
       {/* Quantity controls */}
       <div className="flex flex-col items-end gap-2">
         <div className="flex items-center border border-charcoal/20 rounded-button">
           <button
-            onClick={() => onUpdateQuantity(ritual.handle, quantity - 1)}
+            onClick={() => onUpdateQuantity(id, quantity - 1)}
             disabled={quantity <= 1}
             className="w-8 h-8 flex items-center justify-center text-muted hover:text-charcoal disabled:opacity-30 transition-colors"
             aria-label="Decrease quantity"
@@ -204,7 +215,7 @@ function CartLineItem({
           </button>
           <span className="w-8 text-center text-sm font-medium">{quantity}</span>
           <button
-            onClick={() => onUpdateQuantity(ritual.handle, quantity + 1)}
+            onClick={() => onUpdateQuantity(id, quantity + 1)}
             className="w-8 h-8 flex items-center justify-center text-muted hover:text-charcoal transition-colors"
             aria-label="Increase quantity"
           >
@@ -221,7 +232,7 @@ function CartLineItem({
 
         {/* Remove button */}
         <button
-          onClick={() => onRemove(ritual.handle)}
+          onClick={() => onRemove(id)}
           className="text-caption text-coral hover:text-coral/80 transition-colors"
         >
           Remove
