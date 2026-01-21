@@ -41,7 +41,7 @@
     {
       "label": "Run Code Review",
       "type": "shell",
-      "command": "node .agent\\scripts\\run-workflow.js code-review",
+      "command": "node .agent\\scripts\\run-workflow.cjs code-review",
       "problemMatcher": [],
       "presentation": {
         "echo": true,
@@ -53,7 +53,7 @@
     {
       "label": "Run Skill: Frontend Developer",
       "type": "shell",
-      "command": "node .agent\\scripts\\run-skill.js frontend_developer",
+      "command": "node .agent\\scripts\\run-skill.cjs frontend_developer",
       "problemMatcher": [],
       "presentation": {
         "echo": true,
