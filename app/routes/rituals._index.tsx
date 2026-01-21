@@ -16,10 +16,7 @@ export const meta: MetaFunction = () => {
 export async function loader() {
   try {
     // Try fetching from Shopify Storefront API
-    const data = await storefront<{ products: { nodes: any[] } }>(
-      PRODUCTS_QUERY,
-      { first: 20 }
-    );
+    const data = await storefront<{ products: { nodes: any[] } }>(PRODUCTS_QUERY, { first: 20 });
 
     // Transform Shopify products to our Ritual interface
     const products = data.products.nodes.map(transformShopifyProduct);

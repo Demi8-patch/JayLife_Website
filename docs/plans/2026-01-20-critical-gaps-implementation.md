@@ -17,6 +17,7 @@
 ### Task 1.1: Complete Asset Manifest
 
 **Files:**
+
 - Modify: `docs/ASSET_MANIFEST_TEMPLATE.json`
 
 **Step 1: Read the current manifest**
@@ -120,6 +121,7 @@ git commit -m "feat(assets): complete manifest for all 5 products"
 ### Task 1.2: Create Responsive Image Component
 
 **Files:**
+
 - Create: `app/components/ui/ResponsiveImage.tsx`
 - Test: Manual visual test
 
@@ -153,14 +155,7 @@ export function ResponsiveImage({
 
   if (!hasResponsiveSizes) {
     // External URL or placeholder - use as-is
-    return (
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        loading={priority ? 'eager' : loading}
-      />
-    );
+    return <img src={src} alt={alt} className={className} loading={priority ? 'eager' : loading} />;
   }
 
   return (
@@ -208,6 +203,7 @@ git commit -m "feat(ui): add ResponsiveImage component with AVIF/WebP fallback"
 ### Task 1.3: Create Public Images Folder Structure
 
 **Files:**
+
 - Create: `public/images/products/` folder structure
 - Create: `public/images/placeholder.jpg`
 
@@ -243,6 +239,7 @@ git commit -m "feat(assets): create public/images folder structure"
 ### Task 1.4: Create Asset Checklist for Design Team
 
 **Files:**
+
 - Create: `docs/ASSET_CHECKLIST.md`
 
 **Step 1: Create checklist document**
@@ -253,6 +250,7 @@ git commit -m "feat(assets): create public/images folder structure"
 ## Required Before Launch
 
 ### Hero Images
+
 - [ ] `hero-desktop.avif` (1600w, 16:9 aspect)
 - [ ] `hero-desktop.webp` (fallback)
 - [ ] `hero-desktop.jpg` (fallback)
@@ -261,13 +259,16 @@ git commit -m "feat(assets): create public/images folder structure"
 - [ ] `hero-mobile.jpg` (fallback)
 
 ### Product Images (per SKU: focus, calm, gut, glow, move)
+
 For each product, provide:
+
 - [ ] `product_<handle>-400.avif` (400w, 1:1 square)
 - [ ] `product_<handle>-800.avif` (800w, 1:1 square)
 - [ ] `product_<handle>-1600.avif` (1600w, 1:1 square)
 - [ ] Same in .webp and .jpg formats
 
 ### Lab Reports
+
 - [ ] `lab_focus.pdf`
 - [ ] `lab_calm.pdf`
 - [ ] `lab_gut.pdf`
@@ -275,6 +276,7 @@ For each product, provide:
 - [ ] `lab_move.pdf`
 
 ### OG Images
+
 - [ ] `og-home.png` (1200x630)
 - [ ] `og-product-focus.png` (1200x630)
 - [ ] `og-product-calm.png` (1200x630)
@@ -283,6 +285,7 @@ For each product, provide:
 - [ ] `og-product-move.png` (1200x630)
 
 ### Logos & Badges
+
 - [ ] `logo.svg`
 - [ ] `trust-lab.svg`
 - [ ] `badge-30day.svg`
@@ -290,11 +293,13 @@ For each product, provide:
 - [ ] `favicon-192.png` (192x192)
 
 ### Testimonial Avatars (if real photos)
+
 - [ ] `testimonial_<slug>-48.avif`
 - [ ] `testimonial_<slug>-96.avif`
 - [ ] Release confirmation signed
 
 ## Delivery Instructions
+
 1. Place files in `public/images/` matching folder structure
 2. Update `docs/ASSET_MANIFEST_TEMPLATE.json` with final filenames
 3. Run `npm run build` to verify no broken image references
@@ -342,12 +347,14 @@ git push origin main --tags
 ### Task 2.1: Audit Current Color Usage
 
 **Files:**
+
 - Read: `app/styles/tokens.css`
 - Read: `tailwind.config.ts`
 
 **Step 1: Document color discrepancies**
 
 Current state (from exploration):
+
 - `tokens.css` already maps to Warm-Sunrise via CSS variables
 - `tailwind.config.ts` defines Warm-Sunrise palette directly
 - Legacy aliases exist (`brand-navy`, `brand-sage`) mapped to new values
@@ -362,11 +369,13 @@ Expected: List of files using legacy colors (should be minimal)
 ### Task 2.2: Remove Legacy Color References
 
 **Files:**
+
 - Modify: Any files using `brand-navy`, `brand-sage`, or hardcoded legacy hex values
 
 **Step 1: Search and replace legacy colors**
 
 For each file found in audit:
+
 - Replace `brand-navy` with `charcoal` or `warm-sunrise-charcoal`
 - Replace `brand-sage` with `acid` or `warm-sunrise-lime`
 - Replace `#1A2E3B` with `#2D2926` (Warm-Sunrise charcoal)
@@ -388,6 +397,7 @@ git commit -m "fix(design): remove legacy color references"
 ### Task 2.3: Delete Unused Legacy Components
 
 **Files:**
+
 - Delete: `app/components/layout/Layout.tsx`
 - Delete: `app/components/layout/Header.tsx`
 - Delete: `app/components/layout/Footer.tsx`
@@ -397,7 +407,7 @@ git commit -m "fix(design): remove legacy color references"
 **Step 1: Verify these components are not imported**
 
 Run: `grep -r "from '~/components/layout/Layout'\|from '~/components/layout/Header'\|from '~/components/layout/Footer'\|from '~/components/layout/BottomNav'\|from '~/components/layout/AnnouncementBar'" app/`
-Expected: No results (only Neo* components should be in use)
+Expected: No results (only Neo\* components should be in use)
 
 **Step 2: Delete legacy components**
 
@@ -421,11 +431,13 @@ git commit -m "refactor(layout): remove unused legacy layout components"
 ### Task 2.4: Simplify tokens.css
 
 **Files:**
+
 - Modify: `app/styles/tokens.css`
 
 **Step 1: Remove deprecated aliases**
 
 Remove these lines from tokens.css:
+
 ```css
 /* Remove these deprecated aliases */
 --brand-sage: #8b9b7a; /* Deprecated, use --warm-sunrise-* */
@@ -434,6 +446,7 @@ Remove these lines from tokens.css:
 **Step 2: Add comment clarifying single source of truth**
 
 Add at top of :root:
+
 ```css
 /*
  * SINGLE SOURCE OF TRUTH: Warm-Sunrise Palette
@@ -460,6 +473,7 @@ Run: `npm run dev`
 **Step 2: Manual visual audit**
 
 Check these routes for consistent colors:
+
 - `/` (Homepage)
 - `/rituals` (Collection page)
 - `/ritual/focus` (PDP)
@@ -500,6 +514,7 @@ git push origin main --tags
 ### Task 3.1: Create Shopify Client
 
 **Files:**
+
 - Create: `app/lib/shopify.server.ts`
 
 **Step 1: Create the Shopify client module**
@@ -558,6 +573,7 @@ git commit -m "feat(shopify): add Storefront API client"
 ### Task 3.2: Create Environment Variables Template
 
 **Files:**
+
 - Create: `.env.example`
 - Modify: `.gitignore` (ensure .env is ignored)
 
@@ -590,6 +606,7 @@ git commit -m "docs(env): add environment variables template"
 ### Task 3.3: Enhance Product Queries
 
 **Files:**
+
 - Modify: `app/lib/queries.ts`
 
 **Step 1: Add collection query**
@@ -717,6 +734,7 @@ git commit -m "feat(queries): add collection and product detail queries"
 ### Task 3.4: Update Rituals Route with Loader
 
 **Files:**
+
 - Modify: `app/routes/rituals._index.tsx`
 
 **Step 1: Add loader function**
@@ -767,6 +785,7 @@ git commit -m "feat(rituals): add Shopify loader with mock fallback"
 ### Task 3.5: Update Product Detail Route with Loader
 
 **Files:**
+
 - Modify: `app/routes/ritual.$handle.tsx`
 
 **Step 1: Add loader function**
@@ -858,6 +877,7 @@ git push origin main --tags
 ### Task 4.1: Create Cart Context
 
 **Files:**
+
 - Create: `app/lib/cart-context.tsx`
 
 **Step 1: Create cart context with Shopify integration**
@@ -1002,6 +1022,7 @@ git commit -m "feat(cart): add cart context with Shopify integration"
 ### Task 4.2: Create Cart API Route
 
 **Files:**
+
 - Create: `app/routes/api.cart.tsx`
 
 **Step 1: Create cart API route**
@@ -1232,16 +1253,17 @@ function transformCart(shopifyCart: any) {
     checkoutUrl: shopifyCart.checkoutUrl,
     totalQuantity: shopifyCart.totalQuantity,
     subtotal: parseFloat(shopifyCart.cost?.subtotalAmount?.amount || '0'),
-    lines: shopifyCart.lines?.nodes?.map((line: any) => ({
-      id: line.id,
-      merchandiseId: line.merchandise.id,
-      quantity: line.quantity,
-      title: line.merchandise.product.title,
-      variantTitle: line.merchandise.title,
-      price: parseFloat(line.merchandise.price.amount),
-      image: line.merchandise.product.featuredImage?.url,
-      handle: line.merchandise.product.handle,
-    })) || [],
+    lines:
+      shopifyCart.lines?.nodes?.map((line: any) => ({
+        id: line.id,
+        merchandiseId: line.merchandise.id,
+        quantity: line.quantity,
+        title: line.merchandise.product.title,
+        variantTitle: line.merchandise.title,
+        price: parseFloat(line.merchandise.price.amount),
+        image: line.merchandise.product.featuredImage?.url,
+        handle: line.merchandise.product.handle,
+      })) || [],
   };
 }
 
@@ -1336,6 +1358,7 @@ git commit -m "feat(cart): add cart API route with Shopify mutations"
 ### Task 4.3: Wrap App with Cart Provider
 
 **Files:**
+
 - Modify: `app/root.tsx`
 
 **Step 1: Import and add CartProvider**
@@ -1371,6 +1394,7 @@ git commit -m "feat(cart): wrap app with CartProvider"
 ### Task 4.4: Update CartDrawer to Use Cart Context
 
 **Files:**
+
 - Modify: `app/components/cart/CartDrawer.tsx`
 
 **Step 1: Refactor CartDrawer to use useCart hook**
@@ -1402,6 +1426,7 @@ git commit -m "feat(cart): integrate CartDrawer with cart context"
 ### Task 4.5: Add Add-to-Cart Button to PDP
 
 **Files:**
+
 - Modify: `app/routes/ritual.$handle.tsx`
 
 **Step 1: Import useCart and add button handler**
@@ -1465,6 +1490,7 @@ git push origin main --tags
 ### Task 5.1: Create Auth Context
 
 **Files:**
+
 - Create: `app/lib/auth-context.tsx`
 
 **Step 1: Create auth context**
@@ -1579,6 +1605,7 @@ git commit -m "feat(auth): add auth context"
 ### Task 5.2: Create Auth API Route
 
 **Files:**
+
 - Create: `app/routes/api.auth.tsx`
 
 **Step 1: Create auth API route with Shopify Customer API**
@@ -1764,6 +1791,7 @@ git commit -m "feat(auth): add auth API route with Shopify Customer API"
 ### Task 5.3: Create Login Page
 
 **Files:**
+
 - Create: `app/routes/account.login.tsx`
 
 **Step 1: Create login page**
@@ -1860,6 +1888,7 @@ git commit -m "feat(auth): add login page"
 ### Task 5.4: Create Register Page
 
 **Files:**
+
 - Create: `app/routes/account.register.tsx`
 
 **Step 1: Create register page** (similar structure to login)
@@ -1876,6 +1905,7 @@ git commit -m "feat(auth): add register page"
 ### Task 5.5: Update Account Page with Auth
 
 **Files:**
+
 - Modify: `app/routes/account._index.tsx`
 
 **Step 1: Add authentication check and redirect**
@@ -1931,6 +1961,7 @@ git commit -m "feat(auth): integrate account page with auth context"
 ### Task 5.6: Add AuthProvider to Root
 
 **Files:**
+
 - Modify: `app/root.tsx`
 
 **Step 1: Import and wrap with AuthProvider**
@@ -1986,12 +2017,12 @@ git push origin main --tags
 
 ## Summary
 
-| Phase | Version Tag | Key Deliverables |
-|-------|-------------|------------------|
-| 1. Assets | v0.1.0-assets | Complete manifest, ResponsiveImage component, folder structure |
-| 2. Design | v0.2.0-design | Unified color system, removed legacy components |
-| 3. Shopify | v0.3.0-shopify | API client, loaders for rituals and PDP |
-| 4. Cart | v0.4.0-cart | Cart context, API routes, working checkout |
-| 5. Auth | v0.5.0-auth | Auth context, login/register, protected account |
+| Phase      | Version Tag    | Key Deliverables                                               |
+| ---------- | -------------- | -------------------------------------------------------------- |
+| 1. Assets  | v0.1.0-assets  | Complete manifest, ResponsiveImage component, folder structure |
+| 2. Design  | v0.2.0-design  | Unified color system, removed legacy components                |
+| 3. Shopify | v0.3.0-shopify | API client, loaders for rituals and PDP                        |
+| 4. Cart    | v0.4.0-cart    | Cart context, API routes, working checkout                     |
+| 5. Auth    | v0.5.0-auth    | Auth context, login/register, protected account                |
 
 Each phase deploys independently. Roll back by reverting to previous tag if issues arise.

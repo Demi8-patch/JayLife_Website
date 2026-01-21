@@ -451,10 +451,7 @@ export default function Homepage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {TESTIMONIALS.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-brand-cream rounded-2xl p-6 border border-charcoal/5"
-              >
+              <div key={index} className="bg-brand-cream rounded-2xl p-6 border border-charcoal/5">
                 <StarRating
                   rating={testimonial.rating}
                   size="sm"

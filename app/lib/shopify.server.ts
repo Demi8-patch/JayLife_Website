@@ -49,9 +49,7 @@ export async function storefront<T>(
   }
 
   if (!process.env.PUBLIC_STORE_DOMAIN) {
-    throw new Error(
-      'Missing Shopify store domain. Set PUBLIC_STORE_DOMAIN in your environment.'
-    );
+    throw new Error('Missing Shopify store domain. Set PUBLIC_STORE_DOMAIN in your environment.');
   }
 
   const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
@@ -91,20 +89,14 @@ export const storefrontClient = {
   /**
    * Execute a query with no caching (for dynamic data)
    */
-  async noCache<T>(
-    query: string,
-    variables: Record<string, unknown> = {}
-  ): Promise<T> {
+  async noCache<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
     return storefront<T>(query, variables, { cache: 'no-store' });
   },
 
   /**
    * Execute a query with aggressive caching (for static data)
    */
-  async cached<T>(
-    query: string,
-    variables: Record<string, unknown> = {}
-  ): Promise<T> {
+  async cached<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
     return storefront<T>(query, variables, { cache: 'force-cache' });
   },
 };

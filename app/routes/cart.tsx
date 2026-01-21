@@ -45,9 +45,7 @@ export default function CartPage() {
 
           <div className="lg:col-span-1">
             <div className="bg-white p-8 rounded-3xl border border-charcoal/5 shadow-sm sticky top-24">
-              <h2 className="font-display font-bold text-2xl text-charcoal mb-6">
-                Order Summary
-              </h2>
+              <h2 className="font-display font-bold text-2xl text-charcoal mb-6">Order Summary</h2>
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between text-charcoal/60">
                   <span>Subtotal</span>

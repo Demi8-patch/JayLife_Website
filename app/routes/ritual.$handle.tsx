@@ -49,10 +49,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
   try {
     // Try fetching from Shopify Storefront API
-    const data = await storefront<{ product: any }>(
-      PRODUCT_DETAIL_QUERY,
-      { handle }
-    );
+    const data = await storefront<{ product: any }>(PRODUCT_DETAIL_QUERY, { handle });
 
     if (data.product) {
       ritual = transformShopifyProduct(data.product);
@@ -376,10 +373,7 @@ export default function RitualPage() {
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {ritual.ingredients.map((ing, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-cream rounded-xl p-4 border border-charcoal/5"
-                    >
+                    <div key={idx} className="bg-cream rounded-xl p-4 border border-charcoal/5">
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-bold text-charcoal">{ing.name}</h4>
                         <span className="text-sm font-mono font-bold text-electric-lime">

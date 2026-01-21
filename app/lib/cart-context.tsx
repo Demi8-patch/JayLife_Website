@@ -5,14 +5,7 @@
  * Uses useFetcher for API calls and localStorage for cart ID persistence.
  */
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useEffect,
-  type ReactNode,
-} from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { useFetcher } from '@remix-run/react';
 import { useHaptics } from '~/lib/hooks/useHaptics';
 

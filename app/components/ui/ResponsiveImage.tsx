@@ -25,14 +25,7 @@ export function ResponsiveImage({
 
   if (!hasResponsiveSizes) {
     // External URL or placeholder - use as-is
-    return (
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        loading={priority ? 'eager' : loading}
-      />
-    );
+    return <img src={src} alt={alt} className={className} loading={priority ? 'eager' : loading} />;
   }
 
   return (

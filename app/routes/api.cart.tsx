@@ -266,7 +266,10 @@ export async function action({ request, context }: ActionFunctionArgs) {
         // If no cart exists, create one
         if (!cartId) {
           const { cartCreate } = await storefront.mutate<{
-            cartCreate: { cart: ShopifyCart; userErrors: Array<{ field: string[]; message: string }> };
+            cartCreate: {
+              cart: ShopifyCart;
+              userErrors: Array<{ field: string[]; message: string }>;
+            };
           }>(CART_CREATE_MUTATION, {
             variables: {
               input: {
@@ -284,7 +287,10 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
         // Add to existing cart
         const { cartLinesAdd } = await storefront.mutate<{
-          cartLinesAdd: { cart: ShopifyCart; userErrors: Array<{ field: string[]; message: string }> };
+          cartLinesAdd: {
+            cart: ShopifyCart;
+            userErrors: Array<{ field: string[]; message: string }>;
+          };
         }>(CART_LINES_ADD_MUTATION, {
           variables: {
             cartId,
@@ -310,7 +316,10 @@ export async function action({ request, context }: ActionFunctionArgs) {
         // If quantity is 0 or less, remove the line
         if (quantity <= 0) {
           const { cartLinesRemove } = await storefront.mutate<{
-            cartLinesRemove: { cart: ShopifyCart; userErrors: Array<{ field: string[]; message: string }> };
+            cartLinesRemove: {
+              cart: ShopifyCart;
+              userErrors: Array<{ field: string[]; message: string }>;
+            };
           }>(CART_LINES_REMOVE_MUTATION, {
             variables: {
               cartId,
@@ -326,7 +335,10 @@ export async function action({ request, context }: ActionFunctionArgs) {
         }
 
         const { cartLinesUpdate } = await storefront.mutate<{
-          cartLinesUpdate: { cart: ShopifyCart; userErrors: Array<{ field: string[]; message: string }> };
+          cartLinesUpdate: {
+            cart: ShopifyCart;
+            userErrors: Array<{ field: string[]; message: string }>;
+          };
         }>(CART_LINES_UPDATE_MUTATION, {
           variables: {
             cartId,
@@ -349,7 +361,10 @@ export async function action({ request, context }: ActionFunctionArgs) {
         }
 
         const { cartLinesRemove } = await storefront.mutate<{
-          cartLinesRemove: { cart: ShopifyCart; userErrors: Array<{ field: string[]; message: string }> };
+          cartLinesRemove: {
+            cart: ShopifyCart;
+            userErrors: Array<{ field: string[]; message: string }>;
+          };
         }>(CART_LINES_REMOVE_MUTATION, {
           variables: {
             cartId,

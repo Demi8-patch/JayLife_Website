@@ -9,11 +9,13 @@ This checklist outlines all required visual assets for the Jay Life storefront. 
 High-impact hero banners for the homepage and key landing pages.
 
 ### Desktop (1920x800)
+
 - [ ] `hero-home-desktop.avif`
 - [ ] `hero-home-desktop.webp`
 - [ ] `hero-home-desktop.jpg`
 
 ### Mobile (750x1000)
+
 - [ ] `hero-home-mobile.avif`
 - [ ] `hero-home-mobile.webp`
 - [ ] `hero-home-mobile.jpg`
@@ -25,6 +27,7 @@ High-impact hero banners for the homepage and key landing pages.
 Each SKU requires images at 3 sizes (400px, 800px, 1600px width) in avif, webp, and jpg formats.
 
 ### FOCUS
+
 - [ ] `focus-400.avif`
 - [ ] `focus-400.webp`
 - [ ] `focus-400.jpg`
@@ -36,6 +39,7 @@ Each SKU requires images at 3 sizes (400px, 800px, 1600px width) in avif, webp, 
 - [ ] `focus-1600.jpg`
 
 ### CALM
+
 - [ ] `calm-400.avif`
 - [ ] `calm-400.webp`
 - [ ] `calm-400.jpg`
@@ -47,6 +51,7 @@ Each SKU requires images at 3 sizes (400px, 800px, 1600px width) in avif, webp, 
 - [ ] `calm-1600.jpg`
 
 ### GUT
+
 - [ ] `gut-400.avif`
 - [ ] `gut-400.webp`
 - [ ] `gut-400.jpg`
@@ -58,6 +63,7 @@ Each SKU requires images at 3 sizes (400px, 800px, 1600px width) in avif, webp, 
 - [ ] `gut-1600.jpg`
 
 ### GLOW
+
 - [ ] `glow-400.avif`
 - [ ] `glow-400.webp`
 - [ ] `glow-400.jpg`
@@ -69,6 +75,7 @@ Each SKU requires images at 3 sizes (400px, 800px, 1600px width) in avif, webp, 
 - [ ] `glow-1600.jpg`
 
 ### MOVE
+
 - [ ] `move-400.avif`
 - [ ] `move-400.webp`
 - [ ] `move-400.jpg`
@@ -98,9 +105,11 @@ Third-party lab test certificates for each product (PDF format).
 Open Graph images for social media previews. All images should be 1200x630 pixels.
 
 ### Homepage
+
 - [ ] `og-home.jpg` (1200x630)
 
 ### Product Pages
+
 - [ ] `og-focus.jpg` (1200x630)
 - [ ] `og-calm.jpg` (1200x630)
 - [ ] `og-gut.jpg` (1200x630)
@@ -114,16 +123,19 @@ Open Graph images for social media previews. All images should be 1200x630 pixel
 Brand identity assets and trust indicators.
 
 ### Logo
+
 - [ ] `logo.svg` (primary logo, vector format)
 - [ ] `logo-white.svg` (white variant for dark backgrounds)
 - [ ] `logo-black.svg` (black variant for light backgrounds)
 
 ### Trust Badges
+
 - [ ] `trust-lab.svg` (lab-tested badge)
 - [ ] `badge-30day.svg` (30-day money-back guarantee badge)
 - [ ] `badge-free-shipping.svg` (free shipping badge, if applicable)
 
 ### Favicon
+
 - [ ] `favicon.ico` (16x16, 32x32, 48x48 multi-resolution)
 - [ ] `favicon-192.png` (192x192 for Android)
 - [ ] `favicon-512.png` (512x512 for PWA)
@@ -142,6 +154,7 @@ Customer photos for review sections. Ensure model/photo releases are obtained.
 - [ ] `avatar-5.jpg` (200x200, circular crop ready)
 
 ### Release Confirmation
+
 - [ ] **Model/photo releases obtained for all testimonial avatars**
 - [ ] **Written consent for commercial use confirmed**
 
@@ -150,24 +163,29 @@ Customer photos for review sections. Ensure model/photo releases are obtained.
 ## Delivery Instructions
 
 ### File Naming
+
 - Use lowercase, hyphen-separated names (e.g., `focus-800.webp`)
 - No spaces or special characters
 
 ### Image Optimization
+
 - AVIF: Quality 80, max compression
 - WebP: Quality 85
 - JPG: Quality 85, progressive encoding
 
 ### Color Profile
+
 - sRGB for all web images
 - Embed color profile in files
 
 ### Delivery Method
+
 - Upload to shared folder or asset management system
 - Notify dev team via Slack/email when assets are ready
 - Include a manifest listing all delivered files
 
 ### Directory Structure
+
 ```
 /public/images/
 ├── hero/
@@ -202,7 +220,7 @@ Customer photos for review sections. Ensure model/photo releases are obtained.
 ## Summary
 
 | Category            | Items Required |
-|---------------------|----------------|
+| ------------------- | -------------- |
 | Hero Images         | 6              |
 | Product Images      | 45             |
 | Lab Reports         | 5              |
@@ -215,4 +233,4 @@ Customer photos for review sections. Ensure model/photo releases are obtained.
 
 ---
 
-*Last updated: 2026-01-21*
+_Last updated: 2026-01-21_

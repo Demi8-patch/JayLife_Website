@@ -8,19 +8,20 @@ This guide shows which features work in VS Code, Claude Code, and AntiGravity—
 
 ## Quick Reference
 
-| Feature | VS Code | Claude Code | AntiGravity | Notes |
-|---------|---------|-------------|-------------|-------|
-| **🧠 Context Files** | ✅ | ✅ | ✅ | All read `PRIMER.md`, `STATE.md` |
-| **⚡ Skills** | ⚠️ Via tasks | ✅ Native | ✅ Native | VS Code needs task wrappers |
-| **📋 Workflows** | ⚠️ Via tasks | ✅ Slash cmds | ✅ Slash cmds | Same `.md` format for all |
-| **🔒 Permissions** | N/A | ✅ Explicit | ✅ Inferred | VS Code trusts by default |
-| **🌐 Browser Automation** | ⚠️ Extension | ✅ Built-in | ✅ Built-in | VS Code needs Playwright ext |
-| **📦 Git Integration** | ✅ Native UI | ✅ CLI commands | ✅ CLI commands | All can stage/commit |
-| **🔍 TypeScript Awareness** | ✅ IntelliSense | ✅ Via LSP | ✅ Via LSP | All respect `tsconfig.json` |
-| **🎨 Live Preview** | ✅ Extensions | ⚠️ Manual | ⚠️ Manual | VS Code has built-in server |
-| **🤖 Haptic Feedback** | N/A | ✅ Mobile | ✅ Mobile | Desktop IDEs don't vibrate |
+| Feature                     | VS Code         | Claude Code     | AntiGravity     | Notes                            |
+| --------------------------- | --------------- | --------------- | --------------- | -------------------------------- |
+| **🧠 Context Files**        | ✅              | ✅              | ✅              | All read `PRIMER.md`, `STATE.md` |
+| **⚡ Skills**               | ⚠️ Via tasks    | ✅ Native       | ✅ Native       | VS Code needs task wrappers      |
+| **📋 Workflows**            | ⚠️ Via tasks    | ✅ Slash cmds   | ✅ Slash cmds   | Same `.md` format for all        |
+| **🔒 Permissions**          | N/A             | ✅ Explicit     | ✅ Inferred     | VS Code trusts by default        |
+| **🌐 Browser Automation**   | ⚠️ Extension    | ✅ Built-in     | ✅ Built-in     | VS Code needs Playwright ext     |
+| **📦 Git Integration**      | ✅ Native UI    | ✅ CLI commands | ✅ CLI commands | All can stage/commit             |
+| **🔍 TypeScript Awareness** | ✅ IntelliSense | ✅ Via LSP      | ✅ Via LSP      | All respect `tsconfig.json`      |
+| **🎨 Live Preview**         | ✅ Extensions   | ⚠️ Manual       | ⚠️ Manual       | VS Code has built-in server      |
+| **🤖 Haptic Feedback**      | N/A             | ✅ Mobile       | ✅ Mobile       | Desktop IDEs don't vibrate       |
 
 **Legend:**
+
 - ✅ Full support, works out of the box
 - ⚠️ Partial support, needs extension/config
 - ❌ Not supported, use alternative
@@ -34,11 +35,11 @@ This guide shows which features work in VS Code, Claude Code, and AntiGravity—
 
 **What it is:** AI agents read project docs (`.agent/PRIMER.md`, `STATE.md`, etc.) to understand context.
 
-| IDE | How It Works | Configuration |
-|-----|--------------|---------------|
-| **VS Code** | Copilot reads workspace files when prompted | No config needed |
+| IDE             | How It Works                                            | Configuration                    |
+| --------------- | ------------------------------------------------------- | -------------------------------- |
+| **VS Code**     | Copilot reads workspace files when prompted             | No config needed                 |
 | **Claude Code** | Auto-reads files in `.claude/settings.local.json` paths | Set `"Read(path/**)"` permission |
-| **AntiGravity** | Automatically ingests `.agent/` on session start | Works out of the box |
+| **AntiGravity** | Automatically ingests `.agent/` on session start        | Works out of the box             |
 
 **Best practice:** Keep `PRIMER.md` under 100 lines for faster loading.
 
@@ -48,15 +49,16 @@ This guide shows which features work in VS Code, Claude Code, and AntiGravity—
 
 **What it is:** Reusable agent capabilities (e.g., `frontend_developer`, `test_skill`).
 
-| IDE | Implementation | Example Usage |
-|-----|----------------|---------------|
-| **VS Code** | Run via `.vscode/tasks.json` | `Ctrl+Shift+P` → "Tasks: Run Task" → "Frontend Developer Skill" |
-| **Claude Code** | Native skill invocation | Type in chat: `@frontend_developer` or reference in conversation |
-| **AntiGravity** | Auto-loaded from `.agent/skills/` | Just mention: "Use the frontend developer skill to review this" |
+| IDE             | Implementation                    | Example Usage                                                    |
+| --------------- | --------------------------------- | ---------------------------------------------------------------- |
+| **VS Code**     | Run via `.vscode/tasks.json`      | `Ctrl+Shift+P` → "Tasks: Run Task" → "Frontend Developer Skill"  |
+| **Claude Code** | Native skill invocation           | Type in chat: `@frontend_developer` or reference in conversation |
+| **AntiGravity** | Auto-loaded from `.agent/skills/` | Just mention: "Use the frontend developer skill to review this"  |
 
 **VS Code workaround:**
 
 Create task in `.vscode/tasks.json`:
+
 ```json
 {
   "label": "Frontend Developer Skill",
@@ -74,11 +76,11 @@ Create task in `.vscode/tasks.json`:
 
 **What it is:** Automated sequences (e.g., `/code-review` runs checklist from `.agent/workflows/code-review.md`).
 
-| IDE | Activation Method | Configuration |
-|-----|-------------------|---------------|
-| **VS Code** | Tasks or custom extension | Create task per workflow in `tasks.json` |
-| **Claude Code** | Slash commands | Add to `.claude/settings.local.json`: `"workflowsPath": "../.agent/workflows"` |
-| **AntiGravity** | Slash commands | Works automatically (reads `.agent/workflows/`) |
+| IDE             | Activation Method         | Configuration                                                                  |
+| --------------- | ------------------------- | ------------------------------------------------------------------------------ |
+| **VS Code**     | Tasks or custom extension | Create task per workflow in `tasks.json`                                       |
+| **Claude Code** | Slash commands            | Add to `.claude/settings.local.json`: `"workflowsPath": "../.agent/workflows"` |
+| **AntiGravity** | Slash commands            | Works automatically (reads `.agent/workflows/`)                                |
 
 **Example workflow file:** `.agent/workflows/code-review.md`
 
@@ -111,11 +113,11 @@ description: Conduct code review using Pragmatic Quality framework
 
 **What it is:** Which commands agents can auto-run without asking.
 
-| IDE | Permission Model | Configuration File |
-|-----|------------------|--------------------|
-| **VS Code** | Trusts user by default | Extensions have own permission requests |
-| **Claude Code** | Explicit allow-list | `.claude/settings.local.json` → `permissions.allow` |
-| **AntiGravity** | Context-aware inference | Learns from `.agent/` docs + user approvals |
+| IDE             | Permission Model        | Configuration File                                  |
+| --------------- | ----------------------- | --------------------------------------------------- |
+| **VS Code**     | Trusts user by default  | Extensions have own permission requests             |
+| **Claude Code** | Explicit allow-list     | `.claude/settings.local.json` → `permissions.allow` |
+| **AntiGravity** | Context-aware inference | Learns from `.agent/` docs + user approvals         |
 
 **See:** [PERMISSIONS.md](./PERMISSIONS.md) for full details.
 
@@ -125,11 +127,11 @@ description: Conduct code review using Pragmatic Quality framework
 
 **What it is:** Agents navigate localhost, take screenshots, test UI.
 
-| IDE | Implementation | Example Use Case |
-|-----|----------------|------------------|
-| **VS Code** | Playwright extension required | Install: `code --install-extension ms-playwright.playwright` |
-| **Claude Code** | Built-in MCP browser tools | "Navigate to localhost:3000 and screenshot the homepage" |
-| **AntiGravity** | Built-in browser control | "Test the add-to-cart flow and record a video" |
+| IDE             | Implementation                | Example Use Case                                             |
+| --------------- | ----------------------------- | ------------------------------------------------------------ |
+| **VS Code**     | Playwright extension required | Install: `code --install-extension ms-playwright.playwright` |
+| **Claude Code** | Built-in MCP browser tools    | "Navigate to localhost:3000 and screenshot the homepage"     |
+| **AntiGravity** | Built-in browser control      | "Test the add-to-cart flow and record a video"               |
 
 **VS Code setup:**
 
@@ -145,13 +147,14 @@ description: Conduct code review using Pragmatic Quality framework
 
 **What it is:** Stage, commit, diff, merge via IDE.
 
-| IDE | Interface | Workflow Example |
-|-----|-----------|------------------|
-| **VS Code** | Source Control panel (Ctrl+Shift+G) | Stage via UI, commit, push |
-| **Claude Code** | CLI commands in chat | "Stage all changes and commit with message 'Fix navbar'" |
-| **AntiGravity** | CLI commands in chat | "Show git diff, then stage and commit" |
+| IDE             | Interface                           | Workflow Example                                         |
+| --------------- | ----------------------------------- | -------------------------------------------------------- |
+| **VS Code**     | Source Control panel (Ctrl+Shift+G) | Stage via UI, commit, push                               |
+| **Claude Code** | CLI commands in chat                | "Stage all changes and commit with message 'Fix navbar'" |
+| **AntiGravity** | CLI commands in chat                | "Show git diff, then stage and commit"                   |
 
 **All IDEs support:**
+
 - ✅ `git add`, `git commit`
 - ✅ `git status`, `git diff`
 - ✅ `git log`, `git branch`
@@ -164,11 +167,11 @@ description: Conduct code review using Pragmatic Quality framework
 
 **What it is:** IntelliSense, type checking, auto-imports.
 
-| IDE | Features | Configuration |
-|-----|----------|---------------|
-| **VS Code** | Full IntelliSense + inline errors | Uses workspace `tsconfig.json` |
-| **Claude Code** | Type-aware suggestions via LSP | Respects `tsconfig.json`, runs `npm run typecheck` |
-| **AntiGravity** | Type validation on edits | Validates against `tsconfig.json` before applying changes |
+| IDE             | Features                          | Configuration                                             |
+| --------------- | --------------------------------- | --------------------------------------------------------- |
+| **VS Code**     | Full IntelliSense + inline errors | Uses workspace `tsconfig.json`                            |
+| **Claude Code** | Type-aware suggestions via LSP    | Respects `tsconfig.json`, runs `npm run typecheck`        |
+| **AntiGravity** | Type validation on edits          | Validates against `tsconfig.json` before applying changes |
 
 **All use the same `tsconfig.json`:**
 
@@ -191,15 +194,16 @@ description: Conduct code review using Pragmatic Quality framework
 
 **What it is:** See code changes instantly in browser without manual refresh.
 
-| IDE | Method | Setup |
-|-----|--------|-------|
-| **VS Code** | Live Server extension + HMR | Install `ritwickdey.LiveServer`, run `npm run dev` |
-| **Claude Code** | Run `npm run dev`, manual browser refresh | Open `localhost:3000` in browser |
-| **AntiGravity** | Run `npm run dev`, manual browser refresh | Open `localhost:3000` in browser |
+| IDE             | Method                                    | Setup                                              |
+| --------------- | ----------------------------------------- | -------------------------------------------------- |
+| **VS Code**     | Live Server extension + HMR               | Install `ritwickdey.LiveServer`, run `npm run dev` |
+| **Claude Code** | Run `npm run dev`, manual browser refresh | Open `localhost:3000` in browser                   |
+| **AntiGravity** | Run `npm run dev`, manual browser refresh | Open `localhost:3000` in browser                   |
 
 **VS Code advantage:** Native live preview panel (split editor + browser view).
 
 **Workaround for Claude/AntiGravity:**
+
 1. Run `npm run dev` (Vite HMR enabled)
 2. Open `localhost:3000` in external browser
 3. Changes auto-reload via Vite (no IDE integration needed)
@@ -277,11 +281,11 @@ description: Auto-screenshot on file save
 
 ### Context Loading Speed
 
-| IDE | Typical Load Time | Optimization |
-|-----|-------------------|--------------|
-| **VS Code** | ~200ms | No optimization needed (local) |
-| **Claude Code** | ~1-2s | Keep `PRIMER.md` under 100 lines |
-| **AntiGravity** | ~500ms | Auto-optimized |
+| IDE             | Typical Load Time | Optimization                     |
+| --------------- | ----------------- | -------------------------------- |
+| **VS Code**     | ~200ms            | No optimization needed (local)   |
+| **Claude Code** | ~1-2s             | Keep `PRIMER.md` under 100 lines |
+| **AntiGravity** | ~500ms            | Auto-optimized                   |
 
 **Tip:** If Claude Code feels slow, split large docs into smaller files and link between them.
 
@@ -289,10 +293,10 @@ description: Auto-screenshot on file save
 
 ### Memory Usage (Large Codebases)
 
-| IDE | Handling 1000+ Files | Notes |
-|-----|----------------------|-------|
-| **VS Code** | Excellent (8GB RAM sufficient) | Indexed search, lazy loading |
-| **Claude Code** | Good (12GB RAM recommended) | Full-text search can be slower |
+| IDE             | Handling 1000+ Files             | Notes                           |
+| --------------- | -------------------------------- | ------------------------------- |
+| **VS Code**     | Excellent (8GB RAM sufficient)   | Indexed search, lazy loading    |
+| **Claude Code** | Good (12GB RAM recommended)      | Full-text search can be slower  |
 | **AntiGravity** | Excellent (auto-manages context) | Intelligent file prioritization |
 
 **Recommendation:** For repos >500 files, configure `.vscode/settings.json`:
@@ -313,11 +317,11 @@ description: Auto-screenshot on file save
 
 ### Testing on Physical Devices
 
-| IDE | Method | Setup Complexity |
-|-----|--------|------------------|
-| **VS Code** | Port forwarding + remote debugging | Medium (requires ADB for Android) |
-| **Claude Code** | Use ngrok + ask Claude to test URL | Easy (one command) |
-| **AntiGravity** | Use ngrok + built-in browser | Easy (auto-handled) |
+| IDE             | Method                             | Setup Complexity                  |
+| --------------- | ---------------------------------- | --------------------------------- |
+| **VS Code**     | Port forwarding + remote debugging | Medium (requires ADB for Android) |
+| **Claude Code** | Use ngrok + ask Claude to test URL | Easy (one command)                |
+| **AntiGravity** | Use ngrok + built-in browser       | Easy (auto-handled)               |
 
 **Example (Claude/AntiGravity):**
 
@@ -401,15 +405,18 @@ npx ngrok http 3000
 ### Moving from VS Code to Claude Code
 
 **What carries over:**
+
 - ✅ `.vscode/settings.json` formatting preferences (Prettier, ESLint)
 - ✅ Git history and branch state
 - ✅ npm scripts (`npm run dev`, etc.)
 
 **What needs setup:**
+
 - ⚠️ Permissions in `.claude/settings.local.json`
 - ⚠️ Skills/workflows paths
 
 **Migration steps:**
+
 1. Copy permissions from [PERMISSIONS.md](./PERMISSIONS.md)
 2. Set `skillsPath` and `workflowsPath` in `.claude/settings.local.json`
 3. Restart Claude Code
@@ -419,14 +426,17 @@ npx ngrok http 3000
 ### Moving from Claude Code to AntiGravity
 
 **What carries over:**
+
 - ✅ Everything! (AntiGravity reads `.agent` like Claude)
 - ✅ Skills auto-discovered
 - ✅ Workflows available via slash commands
 
 **What needs setup:**
+
 - Nothing! AntiGravity is drop-in compatible.
 
 **Migration steps:**
+
 1. Open project in AntiGravity
 2. Verify: "Read PRIMER.md and summarize"
 3. ✅ Done!
@@ -448,6 +458,7 @@ npx ngrok http 3000
 **Cause:** Large context files (>200 lines) or too many files in workspace.
 
 **Fix:**
+
 1. Split `STATE.md` into smaller docs
 2. Add `node_modules/` to `.gitignore` (should already be there)
 3. Exclude build artifacts in `.claude/settings.local.json`
@@ -464,12 +475,12 @@ npx ngrok http 3000
 
 ## Version Compatibility
 
-| IDE | Minimum Version | Recommended | Notes |
-|-----|----------------|-------------|-------|
-| **VS Code** | 1.85.0 | Latest stable | Extensions may need newer versions |
-| **Claude Code** | N/A (SaaS) | Always latest | Updates automatically |
-| **AntiGravity** | N/A (SaaS) | Always latest | Rolling updates |
-| **Node.js** | 18.0.0 | 20.x LTS | Required for Hydrogen dev server |
+| IDE             | Minimum Version | Recommended   | Notes                              |
+| --------------- | --------------- | ------------- | ---------------------------------- |
+| **VS Code**     | 1.85.0          | Latest stable | Extensions may need newer versions |
+| **Claude Code** | N/A (SaaS)      | Always latest | Updates automatically              |
+| **AntiGravity** | N/A (SaaS)      | Always latest | Rolling updates                    |
+| **Node.js**     | 18.0.0          | 20.x LTS      | Required for Hydrogen dev server   |
 
 ---
 

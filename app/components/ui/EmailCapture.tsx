@@ -30,17 +30,13 @@ export function EmailCapture({
   return (
     <section className="bg-acid/10 py-16 md:py-20">
       <div className="max-w-2xl mx-auto px-5 md:px-10 text-center">
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-charcoal mb-4">
-          {title}
-        </h2>
+        <h2 className="font-display font-bold text-3xl md:text-4xl text-charcoal mb-4">{title}</h2>
         <p className="text-charcoal/70 text-lg mb-8">{description}</p>
 
         {isSubmitted ? (
           <div className="bg-white rounded-2xl p-6 shadow-sm">
             <div className="text-acid font-medium mb-2">✓ Success!</div>
-            <p className="text-charcoal/70">
-              Check your email for your {discount} discount code.
-            </p>
+            <p className="text-charcoal/70">Check your email for your {discount} discount code.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mb-4">

@@ -70,11 +70,11 @@ Two mock data files with different interfaces:
 
 **This configuration works seamlessly in VS Code, Claude Code, and AntiGravity.**
 
-| IDE            | Setup Steps                                   |
-| -------------- | --------------------------------------------- |
-| AntiGravity    | ✅ Ready (you're using it now!)               |
-| VS Code        | Install extensions, reload window             |
-| Claude Code    | Verify `.claude/settings.local.json`, restart |
+| IDE         | Setup Steps                                   |
+| ----------- | --------------------------------------------- |
+| AntiGravity | ✅ Ready (you're using it now!)               |
+| VS Code     | Install extensions, reload window             |
+| Claude Code | Verify `.claude/settings.local.json`, restart |
 
 **Installation:** Run `.agent\scripts\install.ps1` (Windows) for one-command setup.
 

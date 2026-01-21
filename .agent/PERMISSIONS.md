@@ -11,6 +11,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 ### ✅ Auto-Approved = Safe, Reversible, Read-Only
 
 **We auto-approve commands that:**
+
 - Read files/directories (never delete)
 - Run linters/type checkers (validate, don't modify)
 - Start dev servers (local only, no production impact)
@@ -19,6 +20,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 ### ❌ Always Require Approval = Destructive, External, Permanent
 
 **Agents MUST ask before:**
+
 - Deleting files (`rm`, `rmdir`)
 - Modifying production environments
 - Making external API calls
@@ -31,12 +33,12 @@ This document explains which commands are auto-approved across VS Code, Claude C
 
 ### Development Server
 
-| Command | Purpose | Why Safe |
-|---------|---------|----------|
-| `npm run dev` | Start local Hydrogen dev server | Localhost only, no external writes |
-| `npm run build` | Production build test | Creates `dist/` folder (ignored by git) |
-| `npm run preview` | Preview production build | Localhost only |
-| `timeout /t 8 /nobreak` | Wait for server startup | No side effects |
+| Command                 | Purpose                         | Why Safe                                |
+| ----------------------- | ------------------------------- | --------------------------------------- |
+| `npm run dev`           | Start local Hydrogen dev server | Localhost only, no external writes      |
+| `npm run build`         | Production build test           | Creates `dist/` folder (ignored by git) |
+| `npm run preview`       | Preview production build        | Localhost only                          |
+| `timeout /t 8 /nobreak` | Wait for server startup         | No side effects                         |
 
 **Security rationale:** These commands only affect your local machine. Dev server runs on `localhost:3000` and cannot modify production.
 
@@ -44,12 +46,12 @@ This document explains which commands are auto-approved across VS Code, Claude C
 
 ### Code Quality
 
-| Command | Purpose | Why Safe |
-|---------|---------|----------|
-| `npm run lint` | ESLint + Prettier checks | Read-only analysis |
-| `npm run typecheck` | TypeScript validation | Read-only, no code changes |
-| `npx eslint <file>` | Lint specific file | Read-only |
-| `npx tsc --noEmit` | Type-check without building | No output written |
+| Command             | Purpose                     | Why Safe                   |
+| ------------------- | --------------------------- | -------------------------- |
+| `npm run lint`      | ESLint + Prettier checks    | Read-only analysis         |
+| `npm run typecheck` | TypeScript validation       | Read-only, no code changes |
+| `npx eslint <file>` | Lint specific file          | Read-only                  |
+| `npx tsc --noEmit`  | Type-check without building | No output written          |
 
 **Security rationale:** Linters and type checkers analyze code but never modify it without explicit `--fix` flag.
 
@@ -57,11 +59,11 @@ This document explains which commands are auto-approved across VS Code, Claude C
 
 ### Dependency Management
 
-| Command | Purpose | Why Safe |
-|---------|---------|----------|
-| `npm install` | Install from `package.json` | Sandboxed to `node_modules/` |
-| `npm install <package>` | Add new dependency | Updates `package.json` (version controlled) |
-| `npx shopify hydrogen dev` | Shopify CLI dev server | Localhost, uses `.env.local` |
+| Command                    | Purpose                     | Why Safe                                    |
+| -------------------------- | --------------------------- | ------------------------------------------- |
+| `npm install`              | Install from `package.json` | Sandboxed to `node_modules/`                |
+| `npm install <package>`    | Add new dependency          | Updates `package.json` (version controlled) |
+| `npx shopify hydrogen dev` | Shopify CLI dev server      | Localhost, uses `.env.local`                |
 
 **Security rationale:** `npm install` only installs packages listed in `package.json`. Adding new packages updates version-controlled files, so changes are reviewable.
 
@@ -69,12 +71,12 @@ This document explains which commands are auto-approved across VS Code, Claude C
 
 ### File System (Read-Only)
 
-| Command | Purpose | Why Safe |
-|---------|---------|----------|
-| `tree` | List directory structure | Read-only |
-| `ls`, `dir` | List files | Read-only |
-| `git ls-files --cached` | List tracked files | Read-only |
-| `findstr <pattern> <file>` | Search file contents | Read-only |
+| Command                    | Purpose                  | Why Safe  |
+| -------------------------- | ------------------------ | --------- |
+| `tree`                     | List directory structure | Read-only |
+| `ls`, `dir`                | List files               | Read-only |
+| `git ls-files --cached`    | List tracked files       | Read-only |
+| `findstr <pattern> <file>` | Search file contents     | Read-only |
 
 **Security rationale:** These commands never modify files, only display information.
 
@@ -82,12 +84,12 @@ This document explains which commands are auto-approved across VS Code, Claude C
 
 ### Git Operations (Non-Destructive)
 
-| Command | Purpose | Why Safe |
-|---------|---------|----------|
-| `git add <file>` | Stage changes | Reversible (can unstage) |
-| `git commit -m "message"` | Commit changes | Reversible (can amend/revert) |
-| `git status` | Check repo state | Read-only |
-| `git diff` | Show changes | Read-only |
+| Command                   | Purpose          | Why Safe                      |
+| ------------------------- | ---------------- | ----------------------------- |
+| `git add <file>`          | Stage changes    | Reversible (can unstage)      |
+| `git commit -m "message"` | Commit changes   | Reversible (can amend/revert) |
+| `git status`              | Check repo state | Read-only                     |
+| `git diff`                | Show changes     | Read-only                     |
 
 **Security rationale:** Staging and committing are local operations. You control when/if changes are pushed to remote.
 
@@ -97,11 +99,11 @@ This document explains which commands are auto-approved across VS Code, Claude C
 
 ### Browser Automation (Testing)
 
-| Command | Purpose | Why Safe |
-|---------|---------|----------|
-| `mcp__plugin_playwright__browser_navigate` | Navigate to URL | Localhost testing only |
-| `mcp__plugin_playwright__browser_screenshot` | Capture screenshots | Saves to local `artifacts/` |
-| `mcp__plugin_playwright__browser_press_key` | Simulate keyboard input | Controlled test environment |
+| Command                                      | Purpose                 | Why Safe                    |
+| -------------------------------------------- | ----------------------- | --------------------------- |
+| `mcp__plugin_playwright__browser_navigate`   | Navigate to URL         | Localhost testing only      |
+| `mcp__plugin_playwright__browser_screenshot` | Capture screenshots     | Saves to local `artifacts/` |
+| `mcp__plugin_playwright__browser_press_key`  | Simulate keyboard input | Controlled test environment |
 
 **Security rationale:** Browser automation runs in isolated context. Screenshots are saved locally, not uploaded.
 
@@ -114,6 +116,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 **Default behavior:** Trusts user by default. No explicit permissions needed.
 
 **Extension permissions:**
+
 - ESLint: Can auto-fix on save (if enabled in `.vscode/settings.json`)
 - Prettier: Can format on save
 - Copilot: Can suggest code completions
@@ -127,6 +130,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 **Configured in:** `.claude/settings.local.json`
 
 **Current permissions:**
+
 ```json
 {
   "permissions": {
@@ -143,11 +147,13 @@ This document explains which commands are auto-approved across VS Code, Claude C
 ```
 
 **How to add new permissions:**
+
 1. Edit `.claude/settings.local.json`
 2. Add pattern to `permissions.allow` array using glob syntax
 3. Restart Claude Code
 
 **Examples:**
+
 - `"Bash(npm install:*)"` — Allow any `npm install` command
 - `"Read(/path/to/dir/**)"` — Allow reading all files in directory
 - `"Skill(superpowers:brainstorming)"` — Enable specific skill
@@ -159,6 +165,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 **Default behavior:** Infers safe commands automatically. Uses context from `.agent/` to determine intent.
 
 **No explicit config needed.** AntiGravity learns from:
+
 - Project structure (detects `package.json` → knows `npm` is safe)
 - `.agent/PRIMER.md` — Documents expected workflows
 - Previous interactions — Builds trust over time
@@ -172,6 +179,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 ### When to Add
 
 **Add a new auto-approval when:**
+
 - Command is repeatable without asking (e.g., `npm run test`)
 - It's read-only or side-effects are version-controlled
 - You trust the tool (e.g., official Shopify CLI)
@@ -183,7 +191,7 @@ This document explains which commands are auto-approved across VS Code, Claude C
 {
   "permissions": {
     "allow": [
-      "Bash(npx playwright test:*)"  // Auto-run tests
+      "Bash(npx playwright test:*)" // Auto-run tests
     ]
   }
 }
@@ -242,6 +250,7 @@ Does it affect production or external systems? (deploy, API calls)
 **Upcoming review:** Quarterly (next: April 2026)
 
 **Changes since last review:**
+
 - Initial setup (January 2026)
 - Added browser automation for Playwright testing
 - Enabled git add/commit for automated workflows
@@ -253,6 +262,7 @@ Does it affect production or external systems? (deploy, API calls)
 ### Allowed External Paths
 
 **Claude Code has read access to:**
+
 - `C:\Users\dtrip\Downloads\forAntiGravity\awesome-claude-code-subagents-main\**`
 - `C:\Users\dtrip\Downloads\forAntiGravity\claude-code-workflows-main\**`
 
@@ -265,11 +275,13 @@ Does it affect production or external systems? (deploy, API calls)
 ## Need Help?
 
 **Questions about a specific permission?**
+
 1. Check this doc's "Auto-Approved Commands" section
 2. Review IDE-specific config (`.claude/settings.local.json`, `.vscode/settings.json`)
 3. Ask the agent: "Why do you need permission to run [command]?"
 
 **Want to revoke a permission?**
+
 - **Claude Code:** Remove from `.claude/settings.local.json`, restart Claude
 - **VS Code:** Disable extension or setting in `.vscode/settings.json`
 - **AntiGravity:** Tell the agent "Stop auto-running [command], ask me first"

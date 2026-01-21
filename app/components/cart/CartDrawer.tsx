@@ -4,7 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart, type CartLine } from '~/lib/cart-context';
 
 export function CartDrawer() {
-  const { isOpen, closeCart, lines, updateItem, removeItem, subtotal, totalQuantity, checkoutUrl, loading } = useCart();
+  const {
+    isOpen,
+    closeCart,
+    lines,
+    updateItem,
+    removeItem,
+    subtotal,
+    totalQuantity,
+    checkoutUrl,
+    loading,
+  } = useCart();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -111,8 +121,8 @@ export function CartDrawer() {
                 {/* Free shipping threshold */}
                 {subtotalAmount < 50 && (
                   <div className="bg-acid/10 rounded-button p-3 text-center text-sm">
-                    Add <span className="font-semibold">${(50 - subtotalAmount).toFixed(2)}</span> more
-                    for free shipping
+                    Add <span className="font-semibold">${(50 - subtotalAmount).toFixed(2)}</span>{' '}
+                    more for free shipping
                   </div>
                 )}
 
@@ -194,9 +204,7 @@ function CartLineItem({
         <Link to={`/ritual/${handle}`}>
           <h3 className="font-semibold hover:text-charcoal/70 transition-colors">{title}</h3>
         </Link>
-        {variantTitle && (
-          <p className="text-caption text-muted mt-1">{variantTitle}</p>
-        )}
+        {variantTitle && <p className="text-caption text-muted mt-1">{variantTitle}</p>}
         <p className="font-mono text-specs mt-2">${priceAmount.toFixed(2)}</p>
       </div>
 
