@@ -4,6 +4,7 @@ import { PriceDisplay } from '~/components/ui/PriceDisplay';
 import { ProductBadge, SaleBadge } from '~/components/ui/SaleBadge';
 import { StarRating } from '~/components/ui/StarRating';
 import { WishlistButton } from '~/components/ui/WishlistButton';
+import { useCart } from '~/lib/cart-context';
 import type { Ritual } from '~/lib/mock-data';
 
 interface ProductCardProps {
@@ -25,19 +26,20 @@ export function ProductCard({ ritual, className = '' }: ProductCardProps) {
     badges,
     inStock,
     stockCount,
+    variantId,
+    id,
   } = ritual;
+
+  const { addItem, loading } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // Haptic feedback
-    if (navigator.vibrate) {
-      navigator.vibrate(10);
-    }
+    const merchandiseId = variantId || id;
+    if (!merchandiseId) return;
 
-    // TODO: Add to cart functionality
-    console.log('Add to cart:', handle);
+    addItem(merchandiseId);
   };
 
   return (
@@ -123,57 +125,21 @@ export function ProductCard({ ritual, className = '' }: ProductCardProps) {
         <button
           type="button"
           onClick={handleAddToCart}
-          disabled={!inStock}
+          disabled={!inStock || loading}
           className={`
             btn-add-to-cart mt-auto
-            ${!inStock ? 'opacity-50 cursor-not-allowed bg-gray-300' : ''}
+            ${!inStock || loading ? 'opacity-50 cursor-not-allowed bg-gray-300' : ''}
           `}
         >
-          <CartIcon className="w-5 h-5" />
-          {inStock ? 'Add to Cart' : 'Out of Stock'}
+          {loading ? (
+            <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          ) : (
+            <CartIcon className="w-5 h-5" />
+          )}
+          {!inStock ? 'Out of Stock' : loading ? 'Adding...' : 'Add to Cart'}
         </button>
       </div>
     </div>
   );
 }
 
-// Legacy interface for backwards compatibility
-interface LegacyProductCardProps {
-  id: string;
-  title: string;
-  tagline: string;
-  price: string;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  handle: string;
-}
-
-export function LegacyProductCard({
-  title,
-  tagline,
-  price,
-  image,
-  rating,
-  reviewCount,
-  handle,
-}: LegacyProductCardProps) {
-  // Convert legacy props to Ritual format
-  const priceNum = parseFloat(price.replace('$', ''));
-
-  return (
-    <ProductCard
-      ritual={{
-        handle,
-        title,
-        tagline,
-        price: priceNum,
-        image,
-        rating,
-        reviewCount,
-        inStock: true,
-        ingredients: [],
-      }}
-    />
-  );
-}

@@ -1,10 +1,12 @@
 import { Link, useLocation } from '@remix-run/react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartCount } from '~/lib/cart-context';
 
 export function NeoNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const cartCount = useCartCount();
 
   // Close menu on route change
   useEffect(() => {
@@ -43,7 +45,7 @@ export function NeoNavbar() {
             to="/cart"
             className="px-6 py-2 text-sm font-bold uppercase border-2 bg-warm-sunrise-lime text-warm-sunrise-charcoal border-warm-sunrise-offwhite shadow-neo hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-neo-lg transition-all active:translate-x-0 active:translate-y-0 active:shadow-none"
           >
-            Cart (0)
+            Cart ({cartCount})
           </Link>
         </div>
 
@@ -111,7 +113,7 @@ export function NeoNavbar() {
                 to="/cart"
                 className="text-4xl font-black uppercase font-display text-warm-sunrise-lime border-b-2 border-warm-sunrise-charcoal/50 pb-4 hover:pl-4 transition-all"
               >
-                Cart
+                Cart {cartCount > 0 && `(${cartCount})`}
               </Link>
             </div>
           </motion.div>

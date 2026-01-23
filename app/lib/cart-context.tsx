@@ -3,6 +3,11 @@
  *
  * React context for managing cart state with Shopify Storefront API integration.
  * Uses useFetcher for API calls and localStorage for cart ID persistence.
+ *
+ * Cart ID Validation:
+ * Cart IDs from localStorage are validated server-side by Shopify when fetched.
+ * Invalid or expired cart IDs return an error, which triggers cleanup of the
+ * stored ID (see line 99-104). This provides graceful handling of stale carts.
  */
 
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
@@ -85,6 +90,8 @@ export function CartProvider({ children }: CartProviderProps) {
       // Fetch existing cart
       fetcher.load(`/api/cart?cartId=${encodeURIComponent(storedCartId)}`);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Intentionally only run on mount - fetcher.load is stable
   }, []);
 
   // Handle fetcher responses

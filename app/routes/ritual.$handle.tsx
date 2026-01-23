@@ -98,10 +98,8 @@ export default function RitualPage() {
 
     setIsAddingToCart(true);
 
-    // Add item to cart (for each quantity)
-    for (let i = 0; i < quantity; i++) {
-      addItem(merchandiseId);
-    }
+    // Add item to cart with quantity
+    addItem(merchandiseId, quantity);
 
     // Cart drawer opens automatically via addItem, reset local state after a delay
     setTimeout(() => {

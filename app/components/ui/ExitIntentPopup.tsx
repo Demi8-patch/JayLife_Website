@@ -1,22 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
+  const hasShownRef = useRef(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
+  const closePopup = useCallback(() => setIsVisible(false), []);
+
+  // Handle escape key
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    // Focus the close button when modal opens
+    closeButtonRef.current?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isVisible, closePopup]);
+
+  // Handle exit intent detection
   useEffect(() => {
     // Check if already shown in this session
     const shownInSession = sessionStorage.getItem('jaylife_exit_intent_shown');
     if (shownInSession) {
-      setHasShown(true);
+      hasShownRef.current = true;
       return;
     }
 
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !hasShown && !isVisible) {
+      if (e.clientY <= 0 && !hasShownRef.current) {
         setIsVisible(true);
-        setHasShown(true);
+        hasShownRef.current = true;
         sessionStorage.setItem('jaylife_exit_intent_shown', 'true');
       }
     };
@@ -26,20 +49,24 @@ export function ExitIntentPopup() {
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [hasShown, isVisible]);
-
-  const closePopup = () => setIsVisible(false);
+  }, []);
 
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="exit-intent-title"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closePopup}
             className="absolute inset-0 bg-dark/80 backdrop-blur-sm"
+            aria-hidden="true"
           />
 
           <motion.div
@@ -52,7 +79,7 @@ export function ExitIntentPopup() {
               <span className="inline-block bg-sale-red text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
                 WAIT! DON'T GO
               </span>
-              <h2 className="font-display font-bold text-3xl text-charcoal mb-4">
+              <h2 id="exit-intent-title" className="font-display font-bold text-3xl text-charcoal mb-4">
                 Unlock 10% Off Your First Ritual
               </h2>
               <p className="text-charcoal/70 mb-8">
@@ -79,6 +106,7 @@ export function ExitIntentPopup() {
               </form>
 
               <button
+                ref={closeButtonRef}
                 onClick={closePopup}
                 className="mt-4 text-sm text-charcoal/40 hover:text-charcoal underline"
               >

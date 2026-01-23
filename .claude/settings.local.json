@@ -45,7 +45,10 @@
       "Read(C:\\Users\\dtrip\\Downloads\\forAntiGravity\\awesome-claude-code-subagents-main\\categories\\**)",
       "Read(C:\\Users\\dtrip\\Downloads\\forAntiGravity\\claude-code-workflows-main\\**)",
       "Read(C:\\Users\\dtrip\\OneDrive\\Desktop\\jaysite\\JayLife_Website\\.agent\\**)",
-      "Read(//c/Users/dtrip/.claude/plugins/cache/superpowers-marketplace/superpowers/4.0.3/skills/subagent-driven-development/**)"
+      "Read(//c/Users/dtrip/.claude/plugins/cache/superpowers-marketplace/superpowers/4.0.3/skills/subagent-driven-development/**)",
+      "Bash(cmd.exe /c \"cd C:\\\\Users\\\\dtrip\\\\OneDrive\\\\Desktop\\\\jaysite\\\\JayLife_Website && npm install\")",
+      "Bash(powershell.exe -Command \"Set-Location ''C:\\\\Users\\\\dtrip\\\\OneDrive\\\\Desktop\\\\jaysite\\\\JayLife_Website''; npm install 2>&1\")",
+      "Bash(powershell.exe -Command \"Set-Location ''C:\\\\Users\\\\dtrip\\\\OneDrive\\\\Desktop\\\\jaysite\\\\JayLife_Website''; npm install --legacy-peer-deps 2>&1\")"
     ]
   },
   "skillsPath": "../.agent/skills",

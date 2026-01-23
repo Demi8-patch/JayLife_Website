@@ -44,6 +44,8 @@ export interface Ritual {
   labReportUrl?: string;
   synergyRituals?: string[];
   // E-commerce fields
+  id?: string;
+  variantId?: string;
   rating: number;
   reviewCount: number;
   reviews?: Review[];

@@ -3,6 +3,18 @@
  *
  * React context for managing customer authentication state with Shopify Storefront API.
  * Uses useFetcher for API calls and localStorage for token persistence.
+ *
+ * SECURITY NOTE:
+ * Customer access tokens are stored in localStorage for persistence across page loads.
+ * This is acceptable for Shopify Storefront API tokens because:
+ * 1. Tokens are customer-scoped and limited to read/write customer data only
+ * 2. Tokens cannot access admin/store data
+ * 3. Tokens have short expiry (typically 24h) and are rotated
+ *
+ * For enhanced security in production, consider:
+ * - Using httpOnly cookies via server-side session management
+ * - Implementing token refresh before expiry
+ * - Adding CSRF protection for mutation endpoints
  */
 
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';

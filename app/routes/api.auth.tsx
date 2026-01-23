@@ -5,7 +5,7 @@
  * Supports login, registration, and token verification.
  */
 
-import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node';
+import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import { storefront } from '~/lib/shopify.server';
 
 // ============================================================================

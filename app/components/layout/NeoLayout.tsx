@@ -9,7 +9,7 @@ export function NeoLayout({ children }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen bg-warm-sunrise-offwhite selection:bg-warm-sunrise-lime selection:text-warm-sunrise-charcoal">
       <NeoNavbar />
-      <main className="flex-grow pt-[72px]">{children}</main>
+      <main id="main-content" tabIndex={-1} className="flex-grow pt-[72px] outline-none">{children}</main>
       <NeoFooter />
     </div>
   );

@@ -2,10 +2,12 @@ import { Link } from '@remix-run/react';
 import { SaleBadge } from '~/components/ui/SaleBadge';
 import { PriceDisplay } from '~/components/ui/PriceDisplay';
 import { CartIcon, CheckIcon } from '~/components/ui/Icons';
+import { useCart } from '~/lib/cart-context';
 
 interface BundleProduct {
   title: string;
   image?: string;
+  variantId?: string;
 }
 
 interface BundleCardProps {
@@ -16,6 +18,7 @@ interface BundleCardProps {
   compareAtPrice: number;
   discountPercent: number;
   handle: string;
+  variantId?: string;
   benefits?: string[];
 }
 
@@ -27,18 +30,27 @@ export function BundleCard({
   compareAtPrice,
   discountPercent,
   handle,
+  variantId,
   benefits = [],
 }: BundleCardProps) {
+  const { addItem, loading } = useCart();
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (navigator.vibrate) {
-      navigator.vibrate(10);
+    // If bundle has a single variant ID, add it
+    // Otherwise, add each product's variant to cart
+    if (variantId) {
+      addItem(variantId);
+    } else {
+      // Add each product in the bundle that has a variantId
+      products.forEach((product) => {
+        if (product.variantId) {
+          addItem(product.variantId);
+        }
+      });
     }
-
-    // TODO: Add bundle to cart
-    console.log('Add bundle to cart:', handle);
   };
 
   return (
@@ -104,9 +116,18 @@ export function BundleCard({
         </div>
 
         {/* Add to Cart */}
-        <button type="button" onClick={handleAddToCart} className="btn-add-to-cart w-full">
-          <CartIcon className="w-5 h-5" />
-          Add Bundle to Cart
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          disabled={loading}
+          className={`btn-add-to-cart w-full ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+          {loading ? (
+            <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          ) : (
+            <CartIcon className="w-5 h-5" />
+          )}
+          {loading ? 'Adding...' : 'Add Bundle to Cart'}
         </button>
       </div>
     </div>

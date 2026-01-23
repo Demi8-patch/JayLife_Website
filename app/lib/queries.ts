@@ -314,6 +314,10 @@ export function transformShopifyProduct(shopifyProduct: any): Ritual {
   // Get image URL
   const image = shopifyProduct.featuredImage?.url || '/images/placeholder.jpg';
 
+  // Get first variant ID for add-to-cart
+  const firstVariant = shopifyProduct.variants?.nodes?.[0];
+  const variantId = firstVariant?.id || null;
+
   // Transform to our Ritual interface
   return {
     handle: shopifyProduct.handle,
@@ -322,9 +326,11 @@ export function transformShopifyProduct(shopifyProduct: any): Ritual {
     description: shopifyProduct.description || '',
     price,
     image,
+    id: shopifyProduct.id,
+    variantId,
     rating: 4.8, // Default (would come from reviews)
     reviewCount: 0,
-    inStock: true,
+    inStock: firstVariant?.availableForSale ?? true,
     badges: metafieldsMap.get('badges') || [],
     ingredients: metafieldsMap.get('ingredients') || [],
   };
